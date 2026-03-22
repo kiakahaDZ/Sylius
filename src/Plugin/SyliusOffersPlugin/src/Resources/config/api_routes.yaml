@@ -1,0 +1,35 @@
+sylius_offers_api_get_offers:
+    path: /offers
+    methods: [GET]
+    defaults:
+        _controller: sylius_offers.controller.api.offer:getOffersAction
+
+sylius_offers_api_get_offer:
+    path: /offers/{id}
+    methods: [GET]
+    defaults:
+        _controller: sylius_offers.controller.api.offer:getOfferAction
+
+sylius_offers_api_track_click:
+    path: /offers/{id}/click
+    methods: [POST]
+    defaults:
+        _controller: sylius_offers.controller.api.offer:trackClickAction
+
+sylius_offers_api_upcoming:
+    path: /offers/upcoming
+    methods: [GET]
+    defaults:
+        _controller: sylius_offers.controller.api.offer:getUpcomingOffersAction
+
+sylius_offers_api_expiring:
+    path: /offers/expiring
+    methods: [GET]
+    defaults:
+        _controller: sylius_offers.controller.api.offer:getExpiringOffersAction
+
+sylius_offers_api_best_performing:
+    path: /offers/best-performing
+    methods: [GET]
+    defaults:
+        _controller: sylius_offers.controller.api.offer:getBestPerformingOffersAction

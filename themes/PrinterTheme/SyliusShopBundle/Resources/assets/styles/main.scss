@@ -1,0 +1,55 @@
+/*
+ * PrinterTheme - Main Stylesheet
+ * Dark/Cyan/Orange printer e-commerce theme
+ */
+
+// =============================================
+// Google Fonts (must be first)
+// =============================================
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+// Variables
+@import "~@sylius/shop-bundle/styles/variables";
+@import "variables";
+
+// Utilities / Mixins
+@import "~@sylius/shop-bundle/styles/mixins/text-truncate";
+
+// Bootstrap 5
+@import "~bootstrap/scss/bootstrap";
+
+// PrinterTheme custom partials
+@import "animations";
+@import "glassmorphism";
+@import "hero";
+@import "categories_grid";
+@import "best_sellers";
+@import "product_cards";
+@import "product_show";
+@import "checkout_wizard";
+@import "layout";
+@import "responsive";
+
+// Original Sylius partials (retained for compatibility)
+@import "~@sylius/shop-bundle/styles/base";
+@import "~@sylius/shop-bundle/styles/accordion";
+@import "~@sylius/shop-bundle/styles/buttons";
+@import "~@sylius/shop-bundle/styles/card";
+@import "~@sylius/shop-bundle/styles/checkout";
+@import "~@sylius/shop-bundle/styles/flags";
+@import "~@sylius/shop-bundle/styles/fonts";
+@import "~@sylius/shop-bundle/styles/form";
+@import "~@sylius/shop-bundle/styles/icons";
+@import "~@sylius/shop-bundle/styles/lists";
+@import "~@sylius/shop-bundle/styles/loader";
+@import "~@sylius/shop-bundle/styles/messages";
+@import "~@sylius/shop-bundle/styles/nav";
+@import "~@sylius/shop-bundle/styles/offcanvas";
+@import "~@sylius/shop-bundle/styles/photo-grid";
+@import "~@sylius/shop-bundle/styles/products";
+@import "~@sylius/shop-bundle/styles/rating";
+@import "~@sylius/shop-bundle/styles/steps";
+@import "~@sylius/shop-bundle/styles/tables";
+@import "~@sylius/shop-bundle/styles/tom-select";
+@import "~@sylius/shop-bundle/styles/rtl";

@@ -1,0 +1,35 @@
+{
+    "name": "sylius/offers-plugin",
+    "type": "sylius-plugin",
+    "description": "Offers and Promotions Display Plugin for Sylius",
+    "keywords": ["sylius", "offers", "promotions", "plugin", "ecommerce"],
+    "license": "MIT",
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "sylius/sylius": "^2.3",
+        "doctrine/orm": "^2.0",
+        "symfony/framework-bundle": "^6.0",
+        "symfony/ux-twig-component": "^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "symfony/phpunit-bridge": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SyliusOffersPlugin\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SyliusOffersPlugin\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "sylius": {
+            "bundles": [
+                "SyliusOffersPlugin\\SyliusOffersPlugin"
+            ]
+        }
+    }
+}

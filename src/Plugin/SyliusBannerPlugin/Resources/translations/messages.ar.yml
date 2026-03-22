@@ -1,0 +1,9 @@
+sylius_banner:
+    ui:
+        banners: البانرات
+        title: العنوان
+        subtitle: العنوان الفرعي
+        link: رابط URL
+        image: الصورة
+        position: الموقع
+        sort_order: ترتيب العرض

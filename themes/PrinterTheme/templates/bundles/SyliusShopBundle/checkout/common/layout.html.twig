@@ -1,0 +1,37 @@
+{% extends '@SyliusShop/shared/layout/base.html.twig' %}
+
+{% set prefixes = prefixes|default([])|merge(['sylius_shop.checkout.common']) %}
+
+{% block body %}
+    {% set prefixes = prefixes|filter(hook => hook != generic_hook) %}
+    <div class="d-flex flex-column min-vh-100 overflow-hidden">
+        <div class="printer-checkout printer-checkout-header border-bottom py-4" style="background: transparent; border-color: rgba(248, 250, 252, 0.06) !important;">
+            <div class="container">
+                <div class="row align-items-center">
+                    {% if active_step|default(null) is not null %}
+                        {% set hooks = [ active_step ~ '.header'] %}
+                    {% endif %}
+                    {% hook hooks|default([])|merge(['header']) with { _prefixes: prefixes, order } %}
+                </div>
+            </div>
+        </div>
+        <div class="flex-grow-1 d-flex align-items-stretch printer-checkout">
+            <div class="container py-4 pb-5">
+                <div class="printer-checkout__grid row">
+                    <div class="col pt-2">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                    {% block sidebar %}
+                        <div class="col-12 col-lg-5 col-xl-4 py-4 ps-lg-5 position-relative checkout-sidebar">
+                            {% if active_step|default(null) is not null %}
+                                {% set hooks = [ active_step ~ '.sidebar'] %}
+                            {% endif %}
+                            {% hook hooks|default([])|merge(['sidebar']) with { _prefixes: prefixes, order } %}
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+sylius_twig_hooks:
+    hooks:
+        sylius_shop.homepage.index:
+            best_sellers:
+                component: 'sylius_best_seller:shop:best_sellers'
+                props:
+                    period: 'weekly'
+                    limit: 8
+                priority: 20
+
+sylius_resource:
+    resources:
+        sylius_best_seller.cache:
+            classes:
+                model: SyliusBestSellerPlugin\Entity\BestSellerCache
+                repository: SyliusBestSellerPlugin\Repository\BestSellerRepository

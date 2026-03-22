@@ -1,0 +1,102 @@
+/*
+ * PrinterTheme - Best Sellers Section Styles
+ */
+
+.printer-best-sellers {
+    background: #0f172a; /* deeper dark blue for better integration with light theme */
+    padding: 100px 0; /* consistent with other major sections */
+    position: relative;
+    overflow: hidden;
+
+    .printer-container {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.printer-best-sellers__title {
+    color: #fff;
+    font-family: $font-family-extra;
+    font-weight: 800;
+    font-size: 2.5rem;
+    margin-bottom: $spacer * 0.5;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.printer-best-sellers__subtitle {
+    color: rgba(#fff, 0.7);
+    font-size: 1.1rem;
+    margin-bottom: $spacer * 3;
+}
+
+.printer-best-sellers__scroll {
+    display: flex;
+    overflow-x: auto;
+    padding: $spacer * 1 $spacer * 0.5 $spacer * 3;
+    gap: $spacer * 2;
+    scroll-behavior: smooth;
+    scrollbar-width: none; // Hide scrollbar for Firefox
+
+    &::-webkit-scrollbar {
+        display: none; // Hide scrollbar for Chrome/Safari
+    }
+}
+
+.printer-best-sellers__nav {
+    display: flex;
+    gap: $spacer;
+
+    .nav-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1px solid rgba(#fff, 0.2);
+        background: rgba(#fff, 0.05);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: $transition-base;
+        cursor: pointer;
+
+        &:hover {
+            background: $printer-cyan;
+            border-color: $printer-cyan;
+            box-shadow: 0 0 15px rgba($printer-cyan, 0.4);
+        }
+    }
+}
+
+// Special Best Seller Badge
+.printer-badge--bestseller {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #000;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+    padding: 2px 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(#FFA500, 0.4);
+}
+
+.printer-product-card__stats {
+    display: flex;
+    align-items: center;
+    gap: $spacer * 0.5;
+    font-size: 0.85rem;
+    color: $printer-cyan-light;
+    margin-bottom: $spacer * 0.5;
+    font-weight: 600;
+
+    i {
+        font-size: 1rem;
+    }
+}
+
+.printer-best-sellers__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: $spacer * 2;
+}

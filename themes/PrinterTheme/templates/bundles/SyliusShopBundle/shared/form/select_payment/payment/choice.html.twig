@@ -1,0 +1,26 @@
+{% set form = hookable_metadata.context.form %}
+
+<div class="mb-5">
+    {{ form_errors(form.method) }}
+
+    {% for key, choice_form in form.method %}
+        {% set method = form.method.vars.choices[key].data %}
+        {% set factory_name = method.gatewayConfig.factoryName %}
+        <label class="printer-selection-card mb-3" {{ sylius_test_html_attribute('payment-item') }}>
+            {{ form_widget(choice_form, sylius_test_form_attribute('payment-method-select')) }}
+            <div class="printer-selection-card__content">
+                <div class="printer-selection-card__icon">
+                    <i class="ti ti-credit-card" aria-hidden="true"></i>
+                </div>
+                <div class="printer-selection-card__info">
+                    <div class="printer-selection-card__name">{{ method.name }}</div>
+                    {% if method.instructions %}
+                        <p class="printer-selection-card__desc mb-0">{{ method.instructions }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </label>
+    {% else %}
+        {% hook 'choice#unavailable' %}
+    {% endfor %}
+</div>

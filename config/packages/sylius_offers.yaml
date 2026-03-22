@@ -1,0 +1,8 @@
+sylius_offers:
+    auto_track_views: true
+    cache_ttl: 3600
+    default_styles:
+        card_background: '#f8f9fa'
+        card_text: '#212529'
+        banner_gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+        button_color: '#007bff'

@@ -1,0 +1,60 @@
+{% set remaining = getRemainingTime() %}
+
+{% if remaining and not remaining.expired %}
+    <div class="ui horizontal statistics">
+        <div class="statistic">
+            <div class="value">{{ remaining.days }}</div>
+            <div class="label">{{ 'sylius_offers.ui.days'|trans }}</div>
+        </div>
+        <div class="statistic">
+            <div class="value">{{ remaining.hours }}</div>
+            <div class="label">{{ 'sylius_offers.ui.hours'|trans }}</div>
+        </div>
+        <div class="statistic">
+            <div class="value">{{ remaining.minutes }}</div>
+            <div class="label">{{ 'sylius_offers.ui.minutes'|trans }}</div>
+        </div>
+        <div class="statistic">
+            <div class="value">{{ remaining.seconds }}</div>
+            <div class="label">{{ 'sylius_offers.ui.seconds'|trans }}</div>
+        </div>
+    </div>
+    
+    <script>
+        // Live countdown update
+        (function() {
+            const endTimestamp = {{ getEndDateTimestamp() }};
+            const updateInterval = setInterval(function() {
+                const now = Math.floor(Date.now() / 1000);
+                const remainingSeconds = endTimestamp - now;
+                
+                if (remainingSeconds <= 0) {
+                    clearInterval(updateInterval);
+                    location.reload();
+                    return;
+                }
+                
+                const days = Math.floor(remainingSeconds / 86400);
+                const hours = Math.floor((remainingSeconds % 86400) / 3600);
+                const minutes = Math.floor((remainingSeconds % 3600) / 60);
+                const seconds = remainingSeconds % 60;
+                
+                // Update DOM elements
+                const container = document.currentScript.parentElement;
+                if (container) {
+                    const values = container.querySelectorAll('.statistic .value');
+                    if (values.length >= 4) {
+                        values[0].textContent = days;
+                        values[1].textContent = hours;
+                        values[2].textContent = minutes;
+                        values[3].textContent = seconds;
+                    }
+                }
+            }, 1000);
+        })();
+    </script>
+{% elseif remaining and remaining.expired %}
+    <div class="ui red message">
+        {{ 'sylius_offers.ui.offer_expired'|trans }}
+    </div>
+{% endif %}

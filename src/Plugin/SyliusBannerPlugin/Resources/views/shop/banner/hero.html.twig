@@ -1,0 +1,50 @@
+{% if banners|length > 0 %}
+    {# Dynamic hero from Banner entity – split layout #}
+    <section class="printer-hero" id="printer-hero" aria-label="{{ 'sylius.ui.home'|trans }}" data-controller="printer-hero">
+        <div class="printer-hero__shape printer-hero__shape--1" aria-hidden="true"></div>
+        <div class="printer-hero__shape printer-hero__shape--2" aria-hidden="true"></div>
+
+        {% for banner in banners %}
+            <div class="printer-hero__slide{{ loop.first ? ' active' : '' }}" data-printer-hero-target="slide">
+                <div class="printer-hero__inner printer-container">
+                    <div class="printer-hero__content">
+                        {% if banner.subtitle %}
+                            <p class="printer-hero__tagline">{{ banner.subtitle }}</p>
+                        {% endif %}
+                        <h1 class="printer-hero__title">{{ banner.title }}</h1>
+                        <div class="printer-hero__actions">
+                            {% if banner.link %}
+                                <a href="{{ banner.link }}" class="printer-hero__cta printer-hero__cta--primary">
+                                    {{ 'printer_shop.hero.visit_shop'|trans }}
+                                    <i class="ti ti-chevron-right"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if banner.imagePath %}
+                        <div class="printer-hero__visual">
+                            <img src="{{ banner.imagePath|imagine_filter('sylius_shop_product_large_thumbnail') }}" alt="{{ banner.title }}" loading="{{ loop.first ? 'eager' : 'lazy' }}">
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+
+        {% if banners|length > 1 %}
+            <button class="printer-hero__arrow printer-hero__arrow--prev" aria-label="{{ 'sylius.ui.previous'|trans }}" data-action="click->printer-hero#prev">
+                <i class="ti ti-chevron-left"></i>
+            </button>
+            <button class="printer-hero__arrow printer-hero__arrow--next" aria-label="{{ 'sylius.ui.next'|trans }}" data-action="click->printer-hero#next">
+                <i class="ti ti-chevron-right"></i>
+            </button>
+            <div class="printer-hero__dots" role="tablist">
+                {% for banner in banners %}
+                    <button class="printer-hero__dot{{ loop.first ? ' active' : '' }}" role="tab" data-action="click->printer-hero#goTo" data-index="{{ loop.index0 }}"></button>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </section>
+{% else %}
+    {# Fallback: include default static hero #}
+    {% include '@SyliusShop/homepage/banner.html.twig' %}
+{% endif %}

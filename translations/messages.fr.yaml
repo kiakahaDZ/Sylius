@@ -1,0 +1,91 @@
+printer_shop:
+    homepage:
+        shop_label: 'Boutique'
+        featured_products: 'Produits en Vedette'
+        view_all: 'Voir Tout'
+
+    hero:
+        tagline_1: 'Des solutions d''impression fiables, un service professionnel et une qualité sur laquelle vous pouvez compter.'
+        title_1: 'SMART PRINTING SOLUTIONS'
+        subtitle_1: 'Solutions d''impression intelligentes'
+        visit_shop: 'Visiter la boutique'
+
+        tagline_2: 'Service de réparation expert pour toutes les grandes marques d''imprimantes.'
+        title_2: 'RÉPARATION & MAINTENANCE CERTIFIÉE'
+        subtitle_2: 'Délai rapide, pièces d''origine et techniciens experts.'
+        shop_now: 'Acheter maintenant'
+        explore: 'Explorer les catégories'
+
+        tagline_3: 'Cartouches compatibles OEM aux meilleurs prix. Qualité garantie.'
+        title_3: 'ÉCONOMISEZ JUSQU''À 40%'
+        subtitle_3: 'Encre et toner premium à moitié prix. Livraison instantanée.'
+        see_deals: 'Voir les offres'
+
+        slides: 'Diapositives du héros'
+        slide_n: 'Diapositive %n%'
+
+    categories:
+        title: 'Catégories'
+        printers: 'Imprimantes'
+        compatible_cartridges: 'Cartouche Compatible'
+        ink_cartridges: 'Cartouche d''Encre'
+        refillable_cartridges: 'Cartouche Rechargeable'
+        toner: 'Toner'
+        ink_refill: 'Encre de Recharge'
+        paper: 'Papier'
+        spare_parts: 'Pièces Détachées'
+        print_heads: 'Tête d''Impression'
+        repair: 'Service de Réparation'
+        consumables: 'Consommable'
+        sublimation: 'Sublimation'
+        dtf: 'DTF – Impression Textile'
+        waste_ink: 'Collecteur d''Encre Usagée'
+        accessories: 'Accessoires'
+
+    features:
+        title: 'Pourquoi Nous Choisir'
+        free_shipping: 'Livraison Gratuite'
+        free_shipping_desc: 'Pour les commandes de plus de 5 000 DZD'
+        warranty: 'Garantie 1 An'
+        warranty_desc: 'Sur toutes les imprimantes et pièces'
+        support: 'Support Expert'
+        support_desc: 'Dim–Jeu, 8h – 18h'
+        payment: 'Paiement Sécurisé'
+        payment_desc: 'EDAHABIA & CIB acceptés'
+
+    product:
+        add_to_cart: 'Ajouter au panier'
+        quick_view: 'Aperçu'
+        out_of_stock: 'En rupture de stock'
+        new: 'Nouveau'
+        sale: 'Promo'
+        bestseller: 'Meilleure vente'
+        related_products: 'Produits similaires'
+        specifications: 'Caractéristiques'
+        description: 'Description'
+        reviews: 'Avis'
+
+    footer:
+        about_us: 'À propos de nous'
+        about_desc: 'Votre partenaire de confiance pour des solutions d''impression professionnelles depuis 2015.'
+        quick_links: 'Liens rapides'
+        customer_service: 'Service client'
+        newsletter: 'Newsletter'
+        newsletter_desc: 'Abonnez-vous pour recevoir les dernières offres.'
+        email_placeholder: 'Votre adresse e-mail'
+        subscribe: 'S''abonner'
+        all_rights_reserved: 'Tous droits réservés.'
+        contact_us: 'Nous contacter'
+        social_networks: 'Réseaux sociaux'
+
+    checkout:
+        address: 'Adresse'
+        shipping: 'Livraison'
+        payment: 'Paiement'
+        review: 'Vérification'
+        order_summary: 'Résumé de la commande'
+        subtotal: 'Sous-total'
+        shipping_fee: 'Frais de livraison'
+        tax: 'Taxe'
+        total: 'Total'
+        place_order: 'Passer la commande'

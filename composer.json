@@ -265,6 +265,10 @@
     },
     "autoload": {
         "psr-4": {
+            "Plugin\\": "src/Plugin/",
+            "SyliusBestSellerPlugin\\": "src/Plugin/SyliusBestSellerPlugin/src/",
+            "SyliusBestSellerPlugin\\Command\\": "src/Plugin/SyliusBestSellerPlugin/Command/",
+            "SyliusOffersPlugin\\": "src/Plugin/SyliusOffersPlugin/src/",
             "Sylius\\Abstraction\\StateMachine\\": "src/Sylius/Abstraction/StateMachine/src",
             "Sylius\\Behat\\": "src/Sylius/Behat/",
             "Sylius\\Bundle\\": "src/Sylius/Bundle/",

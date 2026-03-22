@@ -1,0 +1,278 @@
+/*
+ * PrinterTheme - Custom Variables
+ * Light / Modern / Clean color scheme inspired by easyprint-dz.com
+ */
+
+$prefix: bs-;
+$enable-negative-margins: true;
+$enable-cssgrid: true;
+
+// =============================================
+// COLOR SYSTEM
+// =============================================
+
+// Brand Colors – light-theme palette
+$printer-bg:           #EDF1F7;
+$printer-bg-alt:       #E2E8F0;
+$printer-surface:      #FFFFFF;
+$printer-card:         #FFFFFF;
+$printer-border:       #D1D9E6;
+$printer-border-light: #E8EDF3;
+
+// Accent colours
+$printer-dark:         #1A1F2B;
+$printer-navy:         #1E293B;
+$printer-blue:         #3B82F6;
+$printer-blue-dark:    #2563EB;
+$printer-cyan:         #06B6D4;
+$printer-cyan-light:   #22D3EE;
+$printer-cyan-dark:    #0891B2;
+$printer-orange:       #F97316;
+$printer-orange-light: #FB923C;
+$printer-green:        #10B981;
+$printer-red:          #EF4444;
+$printer-purple:       #8B5CF6;
+
+// Neutrals
+$text-primary:   #111827;
+$text-secondary: #4B5563;
+$text-muted:     #9CA3AF;
+
+// Map to Bootstrap variables
+$primary:   $printer-dark;
+$secondary: $printer-bg-alt;
+$success:   $printer-green;
+$danger:    $printer-red;
+$warning:   $printer-orange;
+$info:      $printer-cyan;
+$dark:      $printer-dark;
+
+$gray-100: #F8FAFC;
+$gray-200: #E2E8F0;
+$gray-300: #CBD5E1;
+$gray-400: #94A3B8;
+$gray-500: #64748B;
+$gray-600: #475569;
+$gray-700: #334155;
+$gray-800: #1E293B;
+$gray-900: #0F172A;
+
+// Body – Light Theme
+$body-bg:    $printer-bg;
+$body-color: $text-primary;
+
+// =============================================
+// TYPOGRAPHY
+// =============================================
+
+$font-family-sans-serif: 'Inter', 'InterVariable', system-ui, -apple-system, sans-serif;
+$font-family-display:    'Outfit', 'Inter', sans-serif;
+$small-font-size: .875em;
+
+$headings-font-family: $font-family-display;
+$headings-font-weight: 800;
+$headings-color:       $text-primary;
+
+$font-size-base: 1rem;
+
+// =============================================
+// SPACING
+// =============================================
+
+$spacer: 1rem;
+$spacers: (
+    0: 0,
+    1: $spacer * .25,
+    2: $spacer * .5,
+    3: $spacer,
+    4: $spacer * 1.5,
+    5: $spacer * 3,
+    6: $spacer * 5,
+);
+
+// =============================================
+// BORDERS & RADIUS (very rounded like easyprint)
+// =============================================
+
+$border-color: $printer-border;
+$border-radius: 1rem;
+$border-radius-sm: 0.625rem;
+$border-radius-lg: 1.25rem;
+$border-radius-xl: 1.75rem;
+$border-radius-xxl: 2rem;
+$border-radius-pill: 50rem;
+
+// =============================================
+// BUTTONS
+// =============================================
+
+$input-btn-padding-y: 0.625rem;
+
+$btn-padding-x: 2rem;
+$btn-padding-y-lg: 0.8rem;
+$btn-padding-x-lg: 2.5rem;
+
+$btn-border-radius: $border-radius-pill;
+$btn-border-radius-sm: $border-radius-pill;
+$btn-border-radius-lg: $border-radius-pill;
+
+$btn-font-weight: 600;
+
+// =============================================
+// INPUTS
+// =============================================
+
+$input-bg: $printer-surface;
+$input-color: $text-primary;
+$input-border-color: $printer-border;
+$input-border-radius: $border-radius-pill;
+$input-border-radius-sm: $border-radius-pill;
+$input-border-radius-lg: $border-radius-pill;
+
+$input-focus-border-color: $printer-dark;
+$input-focus-box-shadow: 0 0 0 0.15rem rgba($printer-dark, 0.1);
+
+$input-placeholder-color: $text-muted;
+
+// =============================================
+// CARDS
+// =============================================
+
+$card-bg: $printer-card;
+$card-border-color: $printer-border-light;
+$card-cap-bg: transparent;
+$card-spacer-y: $spacer * 1.3;
+$card-spacer-x: $spacer * 1.5;
+$card-cap-padding-y: $card-spacer-y * 0.8;
+$card-cap-padding-x: 0;
+$card-border-radius: $border-radius-xl;
+
+// =============================================
+// NAVBAR
+// =============================================
+
+$navbar-light-color:        $text-secondary;
+$navbar-light-hover-color:  $printer-dark;
+$navbar-light-active-color: $printer-dark;
+$navbar-nav-link-padding-x: 1.2rem;
+
+$nav-link-color: $text-secondary;
+
+// =============================================
+// BREADCRUMBS
+// =============================================
+
+$breadcrumb-font-size: $small-font-size;
+$breadcrumb-divider-color: $text-muted;
+$breadcrumb-active-color: $text-muted;
+$breadcrumb-color: $text-secondary;
+$breadcrumb-bg: transparent;
+
+// =============================================
+// PAGINATION
+// =============================================
+
+$pagination-color: $text-secondary;
+$pagination-bg: transparent;
+$pagination-border-width: 0;
+$pagination-hover-color: $printer-dark;
+$pagination-hover-bg: rgba($printer-dark, 0.06);
+$pagination-disabled-color: $text-muted;
+$pagination-disabled-bg: transparent;
+$pagination-active-color: $printer-surface;
+$pagination-active-bg: $printer-dark;
+
+// =============================================
+// ACCORDION
+// =============================================
+
+$accordion-padding-y: 1rem;
+$accordion-padding-x: 1.25rem;
+$accordion-bg: $printer-surface;
+$accordion-color: $text-primary;
+$accordion-border-color: $printer-border-light;
+$accordion-button-bg: transparent;
+$accordion-button-color: $text-primary;
+$accordion-button-active-bg: transparent;
+$accordion-button-active-color: $printer-dark;
+$accordion-button-focus-box-shadow: none;
+
+// =============================================
+// TABLES
+// =============================================
+
+$table-bg: transparent;
+$table-color: $text-secondary;
+$table-border-color: $printer-border-light;
+$table-striped-bg: rgba($printer-dark, 0.02);
+
+// =============================================
+// DROPDOWNS
+// =============================================
+
+$dropdown-bg: $printer-surface;
+$dropdown-border-color: $printer-border-light;
+$dropdown-color: $text-primary;
+$dropdown-link-color: $text-secondary;
+$dropdown-link-hover-color: $printer-dark;
+$dropdown-link-hover-bg: rgba($printer-dark, 0.04);
+$dropdown-link-active-color: $printer-dark;
+$dropdown-link-active-bg: rgba($printer-dark, 0.08);
+
+// =============================================
+// MODALS
+// =============================================
+
+$modal-content-bg: $printer-surface;
+$modal-content-border-color: $printer-border-light;
+$modal-content-color: $text-primary;
+$modal-header-border-color: $printer-border-light;
+$modal-footer-border-color: $printer-border-light;
+
+// =============================================
+// OFFCANVAS
+// =============================================
+
+$offcanvas-bg-color: $printer-surface;
+$offcanvas-color: $text-primary;
+$offcanvas-border-color: $printer-border-light;
+
+// =============================================
+// ALERTS
+// =============================================
+
+$alert-bg-scale: -80%;
+$alert-border-scale: -60%;
+$alert-color-scale: 40%;
+
+// =============================================
+// TOOLTIPS & POPOVERS
+// =============================================
+
+$tooltip-bg: $printer-dark;
+$tooltip-color: #fff;
+
+$popover-bg: $printer-surface;
+$popover-border-color: $printer-border-light;
+$popover-body-color: $text-secondary;
+
+// =============================================
+// CUSTOM THEME VARIABLES (non-Bootstrap)
+// =============================================
+
+$printer-gradient-primary: linear-gradient(135deg, $printer-dark 0%, $gray-700 100%);
+$printer-gradient-accent:  linear-gradient(135deg, $printer-orange 0%, #EA580C 100%);
+$printer-gradient-hero:    linear-gradient(145deg, #EDF1F7 0%, #DCE3EF 40%, #C7D7EB 100%);
+$printer-gradient-card:    linear-gradient(180deg, #fff 0%, #F8FAFC 100%);
+$printer-gradient-blue:    linear-gradient(135deg, #3B82F6, #1D4ED8);
+
+$printer-shadow-xs:  0 1px 3px rgba(0, 0, 0, 0.04);
+$printer-shadow-sm:  0 2px 8px rgba(0, 0, 0, 0.06);
+$printer-shadow-md:  0 4px 20px rgba(0, 0, 0, 0.08);
+$printer-shadow-lg:  0 8px 40px rgba(0, 0, 0, 0.12);
+$printer-shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
+$printer-shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.12);
+
+$transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-fast: all 0.15s ease;
+$transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);

@@ -1,0 +1,4 @@
+sylius_banner_shop_hero:
+    path: /_banner/hero
+    controller: Plugin\SyliusBannerPlugin\Controller\Shop\BannerController::heroAction
+    methods: [GET]

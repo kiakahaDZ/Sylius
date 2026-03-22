@@ -1,0 +1,91 @@
+printer_shop:
+    homepage:
+        shop_label: 'المتجر'
+        featured_products: 'المنتجات المميّزة'
+        view_all: 'عرض الكل'
+
+    hero:
+        tagline_1: 'حلول طباعة موثوقة، خدمة احترافية، وجودة يمكنك الاعتماد عليها.'
+        title_1: 'حلول الطباعة الذكية'
+        subtitle_1: 'حلول طباعة ذكية'
+        visit_shop: 'زيارة المتجر'
+
+        tagline_2: 'خدمة إصلاح متخصصة لجميع ماركات الطابعات الكبرى.'
+        title_2: 'إصلاح وصيانة معتمدة'
+        subtitle_2: 'تسليم سريع، قطع غيار أصلية، وتقنيون خبراء.'
+        shop_now: 'تسوّق الآن'
+        explore: 'استكشف الفئات'
+
+        tagline_3: 'خراطيش متوافقة بأفضل الأسعار. جودة مضمونة.'
+        title_3: 'وفّر حتى 40%'
+        subtitle_3: 'حبر وتونر مميز بنصف السعر. توصيل فوري.'
+        see_deals: 'عرض العروض'
+
+        slides: 'شرائح البانر'
+        slide_n: 'شريحة %n%'
+
+    categories:
+        title: 'الفئات'
+        printers: 'طابعات'
+        compatible_cartridges: 'خراطيش متوافقة'
+        ink_cartridges: 'خراطيش حبر'
+        refillable_cartridges: 'خراطيش قابلة لإعادة التعبئة'
+        toner: 'تونر'
+        ink_refill: 'حبر إعادة التعبئة'
+        paper: 'ورق'
+        spare_parts: 'قطع الغيار'
+        print_heads: 'رؤوس الطباعة'
+        repair: 'خدمة الإصلاح'
+        consumables: 'المستهلكات'
+        sublimation: 'طباعة حرارية'
+        dtf: 'طباعة النسيج DTF'
+        waste_ink: 'حاوية الحبر المستعمل'
+        accessories: 'إكسسوارات'
+
+    features:
+        title: 'لماذا تختارنا'
+        free_shipping: 'شحن مجاني'
+        free_shipping_desc: 'للطلبات أكثر من 5,000 دج'
+        warranty: 'ضمان سنة'
+        warranty_desc: 'على جميع الطابعات والقطع'
+        support: 'دعم متخصص'
+        support_desc: 'أحد - خميس، 8 ص - 6 م'
+        payment: 'دفع آمن'
+        payment_desc: 'الذهبية و CIB مقبولة'
+
+    product:
+        add_to_cart: 'أضف إلى السلة'
+        quick_view: 'معاينة سريعة'
+        out_of_stock: 'نفذ من المخزون'
+        new: 'جديد'
+        sale: 'تخفيض'
+        bestseller: 'الأكثر مبيعاً'
+        related_products: 'منتجات مشابهة'
+        specifications: 'المواصفات'
+        description: 'الوصف'
+        reviews: 'التقييمات'
+
+    footer:
+        about_us: 'من نحن'
+        about_desc: 'شريكك الموثوق لحلول الطباعة الاحترافية منذ 2015.'
+        quick_links: 'روابط سريعة'
+        customer_service: 'خدمة العملاء'
+        newsletter: 'النشرة الإخبارية'
+        newsletter_desc: 'اشترك لتلقي أحدث العروض.'
+        email_placeholder: 'بريدك الإلكتروني'
+        subscribe: 'اشتراك'
+        all_rights_reserved: 'جميع الحقوق محفوظة.'
+        contact_us: 'اتصل بنا'
+        social_networks: 'التواصل الاجتماعي'
+
+    checkout:
+        address: 'العنوان'
+        shipping: 'الشحن'
+        payment: 'الدفع'
+        review: 'المراجعة'
+        order_summary: 'ملخص الطلب'
+        subtotal: 'المجموع الفرعي'
+        shipping_fee: 'رسوم الشحن'
+        tax: 'الضريبة'
+        total: 'المجموع'
+        place_order: 'تأكيد الطلب'

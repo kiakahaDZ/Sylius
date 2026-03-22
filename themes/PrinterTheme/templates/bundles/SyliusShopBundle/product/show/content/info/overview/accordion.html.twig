@@ -1,0 +1,8 @@
+<div class="printer-product-specs mt-5">
+    <h3 class="printer-product-specs__title">{{ 'sylius.ui.product_details'|trans|default('Product details') }}</h3>
+    {% embed '@SyliusShop/shared/accordion/accordion.html.twig' %}
+        {% block accordion_content %}
+            {% hook 'accordion' %}
+        {% endblock %}
+    {% endembed %}
+</div>

@@ -1,0 +1,50 @@
+plugins/SyliusOffersPlugin/
+├── src/
+│   ├── DependencyInjection/
+│   │   ├── Configuration.php
+│   │   └── SyliusOffersExtension.php
+│   ├── Entity/
+│   │   └── Offer.php
+│   ├── Form/
+│   │   └── Type/
+│   │       └── OfferType.php
+│   ├── Repository/
+│   │   └── OfferRepository.php
+│   ├── Controller/
+│   │   ├── Admin/
+│   │   │   └── OfferController.php
+│   │   └── Api/
+│   │       └── OfferController.php
+│   ├── Twig/
+│   │   ├── OfferExtension.php
+│   │   └── Components/
+│   │       ├── OfferCardComponent.php
+│   │       ├── OfferBannerComponent.php
+│   │       └── CountdownTimerComponent.php
+│   ├── Resources/
+│   │   ├── config/
+│   │   │   ├── app/
+│   │   │   │   └── config.yaml
+│   │   │   ├── admin_routes.yaml
+│   │   │   ├── api_routes.yaml
+│   │   │   ├── services.yaml
+│   │   │   └── doctrine/
+│   │   │       └── Offer.orm.xml
+│   │   ├── translations/
+│   │   │   ├── messages.en.yaml
+│   │   │   └── messages.fr.yaml
+│   │   └── views/
+│   │       ├── admin/
+│   │       │   └── offer/
+│   │       │       ├── index.html.twig
+│   │       │       ├── create.html.twig
+│   │       │       ├── update.html.twig
+│   │       │       └── _form.html.twig
+│   │       └── shop/
+│   │           └── components/
+│   │               ├── offer_card.html.twig
+│   │               ├── offer_banner.html.twig
+│   │               └── countdown_timer.html.twig
+│   └── SyliusOffersPlugin.php
+├── composer.json
+└── README.md

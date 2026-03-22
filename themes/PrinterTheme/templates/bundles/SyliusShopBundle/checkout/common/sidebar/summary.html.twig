@@ -1,0 +1,6 @@
+{% set order = hookable_metadata.context.order %}
+
+<div class="printer-checkout-summary">
+    <h3 class="printer-checkout-summary__title">{{ 'sylius.ui.order_summary'|trans }}</h3>
+    {% hook 'summary' with { order } %}
+</div>

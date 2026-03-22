@@ -1,0 +1,56 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    SyliusOffersPlugin\:
+        resource: '../../*'
+        exclude: '../../{DependencyInjection,Entity,Migrations,Tests,Kernel.php,Form,Controller,Repository}'
+
+    SyliusOffersPlugin\Repository\OfferRepository:
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - 'SyliusOffersPlugin\Entity\Offer'
+
+    SyliusOffersPlugin\Controller\Admin\OfferController:
+        arguments:
+            - '@sylius.resource_controller.request_configuration_factory'
+            - '@sylius.resource_controller.view_handler'
+            - '@sylius.resource_controller.resources_collection_provider'
+            - '@sylius.resource_controller.single_resource_provider'
+            - '@sylius.resource_controller.resource_form_factory'
+            - '@sylius.resource_controller.redirect_handler'
+            - '@sylius.resource_controller.flash_helper'
+            - '@sylius.resource_controller.authorization_checker'
+            - '@sylius.resource_controller.event_dispatcher'
+            - '@sylius.resource_controller.state_machine'
+            - '@sylius.resource_controller.resource_delete_handler'
+            - '@sylius.resource_controller.new_resource_factory'
+        calls:
+            - ['setContainer', ['@service_container']]
+
+    SyliusOffersPlugin\Controller\Api\OfferController:
+        arguments:
+            - '@SyliusOffersPlugin\Repository\OfferRepository'
+        public: true
+
+    sylius_offers.controller.api.offer:
+        alias: SyliusOffersPlugin\Controller\Api\OfferController
+        public: true
+
+    SyliusOffersPlugin\Controller\ClickController:
+        arguments: ['@SyliusOffersPlugin\Repository\OfferRepository']
+        public: true
+
+    SyliusOffersPlugin\Twig\OfferExtension:
+        tags: ['twig.extension']
+
+    SyliusOffersPlugin\Twig\Components\OfferCardComponent:
+        tags: ['twig.component']
+
+    SyliusOffersPlugin\Twig\Components\OfferBannerComponent:
+        tags: ['twig.component']
+
+    SyliusOffersPlugin\Twig\Components\CountdownTimerComponent:
+        tags: ['twig.component']

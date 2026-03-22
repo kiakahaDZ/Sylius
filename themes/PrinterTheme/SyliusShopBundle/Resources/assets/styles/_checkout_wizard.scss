@@ -1,0 +1,344 @@
+/*
+ * PrinterTheme - Checkout Wizard
+ * Step-by-step checkout UI – light theme
+ */
+
+// =============================================
+// CHECKOUT CONTAINER
+// =============================================
+
+.printer-checkout {
+    padding: 2rem 0 4rem;
+}
+
+.printer-checkout__grid {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: 1fr;
+
+    @media (min-width: 992px) {
+        grid-template-columns: 1.5fr 1fr;
+        align-items: start;
+    }
+}
+
+// =============================================
+// CHECKOUT STEPS WIZARD (Top Navigation)
+// =============================================
+
+.printer-checkout-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid $printer-border-light;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 20px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: $printer-border-light;
+        z-index: 1;
+    }
+}
+
+.printer-checkout-step {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: $text-muted;
+    transition: $transition-base;
+
+    &__icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: $printer-surface;
+        border: 2px solid $printer-border-light;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        color: $text-muted;
+        transition: $transition-base;
+    }
+
+    &__label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    &.active {
+        color: $printer-dark;
+
+        .printer-checkout-step__icon {
+            background: $printer-dark;
+            border-color: $printer-dark;
+            color: #fff;
+            box-shadow: 0 0 15px rgba($printer-dark, 0.2);
+            transform: scale(1.1);
+        }
+    }
+
+    &.completed {
+        color: $text-secondary;
+
+        .printer-checkout-step__icon {
+            background: rgba($printer-green, 0.1);
+            border-color: $printer-green;
+            color: $printer-green;
+        }
+
+        &:hover {
+            color: $printer-dark;
+            .printer-checkout-step__icon {
+                background: $printer-green;
+                color: #fff;
+            }
+        }
+    }
+}
+
+// =============================================
+// CHECKOUT FORMS & SECTIONS
+// =============================================
+
+.printer-checkout-section {
+    background: $printer-surface;
+    border: 1px solid $printer-border-light;
+    border-radius: $border-radius-xl;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: $printer-shadow-xs;
+
+    &__title {
+        font-family: $font-family-display;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: $text-primary;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        i {
+            color: $printer-dark;
+        }
+    }
+}
+
+// Custom Radio / Selection Cards for Shipping & Payment
+.printer-selection-card {
+    position: relative;
+    display: block;
+    margin-bottom: 1rem;
+    cursor: pointer;
+
+    input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        padding: 1.25rem;
+        background: $gray-100;
+        border: 1px solid $printer-border-light;
+        border-radius: $border-radius-lg;
+        transition: $transition-base;
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background: $printer-surface;
+        border-radius: 50%;
+        color: $text-muted;
+        font-size: 1.5rem;
+        transition: $transition-base;
+        border: 1px solid $printer-border-light;
+    }
+
+    &__info {
+        flex: 1;
+    }
+
+    &__name {
+        font-weight: 600;
+        color: $text-primary;
+        margin-bottom: 0.25rem;
+        font-size: 1rem;
+    }
+
+    &__desc {
+        font-size: 0.85rem;
+        color: $text-muted;
+        margin: 0;
+    }
+
+    &__price {
+        font-family: $font-family-display;
+        font-weight: 700;
+        color: $printer-dark;
+        font-size: 1.1rem;
+    }
+
+    input[type="radio"]:checked + &__content {
+        background: rgba($printer-dark, 0.03);
+        border-color: $printer-dark;
+        box-shadow: 0 4px 15px rgba($printer-dark, 0.08);
+
+        .printer-selection-card__icon {
+            background: $printer-dark;
+            color: #fff;
+            border-color: $printer-dark;
+        }
+    }
+
+    &:hover:not(:has(input:checked)) &__content {
+        border-color: $text-muted;
+        background: $gray-100;
+    }
+}
+
+// =============================================
+// CHECKOUT SUMMARY (Right sidebar)
+// =============================================
+
+.printer-checkout-summary {
+    position: sticky;
+    top: 100px;
+    background: $printer-surface;
+    border: 1px solid $printer-border-light;
+    border-radius: $border-radius-xl;
+    padding: 2rem;
+    box-shadow: $printer-shadow-sm;
+
+    &__title {
+        font-family: $font-family-display;
+        font-weight: 700;
+        color: $text-primary;
+        font-size: 1.25rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid $printer-border-light;
+    }
+
+    &__items {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid $printer-border-light;
+    }
+
+    &__item {
+        display: flex;
+        gap: 1rem;
+
+        img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            background: $gray-100;
+            border-radius: $border-radius;
+            padding: 0.25rem;
+            border: 1px solid $printer-border-light;
+        }
+    }
+
+    &__item-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__item-name {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: $text-primary;
+        margin-bottom: 0.25rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    &__item-qty {
+        font-size: 0.75rem;
+        color: $text-muted;
+    }
+
+    &__item-price {
+        font-weight: 700;
+        color: $text-primary;
+        font-size: 0.9rem;
+    }
+
+    &__totals {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    &__total-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.9rem;
+        color: $text-secondary;
+
+        &--grand {
+            margin-top: 0.5rem;
+            padding-top: 1rem;
+            border-top: 2px solid $printer-dark;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: $text-primary;
+
+            .val {
+                color: $printer-dark;
+            }
+        }
+    }
+
+    .table {
+        color: $text-secondary;
+        --bs-table-bg: transparent;
+        --bs-table-border-color: #{$printer-border-light};
+
+        th, td {
+            border-color: $printer-border-light;
+        }
+    }
+
+    #sylius-shop-checkout-summary-order-total {
+        color: $printer-dark;
+        font-weight: 800;
+    }
+}
+
+.printer-checkout__submit {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}

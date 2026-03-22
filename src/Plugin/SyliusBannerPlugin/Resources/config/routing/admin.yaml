@@ -1,0 +1,10 @@
+sylius_admin_banner:
+    resource: |
+        alias: sylius_banner.banner
+        section: admin
+        templates: "@SyliusAdmin/shared/crud"
+        redirect: index
+        grid: sylius_admin_banner
+        form: Plugin\SyliusBannerPlugin\Form\Type\BannerType
+        permission: true
+    type: sylius.resource

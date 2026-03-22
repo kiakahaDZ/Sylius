@@ -1,0 +1,15 @@
+{
+    "name": "printer/printer-theme",
+    "type": "sylius-theme",
+    "authors": [
+        {
+            "name": "Printer Store",
+            "email": "contact@printer-store.com"
+        }
+    ],
+    "extra": {
+        "sylius-theme": {
+            "title": "Printer Theme"
+        }
+    }
+}

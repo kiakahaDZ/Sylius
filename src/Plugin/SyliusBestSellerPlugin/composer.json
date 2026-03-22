@@ -1,0 +1,34 @@
+{
+    "name": "sylius/best-seller-plugin",
+    "type": "sylius-plugin",
+    "description": "Best Seller Plugin for Sylius",
+    "keywords": ["sylius", "best-seller", "plugin", "ecommerce"],
+    "license": "MIT",
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "sylius/sylius": "^1.12",
+        "doctrine/orm": "^2.0",
+        "symfony/framework-bundle": "^5.4 || ^6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "symfony/phpunit-bridge": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SyliusBestSellerPlugin\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SyliusBestSellerPlugin\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "sylius": {
+            "bundles": [
+                "SyliusBestSellerPlugin\\SyliusBestSellerPlugin"
+            ]
+        }
+    }
+}

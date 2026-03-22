@@ -1,3 +1,15 @@
 sylius_admin:
     resource: "@SyliusAdminBundle/Resources/config/routing.yml"
     prefix: '/%sylius_admin.path_name%'
+
+sylius_admin_banner:
+    resource: "@SyliusBannerPlugin/Resources/config/routing/admin.yaml"
+    prefix: /%sylius_admin.path_name%
+
+sylius_best_seller_admin:
+    resource: "@SyliusBestSellerPlugin/Resources/config/admin_routes.yaml"
+    prefix: /%sylius_admin.path_name%
+
+sylius_offers_admin:
+    resource: "@SyliusOffersPlugin/Resources/config/admin_routes.yaml"
+    prefix: /%sylius_admin.path_name%

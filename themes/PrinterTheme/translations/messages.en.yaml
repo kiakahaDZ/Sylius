@@ -1,0 +1,36 @@
+printer_shop:
+    homepage:
+        search_placeholder: "Search for a printer, cartridge..."
+        hero:
+            subtitle: "Professional Quality for Your Prints"
+            cta: "Discover"
+        features:
+            fast_delivery: "Fast Delivery"
+            genuine_parts: "Genuine Parts"
+            repair_service: "Repair Service"
+            secure_payment: "Secure Payment"
+    categories:
+        title: "Our Categories"
+        printers: "Printers"
+        compatible_cartridges: "Compatible Cartridges"
+        ink_cartridges: "Ink Cartridges"
+        refillable_cartridges: "Refillable Cartridges"
+        toner: "Laser Toner"
+        ink_refill: "Bottled Ink"
+        paper: "Photo & Pro Paper"
+        spare_parts: "Spare Parts"
+        print_heads: "Print Heads"
+        repair: "Repair Service"
+    product:
+        add_to_cart: "Add to cart"
+        quick_view: "Quick view"
+        specs: "Specifications"
+        in_stock: "In stock"
+        out_of_stock: "Out of stock"
+        details: "Details"
+    best_sellers:
+        title: "Best Sellers"
+        subtitle: "The most popular products this week"
+        sold: "Sold"
+        rank: "#%pos%"
+        view_details: "View details"

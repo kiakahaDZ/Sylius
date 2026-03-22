@@ -1,0 +1,9 @@
+sylius_banner:
+    ui:
+        banners: Banners
+        title: Title
+        subtitle: Subtitle
+        link: Link URL
+        image: Image
+        position: Position
+        sort_order: Sort order

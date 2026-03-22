@@ -1,0 +1,91 @@
+printer_shop:
+    homepage:
+        shop_label: 'Shop'
+        featured_products: 'Featured Products'
+        view_all: 'View All'
+
+    hero:
+        tagline_1: 'Reliable printing solutions, professional service, and quality you can count on.'
+        title_1: 'SMART PRINTING SOLUTIONS'
+        subtitle_1: 'Smart printing solutions'
+        visit_shop: 'Visit Shop'
+
+        tagline_2: 'Expert repair service for all major printer brands.'
+        title_2: 'CERTIFIED REPAIR & MAINTENANCE'
+        subtitle_2: 'Fast turnaround, genuine parts, and expert technicians.'
+        shop_now: 'Shop Now'
+        explore: 'Explore Categories'
+
+        tagline_3: 'OEM-compatible cartridges at the best prices. Guaranteed quality.'
+        title_3: 'SAVE UP TO 40% OFF'
+        subtitle_3: 'Premium ink & toner at half the price. Instant delivery.'
+        see_deals: 'See Deals'
+
+        slides: 'Hero slides'
+        slide_n: 'Slide %n%'
+
+    categories:
+        title: 'Categories'
+        printers: 'Printers'
+        compatible_cartridges: 'Compatible Cartridges'
+        ink_cartridges: 'Ink Cartridges'
+        refillable_cartridges: 'Refillable Cartridges'
+        toner: 'Toner'
+        ink_refill: 'Ink Refill'
+        paper: 'Paper'
+        spare_parts: 'Spare Parts'
+        print_heads: 'Print Heads'
+        repair: 'Repair Service'
+        consumables: 'Consumables'
+        sublimation: 'Sublimation'
+        dtf: 'DTF – Textile Printing'
+        waste_ink: 'Waste Ink Collector'
+        accessories: 'Accessories'
+
+    features:
+        title: 'Why Choose Us'
+        free_shipping: 'Free Shipping'
+        free_shipping_desc: 'On orders over 5,000 DZD'
+        warranty: '1-Year Warranty'
+        warranty_desc: 'On all printers & parts'
+        support: 'Expert Support'
+        support_desc: 'Sun–Thu, 8am – 6pm'
+        payment: 'Secure Payment'
+        payment_desc: 'EDAHABIA & CIB accepted'
+
+    product:
+        add_to_cart: 'Add to Cart'
+        quick_view: 'Quick View'
+        out_of_stock: 'Out of Stock'
+        new: 'New'
+        sale: 'Sale'
+        bestseller: 'Best Seller'
+        related_products: 'Related Products'
+        specifications: 'Specifications'
+        description: 'Description'
+        reviews: 'Reviews'
+
+    footer:
+        about_us: 'About Us'
+        about_desc: 'Your trusted partner for professional printing solutions since 2015.'
+        quick_links: 'Quick Links'
+        customer_service: 'Customer Service'
+        newsletter: 'Newsletter'
+        newsletter_desc: 'Subscribe to receive the latest offers.'
+        email_placeholder: 'Your email address'
+        subscribe: 'Subscribe'
+        all_rights_reserved: 'All rights reserved.'
+        contact_us: 'Contact Us'
+        social_networks: 'Social Networks'
+
+    checkout:
+        address: 'Address'
+        shipping: 'Shipping'
+        payment: 'Payment'
+        review: 'Review'
+        order_summary: 'Order Summary'
+        subtotal: 'Subtotal'
+        shipping_fee: 'Shipping'
+        tax: 'Tax'
+        total: 'Total'
+        place_order: 'Place Order'

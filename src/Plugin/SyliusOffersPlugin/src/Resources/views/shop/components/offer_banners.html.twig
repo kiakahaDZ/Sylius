@@ -1,0 +1,10 @@
+{% set banners = sylius_offers_by_type('banner', 2) %}
+
+{% if banners|length > 0 %}
+    <div class="ui segment no-border no-padding" style="margin-bottom: 2rem;">
+        {% for banner in banners %}
+            <twig:offer_banner :offer="banner" />
+            {% if not loop.last %}<div class="ui hidden divider"></div>{% endif %}
+        {% endfor %}
+    </div>
+{% endif %}

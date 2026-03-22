@@ -1,0 +1,22 @@
+sylius_twig_hooks:
+    hooks:
+        sylius_shop.homepage.index:
+            offer_banners:
+                template: "@SyliusOffersPlugin/shop/components/offer_banners.html.twig"
+                priority: 20
+            offers:
+                template: "@SyliusOffersPlugin/shop/components/offers_section.html.twig"
+                priority: 15
+        sylius_shop.base.offcanvas.cart.body.items:
+            offers_sidebar:
+                template: "@SyliusOffersPlugin/shop/components/offers_sidebar.html.twig"
+                priority: 5
+
+sylius_resource:
+    resources:
+        sylius_offers.offer:
+            classes:
+                model: SyliusOffersPlugin\Entity\Offer
+                form: SyliusOffersPlugin\Form\Type\OfferType
+                repository: SyliusOffersPlugin\Repository\OfferRepository
+                controller: SyliusOffersPlugin\Controller\Admin\OfferController

@@ -1,0 +1,23 @@
+{% set offers = sylius_offers_by_type('card', 4) %}
+
+{% if offers|length > 0 %}
+    <div class="ui segment">
+        <h2 class="ui header">
+            <i class="gift icon"></i>
+            <div class="content">
+                {{ 'sylius_offers.ui.offers'|trans }}
+                <div class="sub header">
+                    {{ 'sylius_offers.ui.exclusive_offers'|trans|default('Check out our latest offers') }}
+                </div>
+            </div>
+        </h2>
+        
+        <div class="ui four column stackable grid">
+            {% for offer in offers %}
+                <div class="column">
+                    <twig:offer_card :offer="offer" />
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

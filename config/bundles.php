@@ -1,5 +1,8 @@
 <?php
 
+//error_log('Loading bundles...');
+//var_dump(class_exists('Plugin\\SyliusBannerPlugin\\SyliusBannerPlugin'));
+
 return [
     Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
     Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
@@ -60,4 +63,7 @@ return [
     Symfony\UX\Icons\UXIconsBundle::class => ['all' => true],
     Twig\Extra\TwigExtraBundle\TwigExtraBundle::class => ['all' => true],
     Sylius\TwigExtra\Symfony\SyliusTwigExtraBundle::class => ['all' => true],
+    Plugin\SyliusBannerPlugin\SyliusBannerPlugin::class => ['all' => true],
+    SyliusBestSellerPlugin\SyliusBestSellerPlugin::class => ['all' => true],
+    SyliusOffersPlugin\SyliusOffersPlugin::class => ['all' => true],
 ];

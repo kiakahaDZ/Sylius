@@ -1,0 +1,336 @@
+/*
+ * PrinterTheme - Hero Section
+ * Clean, split-layout hero inspired by easyprint-dz.com
+ */
+
+// =============================================
+// HERO CONTAINER
+// =============================================
+
+.printer-hero {
+    position: relative;
+    width: 100%;
+    min-height: 420px;
+    overflow: hidden;
+    background: $printer-gradient-hero;
+    border-radius: 0 0 $border-radius-xxl $border-radius-xxl;
+
+    @media (min-width: 768px) {
+        min-height: 500px;
+    }
+
+    @media (min-width: 1200px) {
+        min-height: 560px;
+    }
+}
+
+// =============================================
+// HERO INNER (split layout)
+// =============================================
+
+.printer-hero__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: inherit;
+    padding: 2.5rem 1.5rem;
+    position: relative;
+    z-index: 2;
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 3rem 2rem;
+    }
+
+    @media (min-width: 1200px) {
+        padding: 4rem 3rem;
+        max-width: 1320px;
+        margin: 0 auto;
+    }
+}
+
+// =============================================
+// HERO SLIDE
+// =============================================
+
+.printer-hero__slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.5s ease;
+    z-index: 1;
+    pointer-events: none;
+
+    &.active {
+        opacity: 1;
+        z-index: 2;
+        pointer-events: auto;
+    }
+
+    .printer-hero__inner {
+        height: 100%;
+    }
+}
+
+// =============================================
+// HERO CONTENT (left)
+// =============================================
+
+.printer-hero__content {
+    flex: 1;
+    max-width: 600px;
+    padding-right: 2rem;
+
+    @media (max-width: 767px) {
+        text-align: center;
+        max-width: 100%;
+        padding-right: 0;
+        margin-bottom: 2rem;
+    }
+}
+
+.printer-hero__tagline {
+    font-size: 1rem;
+    font-weight: 500;
+    color: $text-secondary;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+
+    @media (min-width: 768px) {
+        font-size: 1.15rem;
+    }
+}
+
+.printer-hero__title {
+    font-family: $font-family-display;
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 1.05;
+    color: $text-primary;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    animation: fadeInUp 0.6s ease-out 0.3s both;
+
+    @media (min-width: 768px) {
+        font-size: 3.5rem;
+    }
+
+    @media (min-width: 1200px) {
+        font-size: 4.25rem;
+    }
+}
+
+.printer-hero__subtitle {
+    font-size: 1rem;
+    color: $text-muted;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+
+    @media (min-width: 768px) {
+        font-size: 1.1rem;
+    }
+}
+
+.printer-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    animation: fadeInUp 0.6s ease-out 0.5s both;
+
+    @media (max-width: 767px) {
+        justify-content: center;
+    }
+}
+
+// =============================================
+// HERO CTA BUTTONS (pill-shaped, dark)
+// =============================================
+
+.printer-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2.25rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: $border-radius-pill;
+    text-decoration: none;
+    transition: $transition-base;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+
+    &--primary {
+        background: $printer-dark;
+        color: #fff;
+        border: none;
+        box-shadow: 0 4px 15px rgba($printer-dark, 0.25);
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba($printer-dark, 0.35);
+            background: lighten($printer-dark, 8%);
+            color: #fff;
+        }
+    }
+
+    &--secondary {
+        background: transparent;
+        color: $text-primary;
+        border: 2px solid $printer-border;
+
+        &:hover {
+            border-color: $printer-dark;
+            color: $printer-dark;
+            background: rgba($printer-dark, 0.03);
+        }
+    }
+}
+
+// =============================================
+// HERO IMAGE (right)
+// =============================================
+
+.printer-hero__visual {
+    flex: 0 0 auto;
+    max-width: 480px;
+    animation: fadeInRight 0.8s ease-out 0.4s both;
+
+    @media (max-width: 767px) {
+        max-width: 280px;
+    }
+
+    @media (min-width: 1200px) {
+        max-width: 520px;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+        transition: transform 0.6s ease;
+    }
+
+    &:hover img {
+        transform: scale(1.03) translateY(-5px);
+    }
+}
+
+// =============================================
+// HERO NAVIGATION DOTS
+// =============================================
+
+.printer-hero__dots {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+}
+
+.printer-hero__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba($printer-dark, 0.2);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: $transition-base;
+    padding: 0;
+
+    &.active,
+    &:hover {
+        background: $printer-dark;
+    }
+
+    &.active {
+        width: 28px;
+        border-radius: $border-radius-pill;
+    }
+}
+
+// =============================================
+// HERO NAVIGATION ARROWS
+// =============================================
+
+.printer-hero__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: $printer-surface;
+    border: 1px solid $printer-border-light;
+    color: $text-primary;
+    cursor: pointer;
+    transition: $transition-base;
+    font-size: 1.1rem;
+    box-shadow: $printer-shadow-sm;
+
+    &:hover {
+        background: $printer-dark;
+        color: #fff;
+        border-color: $printer-dark;
+        box-shadow: $printer-shadow-md;
+    }
+
+    &--prev {
+        left: 1rem;
+
+        @media (min-width: 768px) {
+            left: 2rem;
+        }
+    }
+
+    &--next {
+        right: 1rem;
+
+        @media (min-width: 768px) {
+            right: 2rem;
+        }
+    }
+}
+
+// =============================================
+// HERO DECORATIVE SHAPES
+// =============================================
+
+.printer-hero__shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.08;
+    z-index: 0;
+    pointer-events: none;
+
+    &--1 {
+        width: 500px;
+        height: 500px;
+        background: $printer-cyan;
+        top: -200px;
+        right: -100px;
+        animation: float 8s ease-in-out infinite;
+    }
+
+    &--2 {
+        width: 300px;
+        height: 300px;
+        background: $printer-blue;
+        bottom: -100px;
+        left: -50px;
+        animation: float 6s ease-in-out infinite 1s;
+    }
+}

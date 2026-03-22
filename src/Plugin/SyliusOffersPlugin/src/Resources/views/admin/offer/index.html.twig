@@ -1,0 +1,110 @@
+{% extends '@SyliusAdmin/layout.html.twig' %}
+
+{% block title %}{{ 'sylius_offers.ui.offers'|trans }} {{ parent() }}{% endblock %}
+
+{% block content %}
+    <div class="ui segment">
+        <div class="ui grid">
+            <div class="column">
+                <div class="ui items">
+                    <div class="item">
+                        <div class="content">
+                            <h1 class="ui header">
+                                <i class="gift icon"></i>
+                                <div class="content">
+                                    {{ 'sylius_offers.ui.offers'|trans }}
+                                    <div class="sub header">
+                                        {{ 'sylius_offers.ui.manage_offers'|trans }}
+                                    </div>
+                                </div>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                
+                {# Stats Cards #}
+                <div class="ui four column stackable grid">
+                    <div class="column">
+                        <div class="ui card">
+                            <div class="content">
+                                <div class="header">
+                                    {{ 'sylius_offers.ui.total_offers'|trans }}
+                                </div>
+                                <div class="meta">
+                                    <span class="right floated">
+                                        <i class="gift icon"></i>
+                                    </span>
+                                    <span class="ui huge statistic">
+                                        {{ offers_count }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui card">
+                            <div class="content">
+                                <div class="header">
+                                    {{ 'sylius_offers.ui.active_offers'|trans }}
+                                </div>
+                                <div class="meta">
+                                    <span class="right floated">
+                                        <i class="green checkmark icon"></i>
+                                    </span>
+                                    <span class="ui huge statistic">
+                                        {{ active_offers_count }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui card">
+                            <div class="content">
+                                <div class="header">
+                                    {{ 'sylius_offers.ui.upcoming_offers'|trans }}
+                                </div>
+                                <div class="meta">
+                                    <span class="right floated">
+                                        <i class="yellow clock icon"></i>
+                                    </span>
+                                    <span class="ui huge statistic">
+                                        {{ upcoming_offers_count|default(0) }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui card">
+                            <div class="content">
+                                <div class="header">
+                                    {{ 'sylius_offers.ui.expiring_offers'|trans }}
+                                </div>
+                                <div class="meta">
+                                    <span class="right floated">
+                                        <i class="red warning icon"></i>
+                                    </span>
+                                    <span class="ui huge statistic">
+                                        {{ expiring_offers_count|default(0) }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ui hidden divider"></div>
+                
+                <div class="ui menu">
+                    <a href="{{ path('sylius_admin_offer_create') }}" class="ui primary button">
+                        <i class="plus icon"></i>
+                        {{ 'sylius.ui.create'|trans }}
+                    </a>
+                </div>
+                
+                {{ sylius_grid_render(resources, '@SyliusAdmin/Grid/_default.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

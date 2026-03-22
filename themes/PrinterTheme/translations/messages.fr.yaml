@@ -1,0 +1,36 @@
+printer_shop:
+    homepage:
+        search_placeholder: "Rechercher une imprimante, une cartouche..."
+        hero:
+            subtitle: "Qualité Professionnelle pour vos Impressions"
+            cta: "Découvrir"
+        features:
+            fast_delivery: "Livraison Rapide"
+            genuine_parts: "Pièces d'Origine"
+            repair_service: "Service de Réparation"
+            secure_payment: "Paiement Sécurisé"
+    categories:
+        title: "Nos Catégories"
+        printers: "Imprimantes"
+        compatible_cartridges: "Cartouches Compatibles"
+        ink_cartridges: "Cartouches d'Encre"
+        refillable_cartridges: "Cartouches Rechargeables"
+        toner: "Toner Laser"
+        ink_refill: "Encre en Bouteille"
+        paper: "Papier Photo & Pro"
+        spare_parts: "Pièces de Rechange"
+        print_heads: "Têtes d'Impression"
+        repair: "Service Réparation"
+    product:
+        add_to_cart: "Ajouter au panier"
+        quick_view: "Aperçu rapide"
+        specs: "Spécifications"
+        in_stock: "En stock"
+        out_of_stock: "En rupture"
+        details: "Détails"
+    best_sellers:
+        title: "Les Meilleures Ventes"
+        subtitle: "Les produits les plus populaires cette semaine"
+        sold: "Vendus"
+        rank: "#%pos%"
+        view_details: "Voir les détails"

@@ -1,0 +1,194 @@
+/*
+ * PrinterTheme - Glassmorphism
+ * Subtle glass effects for cards, badges, and overlays – light theme variant
+ */
+
+// =============================================
+// BASE GLASS EFFECT
+// =============================================
+
+.glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: $border-radius-lg;
+}
+
+.glass-sm {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: $border-radius;
+}
+
+.glass-lg {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: $border-radius-xl;
+}
+
+// =============================================
+// GLASS CARD
+// =============================================
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: $border-radius-xl;
+    padding: 1.5rem;
+    transition: $transition-base;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.85);
+        box-shadow: $printer-shadow-md;
+        transform: translateY(-3px);
+    }
+}
+
+// =============================================
+// GLASS NAVBAR
+// =============================================
+
+.glass-navbar {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid $printer-border-light;
+}
+
+// =============================================
+// GLASS OVERLAY
+// =============================================
+
+.glass-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1;
+}
+
+// =============================================
+// GLASS BADGE
+// =============================================
+
+.glass-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba($printer-dark, 0.06);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba($printer-dark, 0.08);
+    border-radius: $border-radius-pill;
+    color: $text-primary;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.glass-badge-orange {
+    @extend .glass-badge;
+    background: rgba($printer-orange, 0.08);
+    border-color: rgba($printer-orange, 0.12);
+    color: $printer-orange;
+}
+
+// =============================================
+// GLASS INPUT
+// =============================================
+
+.glass-input {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid $printer-border-light;
+    border-radius: $border-radius;
+    color: $text-primary;
+    padding: 0.625rem 1rem;
+    transition: $transition-base;
+
+    &::placeholder {
+        color: $text-muted;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: $printer-dark;
+        box-shadow: 0 0 0 3px rgba($printer-dark, 0.08);
+        background: rgba(255, 255, 255, 0.95);
+    }
+}
+
+// =============================================
+// GLASS BUTTON
+// =============================================
+
+.btn-glass {
+    background: rgba($printer-dark, 0.04);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid $printer-border;
+    color: $text-primary;
+    border-radius: $border-radius-pill;
+    padding: 0.625rem 1.5rem;
+    font-weight: 600;
+    transition: $transition-base;
+
+    &:hover {
+        background: $printer-dark;
+        border-color: $printer-dark;
+        color: #fff;
+        box-shadow: $printer-shadow-md;
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+// =============================================
+// DARK GLASS VARIANTS
+// =============================================
+
+.glass-dark {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: $border-radius-lg;
+}
+
+.glass-card-dark {
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: $border-radius-xl;
+    padding: 1.5rem;
+    color: #fff;
+    transition: $transition-base;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba($printer-cyan, 0.4);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        transform: translateY(-5px);
+    }
+}
+
+.glass-badge-cyan {
+    @extend .glass-badge;
+    background: rgba($printer-cyan, 0.15);
+    border-color: rgba($printer-cyan, 0.3);
+    color: $printer-cyan-light;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

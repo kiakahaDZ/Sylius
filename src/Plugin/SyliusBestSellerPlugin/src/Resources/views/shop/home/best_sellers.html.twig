@@ -1,0 +1,81 @@
+{# src/Resources/views/shop/home/best_sellers.html.twig #}
+{% if this.bestSellers is not empty %}
+    {% set section_title = 'printer_shop.best_sellers.title'|trans %}
+    {% set section_subtitle = 'printer_shop.best_sellers.subtitle'|trans %}
+
+    <section class="printer-best-sellers" id="best-sellers" aria-label="{{ section_title }}" data-controller="best-seller-scroll">
+        <div class="printer-container">
+            <div class="printer-best-sellers__header mb-4">
+                <div class="header-left">
+                    <h2 class="printer-section-title text-white mb-2">{{ section_title }}</h2>
+                    <p class="printer-section-subtitle text-white-50 mb-0">{{ section_subtitle }}</p>
+                </div>
+                <div class="printer-best-sellers__nav d-none d-md-flex">
+                    <button class="nav-btn" data-action="click->best-seller-scroll#prev" aria-label="{{ 'sylius.ui.previous'|trans }}">
+                        <i class="ti ti-chevron-left"></i>
+                    </button>
+                    <button class="nav-btn" data-action="click->best-seller-scroll#next" aria-label="{{ 'sylius.ui.next'|trans }}">
+                        <i class="ti ti-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="printer-best-sellers__scroll-wrapper position-relative">
+                <div class="printer-best-sellers__scroll" data-best-seller-scroll-target="container">
+                    {% for item in this.bestSellers %}
+                        <div class="best-seller-item">
+                            {# Sales Indicator Badge #}
+                            <div class="best-seller-stat-badge">
+                                <i class="ti ti-trending-up"></i>
+                                <span>{{ item.total_sales }} {{ 'printer_shop.best_sellers.sales'|trans }}</span>
+                            </div>
+
+                            {# Standard Theme Card #}
+                            {% include '@SyliusShop/product/common/card.html.twig' with {'product': item.product, 'is_bestseller': true} %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="{{ path('sylius_shop_product_index', {'slug': 'best-sellers'}) }}" class="btn btn-outline-light btn-lg rounded-pill px-5">
+                    {{ 'sylius.ui.view_all'|trans }}
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .best-seller-item {
+            min-width: 280px;
+            max-width: 300px;
+            flex-shrink: 0;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        .best-seller-item:hover {
+            transform: translateY(-5px);
+        }
+        .best-seller-stat-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+        }
+        .best-seller-stat-badge i {
+            color: #00f2fe; /* cyan color matching theme */
+        }
+    </style>
+{% endif %}

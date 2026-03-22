@@ -1,0 +1,369 @@
+/*
+ * PrinterTheme - Categories Grid
+ * Horizontal scroll categories with rounded cards and product images
+ */
+
+// =============================================
+// CATEGORIES SECTION
+// =============================================
+
+.printer-categories {
+    padding: 3rem 0;
+    position: relative;
+}
+
+.printer-categories__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.75rem;
+}
+
+.printer-categories__title {
+    font-family: $font-family-display;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: $text-primary;
+    margin: 0;
+
+    @media (min-width: 768px) {
+        font-size: 2rem;
+    }
+}
+
+.printer-categories__nav {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.printer-categories__nav-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid $printer-border;
+    background: $printer-surface;
+    color: $text-secondary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: $transition-base;
+    font-size: 1rem;
+
+    &:hover {
+        background: $printer-dark;
+        color: #fff;
+        border-color: $printer-dark;
+    }
+}
+
+// =============================================
+// CATEGORIES SCROLL WRAPPER
+// =============================================
+
+.printer-categories__scroll {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+// =============================================
+// CATEGORY CARD (rounded, with image)
+// =============================================
+
+.printer-category-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    min-width: 200px;
+    min-height: 240px;
+    padding: 1.25rem;
+    background: $printer-surface;
+    border-radius: $border-radius-xl;
+    text-decoration: none;
+    color: $text-primary;
+    transition: $transition-base;
+    overflow: hidden;
+    scroll-snap-align: start;
+    border: 1px solid $printer-border-light;
+    box-shadow: $printer-shadow-xs;
+
+    @media (min-width: 576px) {
+        min-width: 220px;
+    }
+
+    @media (min-width: 992px) {
+        min-width: 200px;
+    }
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: $printer-shadow-hover;
+        color: $text-primary;
+
+        .printer-category-card__image img {
+            transform: scale(1.06);
+        }
+
+        .printer-category-card__arrow {
+            background: $printer-dark;
+            color: #fff;
+            transform: translateX(3px);
+        }
+    }
+}
+
+.printer-category-card__image {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        transition: transform 0.5s ease;
+    }
+
+    i {
+        font-size: 3rem;
+        color: $text-muted;
+    }
+}
+
+.printer-category-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 0.75rem;
+    font-size: 1.75rem;
+    color: $text-muted;
+    transition: $transition-base;
+}
+
+.printer-category-card__info {
+    position: relative;
+    z-index: 2;
+}
+
+.printer-category-card__name {
+    font-family: $font-family-display;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
+}
+
+.printer-category-card__title {
+    font-family: $font-family-display;
+    font-size: 1rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 0.35rem;
+    transition: $transition-fast;
+}
+
+.printer-category-card__desc {
+    font-size: 0.8rem;
+    color: $text-muted;
+    margin-bottom: 0.75rem;
+    flex: 1;
+}
+
+.printer-category-card__count {
+    font-size: 0.7rem;
+    color: $text-muted;
+    margin-bottom: 0.5rem;
+}
+
+.printer-category-card__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: $gray-100;
+    color: $text-secondary;
+    font-size: 0.85rem;
+    transition: $transition-base;
+    border: 1px solid $printer-border-light;
+}
+
+.printer-category-card__badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: $border-radius-pill;
+    background: rgba($printer-orange, 0.1);
+    color: $printer-orange;
+    margin-bottom: 0.75rem;
+}
+
+// =============================================
+// CATEGORY CARD VARIANTS
+// =============================================
+
+.printer-category-card--featured {
+    min-width: 280px;
+    background: $printer-gradient-hero;
+    border: none;
+    box-shadow: $printer-shadow-sm;
+
+    @media (min-width: 768px) {
+        min-width: 320px;
+    }
+}
+
+.printer-category-card--accent {
+    background: linear-gradient(135deg, #FFF7ED, #FED7AA);
+    border-color: rgba($printer-orange, 0.15);
+
+    .printer-category-card__arrow {
+        background: rgba($printer-orange, 0.1);
+        color: $printer-orange;
+        border-color: rgba($printer-orange, 0.15);
+    }
+
+    &:hover {
+        box-shadow: 0 12px 36px rgba($printer-orange, 0.12);
+
+        .printer-category-card__arrow {
+            background: $printer-orange;
+            color: #fff;
+        }
+    }
+}
+
+// =============================================
+// CATEGORIES GRID (alternative layout)
+// =============================================
+
+.printer-categories-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(2, 1fr);
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (min-width: 1100px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+// =============================================
+// SHARED SECTION HEADER HELPERS
+// =============================================
+
+.printer-section-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $printer-blue;
+    margin-bottom: 0.5rem;
+}
+
+.printer-section-title {
+    font-family: $font-family-display;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: $text-primary;
+    margin-bottom: 0.5rem;
+
+    @media (min-width: 768px) {
+        font-size: 2.25rem;
+    }
+}
+
+.printer-section-subtitle {
+    color: $text-muted;
+    font-size: 1rem;
+    max-width: 540px;
+    margin: 0 auto;
+}
+
+// =============================================
+// FEATURES / USP STRIP
+// =============================================
+
+.printer-features-strip {
+    background: $printer-surface;
+    border-top: 1px solid $printer-border-light;
+    border-bottom: 1px solid $printer-border-light;
+    padding: 2.5rem 0;
+    margin-top: 2rem;
+}
+
+.printer-features-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+
+    @media (min-width: 992px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.printer-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.printer-feature__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: $border-radius;
+    background: rgba($printer-dark, 0.04);
+    color: $printer-dark;
+    font-size: 1.5rem;
+    transition: $transition-base;
+}
+
+
+.printer-feature__title {
+    font-family: $font-family-display;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 0.25rem;
+}
+
+.printer-feature__desc {
+    font-size: 0.8rem;
+    color: $text-muted;
+    margin: 0;
+}
+
+.printer-feature:hover .printer-feature__icon {
+    background: $printer-dark;
+    color: #fff;
+    transform: scale(1.05);
+}

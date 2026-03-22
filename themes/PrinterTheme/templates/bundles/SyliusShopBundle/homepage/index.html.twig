@@ -1,0 +1,40 @@
+{% set homepage_hook = 'sylius_shop.homepage.index' %}
+{% set prefixes = [homepage_hook] %}
+
+{% extends '@SyliusShop/shared/layout/base.html.twig' %}
+
+{% block title %}{{ sylius.channel.name }} – {{ 'sylius.ui.home'|trans }}{% endblock %}
+
+{% block content %}
+    {# Hero slider - uses Banner entity when available, fallback to static #}
+    {{ render(controller('Plugin\\SyliusBannerPlugin\\Controller\\Shop\\BannerController::heroAction')) }}
+
+    {# Categories horizontal scroll #}
+    {% include '@SyliusShop/homepage/categories.html.twig' ignore missing %}
+
+    {# Featured / Latest products #}
+    <section class="printer-section" id="featured-products" aria-label="{{ 'printer_shop.homepage.featured_products'|trans }}" data-reveal="up">
+        <div class="printer-container">
+            <div class="printer-section-header">
+                <div>
+                    <span class="printer-section-label">{{ 'printer_shop.homepage.shop_label'|trans }}</span>
+                    <h2 class="printer-section-title">
+                        {{ 'printer_shop.homepage.featured_products'|trans }}
+                    </h2>
+                </div>
+                <a href="{{ path('sylius_shop_product_index', {'slug': 'all'}) }}" class="printer-section-link">
+                    {{ 'printer_shop.homepage.view_all'|trans }}
+                    <i class="ti ti-chevron-right"></i>
+                </a>
+            </div>
+
+            {% hook homepage_hook %}
+        </div>
+    </section>
+
+    {# Best Sellers (Dynamic Plugin Section) #}
+    {{ component('sylius_best_seller:shop:best_sellers', {period: 'weekly', limit: 8}) }}
+
+    {# Features / USP strip #}
+    {% include '@SyliusShop/homepage/features.html.twig' ignore missing %}
+{% endblock %}

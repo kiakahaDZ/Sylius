@@ -1,0 +1,522 @@
+/*
+ * PrinterTheme - Product Show Page
+ * Gallery, specs accordion, pricing panel & related products – light theme
+ */
+
+// =============================================
+// PRODUCT SHOW LAYOUT
+// =============================================
+
+.printer-product-show {
+    padding: 2rem 0 4rem;
+}
+
+.printer-product-show__grid {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: 1fr;
+
+    @media (min-width: 992px) {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+    }
+
+    @media (min-width: 1200px) {
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 4rem;
+    }
+}
+
+// =============================================
+// PRODUCT GALLERY
+// =============================================
+
+.printer-product-gallery {
+    position: sticky;
+    top: 100px;
+}
+
+.printer-product-gallery__main {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: $border-radius-xxl;
+    overflow: hidden;
+    background: $gray-100;
+    border: 1px solid $printer-border-light;
+    margin-bottom: 1rem;
+    cursor: zoom-in;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 2rem;
+        transition: transform 0.5s ease;
+    }
+
+    &:hover img {
+        transform: scale(1.04);
+    }
+}
+
+.printer-product-gallery__badges {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    z-index: 3;
+}
+
+.printer-product-gallery__thumbs {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    @media (min-width: 576px) {
+        flex-direction: column;
+    }
+}
+
+.printer-product-gallery__thumb {
+    width: 72px;
+    height: 72px;
+    border-radius: $border-radius;
+    border: 2px solid transparent;
+    overflow: hidden;
+    cursor: pointer;
+    background: $gray-100;
+    transition: $transition-base;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 0.375rem;
+    }
+
+    &:hover,
+    &.active {
+        border-color: $printer-dark;
+        box-shadow: $printer-shadow-sm;
+    }
+}
+
+// =============================================
+// PRODUCT INFO PANEL (right column)
+// =============================================
+
+.printer-product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.printer-product-info__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.printer-product-info__brand-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $printer-dark;
+    display: inline-block;
+}
+
+.printer-product-info__name {
+    font-family: $font-family-display;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: $text-primary;
+    line-height: 1.2;
+    margin: 0;
+
+    @media (min-width: 1200px) {
+        font-size: 2.1rem;
+    }
+}
+
+.printer-product-info__sku {
+    font-size: 0.75rem;
+    color: $text-muted;
+}
+
+// =============================================
+// RATING ROW
+// =============================================
+
+.printer-product-info__rating {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    flex-wrap: wrap;
+}
+
+.printer-product-info__review-link {
+    font-size: 0.8rem;
+    color: $text-muted;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: $transition-fast;
+
+    &:hover {
+        color: $printer-dark;
+    }
+}
+
+// =============================================
+// PRICE BLOCK
+// =============================================
+
+.printer-product-info__price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding: 1.25rem 0;
+    border-top: 1px solid $printer-border-light;
+    border-bottom: 1px solid $printer-border-light;
+}
+
+.printer-product-info__price-current {
+    font-family: $font-family-display;
+    font-size: 2rem;
+    font-weight: 900;
+    color: $text-primary;
+}
+
+.printer-product-info__price-old {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: $text-muted;
+    text-decoration: line-through;
+}
+
+.printer-product-info__price-save {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: $printer-orange;
+    background: rgba($printer-orange, 0.08);
+    padding: 0.2rem 0.6rem;
+    border-radius: $border-radius-pill;
+}
+
+// =============================================
+// VARIANT SELECTS / OPTIONS
+// =============================================
+
+.printer-product-info__options {
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+}
+
+.printer-option-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+}
+
+.printer-option-group__label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $text-secondary;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.printer-option-group__choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.printer-option-choice {
+    padding: 0.4rem 1rem;
+    border: 1px solid $printer-border;
+    border-radius: $border-radius-pill;
+    background: transparent;
+    color: $text-secondary;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: $transition-fast;
+
+    &:hover {
+        border-color: $printer-dark;
+        color: $printer-dark;
+    }
+
+    &.active,
+    &[aria-pressed="true"] {
+        border-color: $printer-dark;
+        background: $printer-dark;
+        color: #fff;
+    }
+
+    &.disabled,
+    &[disabled] {
+        opacity: 0.35;
+        cursor: not-allowed;
+        text-decoration: line-through;
+
+        &:hover {
+            border-color: $printer-border;
+            color: $text-secondary;
+        }
+    }
+}
+
+// =============================================
+// QUANTITY & ADD TO CART
+// =============================================
+
+.printer-product-info__add-to-cart {
+    display: flex;
+    gap: 1rem;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.printer-qty {
+    display: flex;
+    align-items: center;
+    border: 1px solid $printer-border;
+    border-radius: $border-radius-pill;
+    overflow: hidden;
+    background: $printer-surface;
+
+    &__btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 48px;
+        background: transparent;
+        border: none;
+        color: $text-secondary;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: $transition-fast;
+
+        &:hover {
+            color: $printer-dark;
+            background: $gray-100;
+        }
+    }
+
+    &__input {
+        width: 54px;
+        height: 48px;
+        text-align: center;
+        background: transparent;
+        border: none;
+        border-left: 1px solid $printer-border;
+        border-right: 1px solid $printer-border;
+        color: $text-primary;
+        font-size: 1rem;
+        font-weight: 600;
+
+        &:focus {
+            outline: none;
+        }
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+    }
+}
+
+.printer-product-info__cart-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    padding: 0.875rem 2rem;
+    background: $printer-dark;
+    border: none;
+    border-radius: $border-radius-pill;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: $transition-base;
+    box-shadow: 0 4px 15px rgba($printer-dark, 0.2);
+    min-height: 48px;
+
+    &:hover {
+        background: lighten($printer-dark, 10%);
+        box-shadow: 0 6px 25px rgba($printer-dark, 0.3);
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+.printer-product-info__wishlist-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    min-height: 48px;
+    border: 1px solid $printer-border;
+    border-radius: 50%;
+    background: transparent;
+    color: $text-muted;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: $transition-base;
+
+    &:hover {
+        border-color: $printer-red;
+        color: $printer-red;
+        background: rgba($printer-red, 0.05);
+    }
+}
+
+// =============================================
+// TRUST BADGES
+// =============================================
+
+.printer-product-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-top: 1px solid $printer-border-light;
+}
+
+.printer-product-trust__item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: $text-muted;
+
+    i {
+        color: $printer-green;
+        font-size: 1rem;
+    }
+}
+
+// =============================================
+// SPECS ACCORDION (below the grid)
+// =============================================
+
+.printer-product-specs {
+    margin-top: 4rem;
+
+    .accordion {
+        --bs-accordion-bg: #{$printer-surface};
+        --bs-accordion-border-color: #{$printer-border-light};
+        --bs-accordion-btn-bg: transparent;
+        --bs-accordion-active-bg: transparent;
+        --bs-accordion-active-color: #{$printer-dark};
+        --bs-accordion-btn-focus-box-shadow: none;
+    }
+
+    .accordion-item {
+        background: transparent;
+        border-color: $printer-border-light;
+    }
+
+    .accordion-button {
+        background: transparent;
+        color: $text-primary;
+        font-weight: 600;
+        padding: 1rem 0;
+
+        &:not(.collapsed) {
+            color: $printer-dark;
+            box-shadow: none;
+        }
+    }
+
+    .accordion-body {
+        padding-top: 0.5rem;
+        padding-bottom: 1.5rem;
+        color: $text-secondary;
+    }
+}
+
+.printer-product-specs__title {
+    font-family: $font-family-display;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $text-primary;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $printer-border-light;
+}
+
+.printer-specs-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    tr {
+        border-bottom: 1px solid $printer-border-light;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    td {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.9rem;
+
+        &:first-child {
+            color: $text-muted;
+            font-weight: 500;
+            width: 40%;
+            padding-right: 2rem;
+        }
+
+        &:last-child {
+            color: $text-primary;
+        }
+    }
+
+    tr:nth-child(even) td {
+        background: rgba($printer-dark, 0.02);
+        border-radius: $border-radius-sm;
+    }
+}
+
+// =============================================
+// RELATED PRODUCTS SECTION
+// =============================================
+
+.printer-related-products {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid $printer-border-light;
+
+    h2 {
+        font-family: $font-family-display;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: $text-primary;
+        margin-bottom: 1.5rem;
+    }
+
+    .products-grid {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    }
+}

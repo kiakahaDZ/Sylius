@@ -1,0 +1,18 @@
+# src/Resources/config/api_routes.yaml
+sylius_best_seller_api_get_best_sellers:
+    path: /best-sellers
+    methods: [GET]
+    defaults:
+        _controller: SyliusBestSellerPlugin\Controller\Api\BestSellerController::getBestSellers
+
+sylius_best_seller_api_get_top_product:
+    path: /best-sellers/top
+    methods: [GET]
+    defaults:
+        _controller: SyliusBestSellerPlugin\Controller\Api\BestSellerController::getTopProduct
+
+sylius_best_seller_api_get_product_stats:
+    path: /products/{productId}/stats
+    methods: [GET]
+    defaults:
+        _controller: SyliusBestSellerPlugin\Controller\Api\BestSellerController::getProductStats

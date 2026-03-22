@@ -1,0 +1,65 @@
+{% set order = hookable_metadata.context.order %}
+{% set active_step = hookable_metadata.context.active_step|default('') %}
+{% set order_requires_shipping = sylius_is_shipping_required(order) %}
+{% set order_requires_payment = sylius_is_payment_required(order) %}
+
+{% set steps = [
+    {
+        'name': 'address',
+        'route': 'sylius_shop_checkout_address',
+        'label': 'sylius.ui.address'|trans,
+        'icon': 'ti-map-pin',
+        'required': true,
+        'state': active_step == 'address' ? 'active' : 'completed',
+        'test_attribute': 'step-address',
+    },
+    {
+        'name': 'select_shipping',
+        'route': 'sylius_shop_checkout_select_shipping',
+        'label': 'sylius.ui.shipping'|trans,
+        'icon': 'ti-truck',
+        'required': order_requires_shipping,
+        'state': active_step == 'select_shipping' ? 'active' : (active_step == 'address' ? 'disabled' : 'completed'),
+        'test_attribute': 'step-shipping',
+    },
+    {
+        'name': 'select_payment',
+        'route': 'sylius_shop_checkout_select_payment',
+        'label': 'sylius.ui.payment'|trans,
+        'icon': 'ti-credit-card',
+        'required': order_requires_payment,
+        'state': active_step == 'select_payment' ? 'active' : (active_step == 'complete' ? 'completed' : 'disabled'),
+        'test_attribute': 'step-payment',
+    },
+    {
+        'name': 'complete',
+        'route': 'sylius_shop_checkout_complete',
+        'label': 'sylius.ui.complete'|trans,
+        'icon': 'ti-check',
+        'required': true,
+        'state': active_step == 'complete' ? 'active' : 'disabled',
+        'test_attribute': 'step-complete',
+    },
+] %}
+
+<div class="printer-checkout-steps" {{ sylius_test_html_attribute('checkout-steps') }}>
+    {% for step in steps|filter(step => step.required) %}
+        <div class="printer-checkout-step{{ step.state == 'active' ? ' active' : (step.state == 'completed' ? ' completed' : '') }}">
+            {% if step.state != 'disabled' %}
+                <a href="{{ path(step.route) }}" class="d-flex flex-column align-items-center gap-2 text-decoration-none text-inherit" {{ sylius_test_html_attribute(step.test_attribute) }}>
+                    <span class="printer-checkout-step__icon">
+                        <i class="ti {{ step.icon }}" aria-hidden="true"></i>
+                    </span>
+                    <span class="printer-checkout-step__label">{{ step.label|trans }}</span>
+                </a>
+            {% else %}
+                <div class="d-flex flex-column align-items-center gap-2 opacity-50">
+                    <span class="printer-checkout-step__icon">
+                        <i class="ti {{ step.icon }}" aria-hidden="true"></i>
+                    </span>
+                    <span class="printer-checkout-step__label">{{ step.label|trans }}</span>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>

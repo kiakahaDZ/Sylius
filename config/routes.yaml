@@ -1,0 +1,3 @@
+sylius_offers_click:
+    path: /offers/{id}/click
+    controller: SyliusOffersPlugin\Controller\ClickController::trackClick

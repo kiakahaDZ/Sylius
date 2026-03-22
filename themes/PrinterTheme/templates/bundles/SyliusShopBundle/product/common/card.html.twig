@@ -1,0 +1,97 @@
+{% import '@SyliusShop/shared/macro/money.html.twig' as money %}
+{% import '@SyliusShop/shared/macro/rating.html.twig' as rating %}
+{% set product = hookable_metadata.context.product|default(product) %}
+
+<div class="printer-product-card h-100" {{ sylius_test_html_attribute('product', '%s'|format(product.code)) }}>
+    
+    {# Bages (e.g., New, Out of Stock, Sale) #}
+    <div class="printer-product-card__badges">
+        {% if product.enabled == false or product.variants.empty or (product.variants.first.tracked and product.variants.first.onHand == 0) %}
+            <span class="printer-badge printer-badge--out-of-stock">{{ 'sylius.ui.out_of_stock'|trans }}</span>
+        {% else %}
+            {# Placeholder for 'new' logic, could check created_at. Assuming new badge #}
+            {% if is_bestseller|default(false) %}
+                <span class="printer-badge printer-badge--bestseller">{{ 'sylius_shop.product.badge_bestseller'|trans|default('Best Seller') }}</span>
+            {% endif %}
+            
+            {% if product.createdAt > date('-30days') %}
+                <span class="printer-badge printer-badge--new">{{ 'sylius_shop.product.badge_new'|trans|default('New') }}</span>
+            {% endif %}
+            
+            {# Find context channel to show correct discounted price badge if applicable #}
+            {% set contextChannel = sylius.channel %}
+            {% if product.variants.first %}
+                {% set channelPricing = product.variants.first.getChannelPricingForChannel(contextChannel) %}
+                {% if channelPricing and channelPricing.originalPrice is not null and channelPricing.price < channelPricing.originalPrice %}
+                    <span class="printer-badge printer-badge--sale">{{ 'sylius_shop.product.badge_sale'|trans|default('Sale') }}</span>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    </div>
+    
+    {# Hover Quick Actions #}
+    <div class="printer-product-card__quick-actions">
+        {# Add to Wishlist / Favorite (Placeholder for future plugin if needed) #}
+        <button class="printer-quick-action" aria-label="{{ 'sylius.ui.add_to_wishlist'|trans|default('Add to Wishlist') }}">
+            <i class="ti ti-heart"></i>
+        </button>
+        {# View / Eye #}
+        <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}" class="printer-quick-action" aria-label="{{ 'sylius.ui.view'|trans }}">
+            <i class="ti ti-eye"></i>
+        </a>
+    </div>
+
+    {# Product Image #}
+    <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}" class="printer-product-card__image d-block">
+        {% include '@SyliusShop/shared/components/main_image.html.twig' with {'product': product} %}
+        <div class="printer-product-card__overlay"></div>
+    </a>
+
+    {# Product Info #}
+    <div class="printer-product-card__info">
+        
+        {# Brand/Taxon generic link (assuming main taxon) #}
+        {% if product.mainTaxon %}
+            <a href="{{ path('sylius_shop_product_index', {'slug': product.mainTaxon.slug, '_locale': product.translation.locale}) }}" class="printer-product-card__brand text-decoration-none">
+                {{ product.mainTaxon.name }}
+            </a>
+        {% else %}
+            <span class="printer-product-card__brand">{{ sylius.channel.name }}</span>
+        {% endif %}
+
+        {# Product Name #}
+        <h3 class="printer-product-card__name">
+            <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}" class="text-decoration-none" {{ sylius_test_html_attribute('product-name', '%s'|format(product.name)) }}>
+                {{ product.name }}
+            </a>
+        </h3>
+
+        {# Product Rating #}
+        {% if product.averageRating > 0 %}
+            <div class="printer-product-card__rating">
+                {{ rating.show(product.averageRating) }}
+                <span class="printer-rating-count">({{ product.reviews|length }})</span>
+            </div>
+        {% else %}
+            <div class="printer-product-card__rating">
+                <div class="printer-stars">
+                    <i class="ti ti-star star-empty"></i><i class="ti ti-star star-empty"></i><i class="ti ti-star star-empty"></i><i class="ti ti-star star-empty"></i><i class="ti ti-star star-empty"></i>
+                </div>
+                <span class="printer-rating-count">{{ 'sylius.ui.no_reviews'|trans|default('No reviews') }}</span>
+            </div>
+        {% endif %}
+
+        {# Pricing #}
+        <div class="printer-product-card__pricing">
+            {% if not product.variants.empty %}
+                {{ component('sylius_shop:product:card:price', { variant: product|sylius_resolve_variant, template: '@SyliusShop/product/common/price.html.twig' }) }}
+            {% endif %}
+        </div>
+    </div>
+
+    {# Add to cart form block #}
+    {% if not product.variants.empty %}
+        {{ component('sylius_shop:product:add_to_cart_form', { product: product, template: '@SyliusShop/product/show/content/info/summary/add_to_cart.html.twig' }) }}
+    {% endif %}
+
+</div>

@@ -1,0 +1,9 @@
+# src/Resources/config/admin_routes.yaml
+sylius_best_seller_admin_config:
+    path: /best-sellers/config
+    methods: [GET, POST]
+    defaults:
+        _controller: SyliusBestSellerPlugin\Controller\Admin\BestSellerConfigController::updateAction
+        _sylius:
+            template: "@SyliusBestSellerPlugin/admin/best_seller/config.html.twig"
+            redirect: sylius_best_seller_admin_config

@@ -1,0 +1,130 @@
+/*
+ * PrinterTheme - Responsive Mobile-First
+ * Breakpoints and layout adjustments for all screen sizes
+ */
+
+// Mobile-first breakpoints (Bootstrap 5 aligns)
+// xs: <576px (base)
+// sm: 576px
+// md: 768px
+// lg: 992px
+// xl: 1200px
+// xxl: 1400px
+
+// =============================================
+// CHECKOUT STEPS - Mobile stacking
+// =============================================
+
+@media (max-width: 767px) {
+    .printer-checkout-steps {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+        padding-bottom: 1.5rem;
+
+        &::before {
+            display: none;
+        }
+    }
+
+    .printer-checkout-step {
+        flex: 0 0 auto;
+    }
+}
+
+// =============================================
+// HERO - Mobile typography
+// =============================================
+
+@media (max-width: 575px) {
+    .printer-hero__title {
+        font-size: 2rem;
+    }
+
+    .printer-hero__tagline {
+        font-size: 0.9rem;
+    }
+
+    .printer-hero__subtitle {
+        font-size: 0.9rem;
+    }
+
+    .printer-hero__cta {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .printer-hero__visual {
+        max-width: 220px;
+    }
+}
+
+// =============================================
+// NAVBAR / OFFCANVAS - Mobile menu
+// =============================================
+
+@media (max-width: 991px) {
+    .printer-main-header .navbar-collapse {
+        background: $printer-surface;
+        border-radius: $border-radius-lg;
+        margin-top: 0.5rem;
+        padding: 1rem;
+        border: 1px solid $printer-border-light;
+        box-shadow: $printer-shadow-md;
+    }
+
+    .printer-nav-pills {
+        flex-wrap: wrap;
+    }
+}
+
+// =============================================
+// PRODUCT GRID - Single column on small screens
+// =============================================
+
+@media (max-width: 575px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .printer-related-products .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .printer-product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+}
+
+// =============================================
+// CATEGORIES - Mobile scrollable
+// =============================================
+
+@media (max-width: 767px) {
+    .printer-categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .printer-category-card {
+        min-width: 160px;
+        min-height: 200px;
+    }
+}
+
+// =============================================
+// FOOTER - Mobile stacking
+// =============================================
+
+@media (max-width: 575px) {
+    .printer-footer__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .printer-footer__bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}

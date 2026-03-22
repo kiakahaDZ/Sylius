@@ -1,0 +1,129 @@
+{% form_theme form '@SyliusAdmin/Form/theme.html.twig' %}
+
+{{ form_start(form, {'action': action, 'attr': {'class': 'ui form'}}) }}
+    <div class="ui segment">
+        <div class="two fields">
+            {{ form_row(form.code) }}
+            {{ form_row(form.title) }}
+        </div>
+        
+        {{ form_row(form.description) }}
+        
+        <div class="two fields">
+            {{ form_row(form.image) }}
+            {{ form_row(form.link) }}
+        </div>
+        
+        <div class="two fields">
+            {{ form_row(form.badge) }}
+            {{ form_row(form.type) }}
+        </div>
+        
+        <div class="two fields">
+            {{ form_row(form.position) }}
+            {{ form_row(form.enabled) }}
+        </div>
+        
+        <div class="two fields">
+            {{ form_row(form.startDate) }}
+            {{ form_row(form.endDate) }}
+        </div>
+        
+        <h4 class="ui dividing header">
+            {{ 'sylius_offers.ui.targeting'|trans }}
+        </h4>
+        
+        <div class="field">
+            {{ form_label(form.targetUrls) }}
+            <div class="ui relaxed divided list" id="target-urls-list" data-prototype="{{ form_widget(form.targetUrls.vars.prototype)|e }}">
+                {% for targetUrl in form.targetUrls %}
+                    <div class="item">
+                        <div class="right floated">
+                            <button type="button" class="ui mini red button remove-url">
+                                <i class="trash icon"></i>
+                            </button>
+                        </div>
+                        <div class="content">
+                            {{ form_widget(targetUrl) }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="button" class="ui mini primary button add-url">
+                <i class="plus icon"></i>
+                {{ 'sylius_offers.ui.add_url'|trans }}
+            </button>
+            <div class="ui small info message">
+                <i class="info circle icon"></i>
+                {{ 'sylius_offers.ui.target_urls_help'|trans }}
+            </div>
+        </div>
+        
+        <div class="two fields">
+            {{ form_row(form.targetProducts) }}
+            {{ form_row(form.targetCategories) }}
+        </div>
+        
+        <div class="two fields">
+            {{ form_row(form.targetChannels) }}
+            {{ form_row(form.targetLocales) }}
+        </div>
+        
+        <h4 class="ui dividing header">
+            {{ 'sylius_offers.ui.appearance'|trans }}
+        </h4>
+        
+        <div class="three fields">
+            {{ form_row(form.backgroundColor) }}
+            {{ form_row(form.textColor) }}
+            {{ form_row(form.buttonColor) }}
+        </div>
+        
+        {{ form_row(form.buttonText) }}
+    </div>
+    
+    {{ form_rest(form) }}
+    
+    <div class="ui hidden divider"></div>
+    
+    <div class="ui two column grid">
+        <div class="column">
+            <div class="ui buttons">
+                <button type="submit" class="ui primary button" data-loading>
+                    {{ 'sylius.ui.save'|trans }}
+                </button>
+                <a href="{{ path('sylius_admin_offer_index') }}" class="ui button">
+                    {{ 'sylius.ui.cancel'|trans }}
+                </a>
+            </div>
+        </div>
+    </div>
+{{ form_end(form) }}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            // Add URL functionality
+            $('.add-url').click(function() {
+                var list = $('#target-urls-list');
+                var prototype = list.data('prototype');
+                var newForm = prototype.replace(/__name__/g, list.children().length);
+                var newItem = $('<div class="item"></div>').html(
+                    '<div class="right floated">' +
+                    '<button type="button" class="ui mini red button remove-url">' +
+                    '<i class="trash icon"></i>' +
+                    '</button>' +
+                    '</div>' +
+                    '<div class="content">' + newForm + '</div>'
+                );
+                list.append(newItem);
+            });
+            
+            // Remove URL functionality
+            $(document).on('click', '.remove-url', function() {
+                $(this).closest('.item').remove();
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,8 @@
+{# PrinterTheme - custom product/common/price.html.twig #}
+{% if has_discount %}
+    <span class="printer-price--old" {{ sylius_test_html_attribute('product-original-price') }}>{{ original_price }}</span>
+    <span class="printer-price" {{ sylius_test_html_attribute('product-price') }}>{{ price }}</span>
+    {# Optional: Calculate percentage to show discount badge #}
+{% else %}
+    <span class="printer-price" {{ sylius_test_html_attribute('product-price') }}>{{ price }}</span>
+{% endif %}

@@ -1,0 +1,26 @@
+imports:
+    - { resource: "@SyliusBannerPlugin/Resources/config/grids/admin_banner.yaml" }
+
+doctrine:
+    orm:
+        mappings:
+            SyliusBannerPlugin:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Plugin/SyliusBannerPlugin/Resources/config/doctrine/model'
+                prefix: Plugin\SyliusBannerPlugin\Entity
+
+api_platform:
+    mapping:
+        paths:
+            - '%kernel.project_dir%/src/Plugin/SyliusBannerPlugin/Resources/config/api_platform'
+
+sylius_banner:
+    driver: doctrine/orm
+    resources:
+        banner:
+            classes:
+                model: Plugin\SyliusBannerPlugin\Entity\Banner
+                interface: Plugin\SyliusBannerPlugin\Entity\BannerInterface
+                repository: Plugin\SyliusBannerPlugin\Repository\BannerRepository
+                form: Plugin\SyliusBannerPlugin\Form\Type\BannerType

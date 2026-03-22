@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  https://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    
+    <entity name="SyliusOffersPlugin\Entity\Offer" table="sylius_offer">
+        <id name="id" type="integer">
+            <generator strategy="AUTO"/>
+        </id>
+        
+        <field name="code" type="string" length="255" unique="true"/>
+        <field name="title" type="string" length="255"/>
+        <field name="description" type="text" nullable="true"/>
+        <field name="image" type="string" length="500" nullable="true"/>
+        <field name="link" type="string" length="500" nullable="true"/>
+        <field name="badge" type="string" length="100" nullable="true"/>
+        <field name="type" type="string" length="50"/>
+        <field name="position" type="integer"/>
+        <field name="startDate" type="datetime" nullable="true" column="start_date"/>
+        <field name="endDate" type="datetime" nullable="true" column="end_date"/>
+        <field name="targetUrls" type="json" nullable="true" column="target_urls"/>
+        <field name="targetProducts" type="json" nullable="true" column="target_products"/>
+        <field name="targetCategories" type="json" nullable="true" column="target_categories"/>
+        <field name="targetChannels" type="json" nullable="true" column="target_channels"/>
+        <field name="targetLocales" type="json" nullable="true" column="target_locales"/>
+        <field name="targetUserGroups" type="json" nullable="true" column="target_user_groups"/>
+        <field name="backgroundColor" type="string" length="50" nullable="true" column="background_color"/>
+        <field name="textColor" type="string" length="50" nullable="true" column="text_color"/>
+        <field name="buttonText" type="string" length="50" nullable="true" column="button_text"/>
+        <field name="buttonColor" type="string" length="50" nullable="true" column="button_color"/>
+        <field name="views" type="integer"/>
+        <field name="clicks" type="integer"/>
+        <field name="conversionRate" type="float" column="conversion_rate"/>
+        <field name="enabled" type="boolean"/>
+        <field name="createdAt" type="datetime" column="created_at"/>
+        <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
+        
+        <indexes>
+            <index name="idx_offer_enabled" columns="enabled"/>
+            <index name="idx_offer_dates" columns="start_date,end_date"/>
+            <index name="idx_offer_type" columns="type"/>
+            <index name="idx_offer_position" columns="position"/>
+            <index name="idx_offer_code" columns="code"/>
+        </indexes>
+    </entity>
+</doctrine-mapping>

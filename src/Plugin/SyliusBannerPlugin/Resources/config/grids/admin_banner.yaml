@@ -1,0 +1,52 @@
+sylius_grid:
+    grids:
+        sylius_admin_banner:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: Plugin\SyliusBannerPlugin\Entity\Banner
+            sorting:
+                sortOrder: asc
+                position: asc
+            fields:
+                id:
+                    type: string
+                    path: id
+                    label: sylius.ui.id
+                title:
+                    type: string
+                    path: title
+                    label: sylius_banner.ui.title
+                position:
+                    type: string
+                    path: position
+                    label: sylius_banner.ui.position
+                enabled:
+                    type: twig
+                    path: enabled
+                    label: sylius.ui.enabled
+                    options:
+                        template: "@SyliusAdmin/shared/grid/field/boolean.html.twig"
+                sortOrder:
+                    type: string
+                    path: sortOrder
+                    label: sylius_banner.ui.sort_order
+            filters:
+                title:
+                    type: string
+                    label: sylius_banner.ui.title
+                position:
+                    type: string
+                    label: sylius_banner.ui.position
+                enabled:
+                    type: boolean
+                    label: sylius.ui.enabled
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

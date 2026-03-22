@@ -1,0 +1,36 @@
+printer_shop:
+    homepage:
+        search_placeholder: "ابحث عن طابعة، خرطوشة..."
+        hero:
+            subtitle: "جودة احترافية لمطبوعاتك"
+            cta: "اكتشف"
+        features:
+            fast_delivery: "توصيل سريع"
+            genuine_parts: "قطع أصلية"
+            repair_service: "خدمة التصليح"
+            secure_payment: "دفع آمن"
+    categories:
+        title: "أقسامنا"
+        printers: "طابعات"
+        compatible_cartridges: "خراطيش متوافقة"
+        ink_cartridges: "خراطيش حبر"
+        refillable_cartridges: "خراطيش قابلة للتعبئة"
+        toner: "تونر ليزر"
+        ink_refill: "حبر زجاجات"
+        paper: "ورق صور واحترافي"
+        spare_parts: "قطع غيار"
+        print_heads: "رؤوس الطباعة"
+        repair: "خدمة التصليح"
+    product:
+        add_to_cart: "أضف إلى السلة"
+        quick_view: "نظرة سريعة"
+        specs: "المواصفات"
+        in_stock: "متوفر في المخزون"
+        out_of_stock: "غير متوفر"
+        details: "تفاصيل"
+    best_sellers:
+        title: "الأكثر مبيعاً"
+        subtitle: "المنتجات الأكثر رواجاً هذا الأسبوع"
+        sold: "تم بيعها"
+        rank: "#%pos%"
+        view_details: "عرض التفاصيل"

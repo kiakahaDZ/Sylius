@@ -1,0 +1,42 @@
+<div class="ui card" style="background-color: {{ backgroundColor }}; color: {{ textColor }};">
+    {% if offer.image %}
+        <div class="image">
+            <img src="{{ offer.image }}" alt="{{ offer.title }}">
+        </div>
+    {% endif %}
+    
+    {% if offer.badge %}
+        <div class="ui {{ offer.badge|lower }} ribbon label">
+            {{ offer.badge }}
+        </div>
+    {% endif %}
+    
+    <div class="content">
+        <div class="header">{{ offer.title }}</div>
+        
+        {% if offer.description %}
+            <div class="description">
+                {{ offer.description|slice(0, 100) }}
+                {% if offer.description|length > 100 %}...{% endif %}
+            </div>
+        {% endif %}
+        
+        {% if hasCountdown %}
+            <div class="meta">
+                <twig:countdown_timer :offer="offer" />
+            </div>
+        {% endif %}
+    </div>
+    
+    {% if offer.link %}
+        <div class="extra content">
+            <a href="{{ path('sylius_offers_click', {id: offer.id}) }}" 
+               class="ui fluid button"
+               style="background-color: {{ buttonColor }}; color: {{ textColor }};"
+               target="_blank">
+                {{ buttonText }}
+                <i class="right arrow icon"></i>
+            </a>
+        </div>
+    {% endif %}
+</div>

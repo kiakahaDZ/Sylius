@@ -19,3 +19,7 @@ sylius_api_admin_statistics:
 sylius_api_shop_authentication_token:
     path: /shop/customers/token
     methods: ['POST']
+
+sylius_best_seller_api:
+    resource: "@SyliusBestSellerPlugin/Resources/config/api_routes.yaml"
+    prefix: /api/v1

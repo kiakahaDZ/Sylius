@@ -1,0 +1,34 @@
+parameters:
+    sylius_banner.model.banner.class: Plugin\SyliusBannerPlugin\Entity\Banner
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Plugin\SyliusBannerPlugin\:
+        resource: '../..'
+        exclude:
+            - '../../DependencyInjection/'
+            - '../../Entity/'
+            - '../../SyliusBannerPlugin.php'
+    Plugin\SyliusBannerPlugin\Form\EventSubscriber\BannerImageSubscriber:
+        arguments:
+            $imagesDir: '%sylius_core.images_dir%'
+
+    Plugin\SyliusBannerPlugin\Form\Type\BannerType:
+        arguments:
+            $imageSubscriber: '@Plugin\SyliusBannerPlugin\Form\EventSubscriber\BannerImageSubscriber'
+        tags:
+            - { name: form.type }
+
+    Plugin\SyliusBannerPlugin\Controller\Shop\BannerController:
+        arguments:
+            $bannerRepository: '@sylius_banner.repository.banner'
+        tags:
+            - { name: controller.service_arguments }
+
+    Plugin\SyliusBannerPlugin\Doctrine\ORM\EnabledBannerExtension:
+        tags:
+            - { name: api_platform.doctrine.orm.query_extension.collection }

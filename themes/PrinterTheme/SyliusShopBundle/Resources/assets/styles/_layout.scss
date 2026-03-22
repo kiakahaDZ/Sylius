@@ -1,0 +1,543 @@
+/*
+ * PrinterTheme - Layout Overrides
+ * Light theme base styling for printing supplies e-commerce
+ */
+
+// =============================================
+// GLOBAL BASE
+// =============================================
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: $printer-bg;
+    color: $text-primary;
+    font-family: $font-family-sans-serif;
+    overflow-x: hidden;
+}
+
+::selection {
+    background: rgba($printer-dark, 0.15);
+    color: $printer-dark;
+}
+
+a {
+    color: $printer-dark;
+    transition: $transition-fast;
+
+    &:hover {
+        color: $printer-blue-dark;
+    }
+}
+
+// =============================================
+// HEADER OVERRIDES
+// =============================================
+
+.printer-header {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
+.printer-top-bar {
+    background: $printer-dark;
+    padding: 0.4rem 0;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.7);
+    border-bottom: none;
+
+    a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+}
+
+.printer-main-header {
+    background: $printer-surface;
+    border-bottom: 1px solid $printer-border-light;
+    padding: 0.75rem 0;
+    box-shadow: $printer-shadow-xs;
+}
+
+.printer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+    color: $text-primary;
+
+    img {
+        height: 36px;
+        width: auto;
+    }
+
+    &__text {
+        font-family: $font-family-display;
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: $printer-dark;
+    }
+}
+
+// =============================================
+// SEARCH BAR
+// =============================================
+
+.printer-search {
+    position: relative;
+    flex: 1;
+    max-width: 480px;
+    margin: 0 2rem;
+}
+
+.printer-search__input {
+    width: 100%;
+    padding: 0.625rem 1rem 0.625rem 2.75rem;
+    background: $gray-100;
+    border: 1px solid $printer-border-light;
+    border-radius: $border-radius-pill;
+    color: $text-primary;
+    font-size: 0.9rem;
+    transition: $transition-base;
+
+    &::placeholder {
+        color: $text-muted;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: $printer-dark;
+        box-shadow: 0 0 0 3px rgba($printer-dark, 0.08);
+        background: #fff;
+    }
+}
+
+.printer-search__icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-muted;
+    pointer-events: none;
+}
+
+// =============================================
+// HEADER ACTIONS
+// =============================================
+
+.printer-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.printer-header-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid transparent;
+    color: $text-secondary;
+    text-decoration: none;
+    transition: $transition-base;
+    cursor: pointer;
+    font-size: 1.2rem;
+
+    &:hover {
+        background: $gray-100;
+        color: $printer-dark;
+    }
+}
+
+.printer-cart-count {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    min-width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $printer-orange;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    border-radius: 50%;
+    line-height: 1;
+}
+
+// =============================================
+// NAVIGATION BAR
+// =============================================
+
+.printer-navbar {
+    background: $printer-surface;
+    border-bottom: 1px solid $printer-border-light;
+
+    .nav-link {
+        color: $text-secondary;
+        font-weight: 500;
+        font-size: 0.9rem;
+        padding: 0.75rem 1.25rem;
+        border-radius: $border-radius-pill;
+        transition: $transition-fast;
+        position: relative;
+
+        &:hover,
+        &.active {
+            color: $printer-dark;
+            background: rgba($printer-dark, 0.04);
+        }
+    }
+}
+
+// =============================================
+// NAV PILLS (categories in header)
+// =============================================
+
+.printer-nav-pills {
+    display: flex;
+    gap: 0.5rem;
+
+    .nav-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.5rem 1.25rem;
+        border-radius: $border-radius-pill;
+        border: 1px solid $printer-border;
+        background: $printer-surface;
+        color: $text-primary;
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: $transition-base;
+        white-space: nowrap;
+
+        &:hover {
+            background: $printer-dark;
+            color: #fff;
+            border-color: $printer-dark;
+        }
+
+        i {
+            font-size: 1rem;
+        }
+    }
+}
+
+// =============================================
+// FOOTER
+// =============================================
+
+.printer-footer {
+    background: $printer-dark;
+    color: rgba(255, 255, 255, 0.7);
+    padding-top: 4rem;
+    margin-top: 4rem;
+}
+
+.printer-footer__grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+
+    @media (min-width: 576px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 992px) {
+        grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    }
+}
+
+.printer-footer__section {
+    h5, .footer-title {
+        font-family: $font-family-display;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #fff;
+        margin-bottom: 1.25rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: $transition-fast;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+
+            &:hover {
+                color: #fff;
+                padding-left: 0.25rem;
+            }
+        }
+    }
+}
+
+.printer-footer__about {
+    .printer-logo {
+        margin-bottom: 1rem;
+    }
+
+    p {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.printer-footer__social {
+    display: flex;
+    gap: 0.75rem;
+
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.6);
+        transition: $transition-base;
+        font-size: 1.1rem;
+
+        &:hover {
+            background: #fff;
+            color: $printer-dark;
+        }
+    }
+}
+
+.printer-footer__newsletter {
+    .printer-newsletter-form {
+        display: flex;
+        gap: 0;
+        margin-top: 1rem;
+
+        input {
+            flex: 1;
+            padding: 0.625rem 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-right: none;
+            border-radius: $border-radius-pill 0 0 $border-radius-pill;
+            color: #fff;
+            font-size: 0.875rem;
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.4);
+            }
+
+            &:focus {
+                outline: none;
+                border-color: rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        button {
+            padding: 0.625rem 1.5rem;
+            background: #fff;
+            border: none;
+            border-radius: 0 $border-radius-pill $border-radius-pill 0;
+            color: $printer-dark;
+            font-weight: 700;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: $transition-base;
+
+            &:hover {
+                background: $printer-cyan-light;
+                color: $printer-dark;
+            }
+        }
+    }
+}
+
+.printer-footer__bottom {
+    margin-top: 3rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.85rem;
+}
+
+.printer-footer__payment-icons {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+
+    img {
+        height: 24px;
+        opacity: 0.5;
+        transition: $transition-fast;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+// =============================================
+// BREADCRUMBS OVERRIDE
+// =============================================
+
+.breadcrumb {
+    background: transparent;
+    padding: 1rem 0;
+
+    .breadcrumb-item {
+        color: $text-muted;
+
+        a {
+            color: $text-secondary;
+            text-decoration: none;
+
+            &:hover {
+                color: $printer-dark;
+            }
+        }
+
+        &.active {
+            color: $text-muted;
+        }
+    }
+}
+
+// =============================================
+// BUTTONS OVERRIDE
+// =============================================
+
+.btn-primary {
+    background: $printer-dark;
+    border: none;
+    border-radius: $border-radius-pill;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba($printer-dark, 0.15);
+
+    &:hover {
+        background: lighten($printer-dark, 10%);
+        box-shadow: 0 4px 15px rgba($printer-dark, 0.25);
+        color: #fff;
+    }
+}
+
+.btn-outline-primary {
+    border-color: $printer-dark;
+    color: $printer-dark;
+    border-radius: $border-radius-pill;
+
+    &:hover {
+        background: $printer-dark;
+        color: #fff;
+        border-color: $printer-dark;
+    }
+}
+
+.btn-outline-secondary {
+    border-color: $printer-border;
+    color: $text-secondary;
+    border-radius: $border-radius-pill;
+
+    &:hover {
+        background: $gray-100;
+        color: $text-primary;
+        border-color: $text-secondary;
+    }
+}
+
+// =============================================
+// CARD OVERRIDE
+// =============================================
+
+.card {
+    background: $printer-surface;
+    border-color: $printer-border-light;
+    border-radius: $border-radius-xl;
+    box-shadow: $printer-shadow-xs;
+
+    .card-header {
+        background: transparent;
+        border-bottom-color: $printer-border-light;
+        color: $text-primary;
+    }
+
+    .card-footer {
+        background: transparent;
+        border-top-color: $printer-border-light;
+    }
+}
+
+// =============================================
+// FORM CONTROLS
+// =============================================
+
+.form-control,
+.form-select {
+    background-color: $printer-surface;
+    border-color: $printer-border;
+    color: $text-primary;
+    border-radius: $border-radius;
+
+    &:focus {
+        background-color: $printer-surface;
+        border-color: $printer-dark;
+        color: $text-primary;
+        box-shadow: 0 0 0 0.15rem rgba($printer-dark, 0.1);
+    }
+}
+
+.form-label {
+    color: $text-secondary;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+// =============================================
+// CONTAINER UTILITY
+// =============================================
+
+.printer-container {
+    @extend .container;
+    max-width: 1320px;
+}
+
+.printer-section {
+    padding: 4rem 0;
+}
