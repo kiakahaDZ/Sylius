@@ -1,0 +1,30 @@
+sylius_repair_service:
+    form:
+        customer_email: Email
+        customer_name: Full name
+        customer_phone_number: Phone number
+        device_brand: Device brand
+        device_model: Device model
+        device_name: Device name
+        diagnosis_notes: Diagnosis notes
+        issue_description: Issue description
+        repair_notes: Repair notes
+        status: Status
+    status:
+        completed: Completed
+        diagnosed: Diagnosed
+        in_progress: In progress
+        submitted: Submitted
+    ui:
+        customer: Customer
+        device: Device
+        issue: Issue
+        no_requests: No repair requests found.
+        repair_request: Repair request
+        repair_requests: Repair requests
+        request_code: Request code
+        request_submitted: Your repair request has been submitted successfully.
+        request_updated: Repair request updated successfully.
+        status: Status
+        submit_request: Submit repair request
+        thank_you: Thank you, your repair request has been received.

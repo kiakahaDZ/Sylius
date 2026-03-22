@@ -1,0 +1,11 @@
+sylius_admin_repair_request_index:
+    path: /repair-requests
+    methods: [GET]
+    defaults:
+        _controller: SyliusRepairServicePlugin\Controller\Admin\RepairRequestController::indexAction
+
+sylius_admin_repair_request_update:
+    path: /repair-requests/{id}/edit
+    methods: [GET, POST]
+    defaults:
+        _controller: SyliusRepairServicePlugin\Controller\Admin\RepairRequestController::updateAction

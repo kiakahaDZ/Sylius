@@ -1,0 +1,17 @@
+sylius_repair_service_api_index:
+    path: /repair-requests
+    methods: [GET]
+    defaults:
+        _controller: SyliusRepairServicePlugin\Controller\Api\RepairRequestController::indexAction
+
+sylius_repair_service_api_create:
+    path: /repair-requests
+    methods: [POST]
+    defaults:
+        _controller: SyliusRepairServicePlugin\Controller\Api\RepairRequestController::createAction
+
+sylius_repair_service_api_show:
+    path: /repair-requests/{code}
+    methods: [GET]
+    defaults:
+        _controller: SyliusRepairServicePlugin\Controller\Api\RepairRequestController::showAction

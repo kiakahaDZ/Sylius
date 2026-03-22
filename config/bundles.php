@@ -66,4 +66,6 @@ return [
     Plugin\SyliusBannerPlugin\SyliusBannerPlugin::class => ['all' => true],
     SyliusBestSellerPlugin\SyliusBestSellerPlugin::class => ['all' => true],
     SyliusOffersPlugin\SyliusOffersPlugin::class => ['all' => true],
+    SyliusChargilyPlugin\SyliusChargilyPlugin::class => ['all' => true],
+    SyliusRepairServicePlugin\SyliusRepairServicePlugin::class => ['all' => true],
 ];

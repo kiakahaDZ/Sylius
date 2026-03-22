@@ -1,0 +1,6 @@
+sylius_twig_hooks:
+    hooks:
+        'sylius_shop.shared.form.select_payment.payment.choice.details':
+            chargily_badges:
+                template: '@SyliusChargilyPlugin/shop/shared/form/select_payment/payment/choice/details/chargily_badges.html.twig'
+                priority: -100

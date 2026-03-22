@@ -1,0 +1,23 @@
+{% extends '@SyliusShop/shared/layout/base.html.twig' %}
+
+{% block content %}
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="mb-4">{{ 'sylius_repair_service.ui.submit_request'|trans }}</h1>
+                {{ form_start(form) }}
+                    <div class="row g-3">
+                        <div class="col-md-6">{{ form_row(form.deviceName) }}</div>
+                        <div class="col-md-6">{{ form_row(form.deviceBrand) }}</div>
+                        <div class="col-md-6">{{ form_row(form.deviceModel) }}</div>
+                        <div class="col-md-6">{{ form_row(form.customerPhoneNumber) }}</div>
+                        <div class="col-md-6">{{ form_row(form.customerName) }}</div>
+                        <div class="col-md-6">{{ form_row(form.customerEmail) }}</div>
+                        <div class="col-12">{{ form_row(form.issueDescription) }}</div>
+                    </div>
+                    <button class="btn btn-primary mt-4" type="submit">{{ 'sylius_repair_service.ui.submit_request'|trans }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

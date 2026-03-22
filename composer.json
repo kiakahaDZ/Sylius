@@ -7,7 +7,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Paweł Jędrzejewski",
+            "name": "Pawe\u0142 J\u0119drzejewski",
             "homepage": "https://pjedrzejewski.com"
         },
         {
@@ -142,7 +142,8 @@
         "twig/intl-extra": "^3.16",
         "twig/string-extra": "^3.16",
         "twig/twig": "^3.16",
-        "webmozart/assert": "^1.11"
+        "webmozart/assert": "^1.11",
+        "chargily/chargily-pay": "^2.0.6"
     },
     "replace": {
         "sylius/addressing": "self.version",
@@ -268,7 +269,9 @@
             "Plugin\\": "src/Plugin/",
             "SyliusBestSellerPlugin\\": "src/Plugin/SyliusBestSellerPlugin/src/",
             "SyliusBestSellerPlugin\\Command\\": "src/Plugin/SyliusBestSellerPlugin/Command/",
+            "SyliusChargilyPlugin\\": "src/Plugin/SyliusChargilyPlugin/src/",
             "SyliusOffersPlugin\\": "src/Plugin/SyliusOffersPlugin/src/",
+            "SyliusRepairServicePlugin\\": "src/Plugin/SyliusRepairServicePlugin/src/",
             "Sylius\\Abstraction\\StateMachine\\": "src/Sylius/Abstraction/StateMachine/src",
             "Sylius\\Behat\\": "src/Sylius/Behat/",
             "Sylius\\Bundle\\": "src/Sylius/Bundle/",

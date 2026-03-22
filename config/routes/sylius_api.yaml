@@ -5,3 +5,7 @@ sylius_api:
 sylius_offers_api:
     resource: "@SyliusOffersPlugin/Resources/config/api_routes.yaml"
     prefix: /api/v1
+
+sylius_repair_service_api:
+    resource: "@SyliusRepairServicePlugin/Resources/config/api_routes.yaml"
+    prefix: /api/v1
