@@ -1,0 +1,30 @@
+{
+    "name": "sylius/chargily-plugin",
+    "type": "sylius-plugin",
+    "description": "Chargily Pay integration for Sylius 2.3.",
+    "keywords": ["sylius", "chargily", "payment", "edahabia", "cib"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "chargily/chargily-pay": "^2.0.6",
+        "sylius/sylius": "^2.3",
+        "symfony/framework-bundle": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "SyliusChargilyPlugin\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SyliusChargilyPlugin\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "sylius": {
+            "bundles": [
+                "SyliusChargilyPlugin\\SyliusChargilyPlugin"
+            ]
+        }
+    }
+}

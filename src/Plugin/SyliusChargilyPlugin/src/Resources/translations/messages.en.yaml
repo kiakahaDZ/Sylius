@@ -1,0 +1,25 @@
+sylius_chargily:
+    form:
+        fees_allocation:
+            customer: Customer pays Chargily fees
+            label: Fees allocation
+            merchant: Merchant pays Chargily fees
+        gateway_factory_label: Chargily Pay
+        locale:
+            ar: Arabic
+            en: English
+            label: Checkout locale
+        mode:
+            label: Mode
+            live: Live
+            test: Test
+        payment_method:
+            cib: CIB
+            edahabia: EDAHABIA
+            label: Chargily payment method
+        public_key: Public key
+        secret_key: Secret key
+    shop:
+        badges:
+            cib: Pay with CIB
+            edahabia: Pay with EDAHABIA

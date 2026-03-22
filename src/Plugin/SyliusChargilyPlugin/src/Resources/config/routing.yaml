@@ -1,0 +1,5 @@
+sylius_chargily_webhook:
+    path: /chargily/webhook/{code}
+    methods: [POST]
+    defaults:
+        _controller: SyliusChargilyPlugin\Controller\ChargilyWebhookAction
