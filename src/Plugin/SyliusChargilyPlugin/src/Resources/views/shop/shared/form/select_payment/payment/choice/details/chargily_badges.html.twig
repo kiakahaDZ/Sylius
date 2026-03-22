@@ -1,0 +1,16 @@
+{% set payment_method = hookable_metadata.context.form.vars.data %}
+{% set gateway_config = payment_method.gatewayConfig %}
+{% set config = gateway_config is not null ? gateway_config.config : {} %}
+
+{% if gateway_config is not null and gateway_config.factoryName == 'chargily_pay' %}
+    <div class="d-flex flex-wrap gap-2 mt-2">
+        {% if config.payment_method is same as('cib') %}
+            <span class="badge text-bg-light border">{{ 'sylius_chargily.shop.badges.cib'|trans }}</span>
+        {% elseif config.payment_method is same as('edahabia') %}
+            <span class="badge text-bg-light border">{{ 'sylius_chargily.shop.badges.edahabia'|trans }}</span>
+        {% else %}
+            <span class="badge text-bg-light border">{{ 'sylius_chargily.shop.badges.cib'|trans }}</span>
+            <span class="badge text-bg-light border">{{ 'sylius_chargily.shop.badges.edahabia'|trans }}</span>
+        {% endif %}
+    </div>
+{% endif %}
