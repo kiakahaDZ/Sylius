@@ -1,0 +1,11 @@
+sylius_repair_service_shop_request:
+    path: /repair-requests/new
+    methods: [GET, POST]
+    defaults:
+        _controller: SyliusRepairServicePlugin\Controller\Shop\RepairRequestController::requestAction
+
+sylius_repair_service_shop_request_thank_you:
+    path: /repair-requests/{code}/thank-you
+    methods: [GET]
+    defaults:
+        _controller: SyliusRepairServicePlugin\Controller\Shop\RepairRequestController::thankYouAction

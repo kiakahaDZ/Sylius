@@ -1,0 +1,28 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    SyliusRepairServicePlugin\:
+        resource: '../../*'
+        exclude: '../../{DependencyInjection,Entity,Migrations,Resources}'
+
+    SyliusRepairServicePlugin\Repository\RepairRequestRepository:
+        factory: ['@doctrine.orm.entity_manager', getRepository]
+        arguments:
+            - SyliusRepairServicePlugin\Entity\RepairRequest
+
+    SyliusRepairServicePlugin\Controller\Shop\RepairRequestController:
+        public: true
+        tags: ['controller.service_arguments']
+
+    SyliusRepairServicePlugin\Controller\Admin\RepairRequestController:
+        public: true
+        tags: ['controller.service_arguments']
+        arguments:
+            $repairRequestStateMachine: '@state_machine.sylius_repair_request'
+
+    SyliusRepairServicePlugin\Controller\Api\RepairRequestController:
+        public: true
+        tags: ['controller.service_arguments']

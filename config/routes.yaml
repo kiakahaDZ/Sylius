@@ -4,3 +4,6 @@ sylius_offers_click:
 
 sylius_chargily:
     resource: "@SyliusChargilyPlugin/Resources/config/routing.yaml"
+
+sylius_repair_service_shop:
+    resource: "@SyliusRepairServicePlugin/Resources/config/shop_routes.yaml"

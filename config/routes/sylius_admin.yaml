@@ -13,3 +13,7 @@ sylius_best_seller_admin:
 sylius_offers_admin:
     resource: "@SyliusOffersPlugin/Resources/config/admin_routes.yaml"
     prefix: /%sylius_admin.path_name%
+
+sylius_repair_service_admin:
+    resource: "@SyliusRepairServicePlugin/Resources/config/admin_routes.yaml"
+    prefix: /%sylius_admin.path_name%

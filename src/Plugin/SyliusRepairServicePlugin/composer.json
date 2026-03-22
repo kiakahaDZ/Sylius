@@ -1,0 +1,29 @@
+{
+    "name": "sylius/repair-service-plugin",
+    "type": "sylius-plugin",
+    "description": "Printer repair service module for Sylius 2.3.",
+    "keywords": ["sylius", "repair", "printer", "service"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "sylius/sylius": "^2.3",
+        "symfony/framework-bundle": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "SyliusRepairServicePlugin\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SyliusRepairServicePlugin\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "sylius": {
+            "bundles": [
+                "SyliusRepairServicePlugin\\SyliusRepairServicePlugin"
+            ]
+        }
+    }
+}

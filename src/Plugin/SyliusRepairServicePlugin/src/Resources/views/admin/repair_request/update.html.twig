@@ -1,0 +1,50 @@
+{% extends '@SyliusAdmin/shared/layout/base.html.twig' %}
+
+{% block title %}{{ 'sylius_repair_service.ui.repair_request'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid py-4">
+        <h1 class="mb-4">{{ repair_request.code }}</h1>
+
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="h5">{{ 'sylius_repair_service.ui.customer'|trans }}</h2>
+                        <p class="mb-1">{{ repair_request.customerName }}</p>
+                        <p class="mb-1 text-muted">{{ repair_request.customerEmail }}</p>
+                        {% if repair_request.customerPhoneNumber %}
+                            <p class="mb-0 text-muted">{{ repair_request.customerPhoneNumber }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h2 class="h5">{{ 'sylius_repair_service.ui.device'|trans }}</h2>
+                        <p class="mb-1">{{ repair_request.deviceName }}</p>
+                        {% if repair_request.deviceBrand %}<p class="mb-1 text-muted">{{ repair_request.deviceBrand }}</p>{% endif %}
+                        {% if repair_request.deviceModel %}<p class="mb-0 text-muted">{{ repair_request.deviceModel }}</p>{% endif %}
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h2 class="h5">{{ 'sylius_repair_service.ui.issue'|trans }}</h2>
+                        <p class="mb-0">{{ repair_request.issueDescription }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        {{ form_start(form) }}
+                            {{ form_row(form.status) }}
+                            {{ form_row(form.diagnosisNotes) }}
+                            {{ form_row(form.repairNotes) }}
+                            <button class="btn btn-primary" type="submit">{{ 'sylius.ui.save_changes'|trans }}</button>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

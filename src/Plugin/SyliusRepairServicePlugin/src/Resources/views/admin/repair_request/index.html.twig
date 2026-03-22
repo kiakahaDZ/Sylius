@@ -1,0 +1,43 @@
+{% extends '@SyliusAdmin/shared/layout/base.html.twig' %}
+
+{% block title %}{{ 'sylius_repair_service.ui.repair_requests'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid py-4">
+        <h1 class="mb-4">{{ 'sylius_repair_service.ui.repair_requests'|trans }}</h1>
+
+        {% if repair_requests is empty %}
+            <div class="alert alert-info">{{ 'sylius_repair_service.ui.no_requests'|trans }}</div>
+        {% else %}
+            <div class="table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th>{{ 'sylius_repair_service.ui.request_code'|trans }}</th>
+                            <th>{{ 'sylius_repair_service.ui.customer'|trans }}</th>
+                            <th>{{ 'sylius_repair_service.ui.device'|trans }}</th>
+                            <th>{{ 'sylius_repair_service.ui.status'|trans }}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for repair_request in repair_requests %}
+                            <tr>
+                                <td>{{ repair_request.code }}</td>
+                                <td>
+                                    <div>{{ repair_request.customerName }}</div>
+                                    <small class="text-muted">{{ repair_request.customerEmail }}</small>
+                                </td>
+                                <td>{{ repair_request.deviceName }}</td>
+                                <td>{{ ('sylius_repair_service.status.' ~ repair_request.status)|trans }}</td>
+                                <td class="text-end">
+                                    <a href="{{ path('sylius_admin_repair_request_update', {id: repair_request.id}) }}" class="btn btn-sm btn-outline-primary">{{ 'sylius.ui.edit'|trans }}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

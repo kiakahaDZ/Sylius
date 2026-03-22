@@ -271,6 +271,7 @@
             "SyliusBestSellerPlugin\\Command\\": "src/Plugin/SyliusBestSellerPlugin/Command/",
             "SyliusChargilyPlugin\\": "src/Plugin/SyliusChargilyPlugin/src/",
             "SyliusOffersPlugin\\": "src/Plugin/SyliusOffersPlugin/src/",
+            "SyliusRepairServicePlugin\\": "src/Plugin/SyliusRepairServicePlugin/src/",
             "Sylius\\Abstraction\\StateMachine\\": "src/Sylius/Abstraction/StateMachine/src",
             "Sylius\\Behat\\": "src/Sylius/Behat/",
             "Sylius\\Bundle\\": "src/Sylius/Bundle/",

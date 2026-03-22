@@ -1,0 +1,34 @@
+doctrine:
+    orm:
+        mappings:
+            SyliusRepairServicePlugin:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Plugin/SyliusRepairServicePlugin/src/Resources/config/doctrine'
+                prefix: SyliusRepairServicePlugin\Entity
+
+framework:
+    workflows:
+        sylius_repair_request:
+            type: 'state_machine'
+            marking_store:
+                type: 'method'
+                property: 'status'
+            supports:
+                - SyliusRepairServicePlugin\Entity\RepairRequest
+            initial_marking: submitted
+            places:
+                - submitted
+                - diagnosed
+                - in_progress
+                - completed
+            transitions:
+                diagnose:
+                    from: submitted
+                    to: diagnosed
+                start_progress:
+                    from: diagnosed
+                    to: in_progress
+                complete:
+                    from: in_progress
+                    to: completed
