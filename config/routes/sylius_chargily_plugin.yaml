@@ -1,0 +1,2 @@
+sylius_chargily_plugin:
+    resource: "@SyliusChargilyPlugin/Resources/config/routing.yaml"

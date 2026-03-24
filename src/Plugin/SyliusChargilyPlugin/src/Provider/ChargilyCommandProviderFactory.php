@@ -12,7 +12,7 @@ use SyliusChargilyPlugin\Command\StatusChargilyPaymentRequest;
 
 final class ChargilyCommandProviderFactory
 {
-    public function createCapture(): PaymentRequestCommandProviderInterface
+    public static function createCapture(): PaymentRequestCommandProviderInterface
     {
         return new class () implements PaymentRequestCommandProviderInterface {
             public function supports(PaymentRequestInterface $paymentRequest): bool
@@ -27,7 +27,7 @@ final class ChargilyCommandProviderFactory
         };
     }
 
-    public function createStatus(): PaymentRequestCommandProviderInterface
+    public static function createStatus(): PaymentRequestCommandProviderInterface
     {
         return new class () implements PaymentRequestCommandProviderInterface {
             public function supports(PaymentRequestInterface $paymentRequest): bool
@@ -42,7 +42,7 @@ final class ChargilyCommandProviderFactory
         };
     }
 
-    public function createNotify(): PaymentRequestCommandProviderInterface
+    public static function createNotify(): PaymentRequestCommandProviderInterface
     {
         return new class () implements PaymentRequestCommandProviderInterface {
             public function supports(PaymentRequestInterface $paymentRequest): bool

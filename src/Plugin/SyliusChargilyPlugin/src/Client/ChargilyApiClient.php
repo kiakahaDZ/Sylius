@@ -57,8 +57,13 @@ final class ChargilyApiClient implements ChargilyApiClientInterface
                 'json' => $payload,
             ]);
 
-            /** @var array<string, mixed> $data */
-            $data = $response->toArray(false);
+            $statusCode = $response->getStatusCode();
+            $content = $response->getContent(false);
+            $data = json_decode($content, true);
+            
+            if ($statusCode < 200 || $statusCode >= 300) {
+                throw new \RuntimeException(sprintf('Chargily API returned %d: %s', $statusCode, $content));
+            }
         } catch (ExceptionInterface $exception) {
             throw new \RuntimeException('Chargily API request failed.', previous: $exception);
         }

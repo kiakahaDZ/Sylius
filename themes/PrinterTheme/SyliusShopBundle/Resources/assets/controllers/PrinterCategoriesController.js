@@ -9,14 +9,18 @@ export default class extends Controller {
     static targets = ['scroll'];
 
     connect() {
-        this._scrollContainer = this.hasScrollTarget ? this.scrollTarget : this.element;
+        this._scrollContainer = this.hasScrollTarget 
+            ? this.scrollTarget 
+            : this.element.querySelector('.printer-categories__scroll, .printer-taxon-slider__track, .printer-products-scroll') || this.element;
     }
 
-    prev() {
+    prev(event) {
+        event.preventDefault();
         this._scroll(-300);
     }
 
-    next() {
+    next(event) {
+        event.preventDefault();
         this._scroll(300);
     }
 

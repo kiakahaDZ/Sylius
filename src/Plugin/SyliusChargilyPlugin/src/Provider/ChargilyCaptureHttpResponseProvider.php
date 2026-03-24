@@ -46,7 +46,10 @@ final class ChargilyCaptureHttpResponseProvider implements HttpResponseProviderI
 
         $checkoutUrl = $checkout['url'] ?? null;
         if (!is_string($checkoutUrl) || $checkoutUrl === '') {
-            throw new \RuntimeException('Chargily checkout URL is missing from the API response.');
+            $checkoutUrl = $checkout['checkout_url'] ?? null;
+            if (!is_string($checkoutUrl) || $checkoutUrl === '') {
+                throw new \RuntimeException('Chargily checkout URL is missing from the API response. Payload: ' . json_encode($checkout));
+            }
         }
 
         return new RedirectResponse($checkoutUrl);
