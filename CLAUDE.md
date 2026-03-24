@@ -78,3 +78,11 @@
 ---
 
 *This file acts as a persistent memory layer for AI agents to ensure high-quality, token-efficient contributions.*
+
+---
+
+## ⚠️ Known Pitfalls
+- **`[data-reveal]` hidden on load**: `PrinterRevealController` must check `getBoundingClientRect()` on `connect()` and immediately add `.revealed` to elements already in the viewport — not only rely on IntersectionObserver callbacks.
+- **Admin menu item missing**: If `$menu->getChild('sales')` is null, `AdminMenuListener` silently returns. Always add a fallback `addChild()` to create a dedicated top-level section.
+- **Plugin pages unstyled**: Override plugin Twig templates in `themes/PrinterTheme/templates/bundles/{PluginName}/` to apply the PrinterTheme layout; otherwise plugins render bare Sylius HTML.
+- **Encore entry**: The `printer-theme` entry in `webpack.config.js` must load `entry.js` which calls `startStimulusApp`. All Stimulus controllers in `themes/PrinterTheme/.../controllers/` are auto-registered via that context.

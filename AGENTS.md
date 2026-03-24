@@ -32,7 +32,7 @@ When working on specific areas, check these files for patterns:
 - Admin templates: `src/Sylius/Bundle/AdminBundle/templates/`
 - Shop templates: `src/Sylius/Bundle/ShopBundle/templates/`
 - Twig hooks: check existing hooks in templates for naming patterns
-- **PrinterTheme (this project):** Shop UI overrides live under `themes/PrinterTheme/templates/bundles/` mirroring bundle paths (`SyliusShopBundle/`, `SyliusOffersPlugin/`, etc.). Theme SCSS/Stimulus: `themes/PrinterTheme/SyliusShopBundle/Resources/assets/`.
+- **PrinterTheme (this project):** Shop UI overrides live under `themes/PrinterTheme/templates/bundles/` mirroring bundle paths (`SyliusShopBundle/`, `SyliusOffersPlugin/`, `SyliusRepairServicePlugin/`, etc.). Theme SCSS/Stimulus: `themes/PrinterTheme/SyliusShopBundle/Resources/assets/`.
 - **Homepage hook merge:** Bundles may `prepend` `sylius_twig_hooks`. To override or **disable** a hookable (`enabled: false`) after bundles load, use a late-loaded file such as `config/packages/zz_printer_homepage_hooks.yaml` so the app wins.
 - **Shop-only PHP outside plugins:** Namespace `PrinterTheme\` → `src/PrinterTheme/` (see `composer.json` autoload). Example: `PrinterTheme\Twig\HomepageProductExtension` registered in `config/packages/printer_theme.yaml`.
 
@@ -173,3 +173,5 @@ When working on specific areas, check these files for patterns:
 - **Forgetting tests**: API changes need PHPUnit tests in `tests/Api/`
 - **Homepage duplicates**: If the theme renders banners, best sellers, or offers **explicitly**, disable the same `sylius_twig_hooks` hookables (or remove the explicit blocks). Never chain `homepage/banner.html.twig` → controller → template that includes `banner.html.twig` again; use a dedicated fallback (e.g. `banner_static_fallback.html.twig`).
 - **Autoload**: After adding classes under `src/PrinterTheme/`, run `composer dump-autoload`.
+- **Scroll-reveal hidden elements**: `[data-reveal]` starts with `opacity: 0`. The Stimulus controller (`PrinterRevealController`) must immediately reveal elements already in the viewport on `connect()`, not only on IntersectionObserver callbacks. Check `getBoundingClientRect()` vs `window.innerHeight` on connect.
+- **Admin menu not showing**: If a plugin's `MenuListener` calls `$menu->getChild('sales')` and receives null, the listener exits silently. Always add a fallback that creates a dedicated top-level menu section instead of returning early.

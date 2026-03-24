@@ -1,0 +1,38 @@
+{% extends '@SyliusShop/shared/layout/base.html.twig' %}
+
+{% block title %}{{ 'sylius_repair_service.ui.thank_you'|trans }} – {{ parent() }}{% endblock %}
+
+{% block content %}
+<div class="printer-repair-page">
+    <div class="printer-repair-thank-you">
+        <div class="printer-repair-thank-you__card">
+            <div class="printer-repair-thank-you__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M5 12l5 5l10 -10"/>
+                </svg>
+            </div>
+            <h1 class="printer-repair-thank-you__title">{{ 'sylius_repair_service.ui.thank_you'|trans }}</h1>
+            <p class="printer-repair-thank-you__message">{{ 'sylius_repair_service.ui.request_submitted'|trans }}</p>
+
+            {% if repairRequest is defined %}
+            <div class="printer-repair-thank-you__code">
+                {{ 'sylius_repair_service.ui.request_code'|trans }}: {{ repairRequest.code }}
+            </div>
+            {% endif %}
+
+            <a href="{{ path('sylius_shop_homepage') }}" class="printer-repair-thank-you__cta">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M5 12l14 0"/>
+                    <path d="M5 12l6 6"/>
+                    <path d="M5 12l6 -6"/>
+                </svg>
+                {{ 'sylius.ui.back_to_home'|trans }}
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

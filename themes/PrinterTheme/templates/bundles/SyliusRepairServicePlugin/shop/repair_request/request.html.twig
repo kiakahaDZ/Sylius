@@ -1,0 +1,136 @@
+{% extends '@SyliusShop/shared/layout/base.html.twig' %}
+
+{% block title %}{{ 'sylius_repair_service.ui.submit_request'|trans }} – {{ parent() }}{% endblock %}
+
+{% block content %}
+<div class="printer-repair-page">
+
+    {# ── Hero ── #}
+    <section class="printer-repair-hero" aria-label="{{ 'sylius_repair_service.ui.repair_service'|trans }}">
+        <div class="printer-repair-hero__overlay"></div>
+        <div class="printer-container printer-repair-hero__content">
+            <div class="printer-repair-hero__badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5"/>
+                </svg>
+                {{ 'sylius_repair_service.ui.repair_service'|trans }}
+            </div>
+            <h1 class="printer-repair-hero__title">{{ 'sylius_repair_service.ui.submit_request'|trans }}</h1>
+            <p class="printer-repair-hero__subtitle">{{ 'sylius_repair_service.ui.hero_subtitle'|trans }}</p>
+
+            <div class="printer-repair-hero__stats">
+                <div class="printer-repair-stat">
+                    <span class="printer-repair-stat__value">24h</span>
+                    <span class="printer-repair-stat__label">{{ 'sylius_repair_service.ui.stat_turnaround'|trans }}</span>
+                </div>
+                <div class="printer-repair-stat">
+                    <span class="printer-repair-stat__value">100%</span>
+                    <span class="printer-repair-stat__label">{{ 'sylius_repair_service.ui.stat_guarantee'|trans }}</span>
+                </div>
+                <div class="printer-repair-stat">
+                    <span class="printer-repair-stat__value">★ 4.9</span>
+                    <span class="printer-repair-stat__label">{{ 'sylius_repair_service.ui.stat_rating'|trans }}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# ── Steps ── #}
+    <section class="printer-repair-steps printer-container" aria-label="{{ 'sylius_repair_service.ui.how_it_works'|trans }}">
+        <h2 class="printer-repair-steps__heading">{{ 'sylius_repair_service.ui.how_it_works'|trans }}</h2>
+        <div class="printer-repair-steps__grid">
+            <div class="printer-repair-step">
+                <div class="printer-repair-step__number">01</div>
+                <h3 class="printer-repair-step__title">{{ 'sylius_repair_service.ui.step_submit'|trans }}</h3>
+                <p class="printer-repair-step__desc">{{ 'sylius_repair_service.ui.step_submit_desc'|trans }}</p>
+            </div>
+            <div class="printer-repair-step">
+                <div class="printer-repair-step__number">02</div>
+                <h3 class="printer-repair-step__title">{{ 'sylius_repair_service.ui.step_diagnose'|trans }}</h3>
+                <p class="printer-repair-step__desc">{{ 'sylius_repair_service.ui.step_diagnose_desc'|trans }}</p>
+            </div>
+            <div class="printer-repair-step">
+                <div class="printer-repair-step__number">03</div>
+                <h3 class="printer-repair-step__title">{{ 'sylius_repair_service.ui.step_repair'|trans }}</h3>
+                <p class="printer-repair-step__desc">{{ 'sylius_repair_service.ui.step_repair_desc'|trans }}</p>
+            </div>
+            <div class="printer-repair-step">
+                <div class="printer-repair-step__number">04</div>
+                <h3 class="printer-repair-step__title">{{ 'sylius_repair_service.ui.step_pickup'|trans }}</h3>
+                <p class="printer-repair-step__desc">{{ 'sylius_repair_service.ui.step_pickup_desc'|trans }}</p>
+            </div>
+        </div>
+    </section>
+
+    {# ── Form ── #}
+    <section class="printer-repair-form-section printer-container" id="repair-form">
+        <div class="printer-repair-form-card">
+            <div class="printer-repair-form-card__header">
+                <h2 class="printer-repair-form-card__title">{{ 'sylius_repair_service.ui.submit_request'|trans }}</h2>
+                <p class="printer-repair-form-card__subtitle">{{ 'sylius_repair_service.ui.form_subtitle'|trans }}</p>
+            </div>
+
+            {{ form_start(form, { attr: { class: 'printer-repair-form', novalidate: 'novalidate' } }) }}
+
+                <div class="printer-repair-form__group-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"/>
+                        <path d="M8 7m0 -2a2 2 0 0 1 4 0v2"/>
+                    </svg>
+                    {{ 'sylius_repair_service.ui.device'|trans }}
+                </div>
+                <div class="printer-repair-form__row">
+                    <div class="printer-repair-form__field">{{ form_row(form.deviceName) }}</div>
+                    <div class="printer-repair-form__field">{{ form_row(form.deviceBrand) }}</div>
+                    <div class="printer-repair-form__field">{{ form_row(form.deviceModel) }}</div>
+                </div>
+
+                <div class="printer-repair-form__group-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/>
+                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/>
+                    </svg>
+                    {{ 'sylius_repair_service.ui.customer'|trans }}
+                </div>
+                <div class="printer-repair-form__row">
+                    <div class="printer-repair-form__field">{{ form_row(form.customerName) }}</div>
+                    <div class="printer-repair-form__field">{{ form_row(form.customerEmail) }}</div>
+                    <div class="printer-repair-form__field">{{ form_row(form.customerPhoneNumber) }}</div>
+                </div>
+
+                <div class="printer-repair-form__group-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M13 3l0 7l6 0l-8 11l0 -7l-6 0l8 -11"/>
+                    </svg>
+                    {{ 'sylius_repair_service.ui.issue'|trans }}
+                </div>
+                <div class="printer-repair-form__field printer-repair-form__field--full">
+                    {{ form_row(form.issueDescription) }}
+                </div>
+
+                <div class="printer-repair-form__actions">
+                    <button type="submit" class="printer-repair-form__submit" id="repair-submit-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M10 14l11 -11"/>
+                            <path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5"/>
+                        </svg>
+                        {{ 'sylius_repair_service.ui.submit_request'|trans }}
+                    </button>
+                </div>
+
+            {{ form_end(form) }}
+        </div>
+    </section>
+
+</div>
+{% endblock %}

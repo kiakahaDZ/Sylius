@@ -18,6 +18,9 @@ sylius_repair_service:
     ui:
         customer: Customer
         device: Device
+        form_subtitle: Fill in the form below and we will get back to you shortly.
+        hero_subtitle: Our expert technicians diagnose and repair all brands of printers, copiers, and office equipment.
+        how_it_works: How it works
         issue: Issue
         no_requests: No repair requests found.
         repair_request: Repair request
@@ -26,6 +29,18 @@ sylius_repair_service:
         request_code: Request code
         request_submitted: Your repair request has been submitted successfully.
         request_updated: Repair request updated successfully.
+        stat_guarantee: Quality guarantee
+        stat_rating: Customer rating
+        stat_turnaround: Fast turnaround
         status: Status
+        step_diagnose: Diagnosis
+        step_diagnose_desc: A technician contacts you and evaluates the issue.
+        step_pickup: Pickup & Delivery
+        step_pickup_desc: We deliver your repaired device back to you.
+        step_repair: Repair
+        step_repair_desc: We fix the issue using genuine spare parts.
+        step_submit: Submit Request
+        step_submit_desc: Describe your device and the problem you are experiencing.
         submit_request: Submit repair request
         thank_you: Thank you, your repair request has been received.
+
