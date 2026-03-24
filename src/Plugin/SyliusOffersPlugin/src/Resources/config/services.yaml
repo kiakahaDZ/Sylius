@@ -6,29 +6,26 @@ services:
 
     SyliusOffersPlugin\:
         resource: '../../*'
-        exclude: '../../{DependencyInjection,Entity,Migrations,Tests,Kernel.php,Form,Controller,Repository}'
+        exclude: '../../{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    SyliusOffersPlugin\Form\Type\OfferType:
+        arguments: ['SyliusOffersPlugin\Entity\Offer', ['sylius']]
+        tags:
+            - { name: form.type }
 
     SyliusOffersPlugin\Repository\OfferRepository:
+        factory: ['@doctrine.orm.entity_manager', getRepository]
         arguments:
-            - '@doctrine.orm.entity_manager'
-            - 'SyliusOffersPlugin\Entity\Offer'
+            - SyliusOffersPlugin\Entity\Offer
 
     SyliusOffersPlugin\Controller\Admin\OfferController:
-        arguments:
-            - '@sylius.resource_controller.request_configuration_factory'
-            - '@sylius.resource_controller.view_handler'
-            - '@sylius.resource_controller.resources_collection_provider'
-            - '@sylius.resource_controller.single_resource_provider'
-            - '@sylius.resource_controller.resource_form_factory'
-            - '@sylius.resource_controller.redirect_handler'
-            - '@sylius.resource_controller.flash_helper'
-            - '@sylius.resource_controller.authorization_checker'
-            - '@sylius.resource_controller.event_dispatcher'
-            - '@sylius.resource_controller.state_machine'
-            - '@sylius.resource_controller.resource_delete_handler'
-            - '@sylius.resource_controller.new_resource_factory'
+        public: true
         calls:
             - ['setContainer', ['@service_container']]
+            - ['setOfferRepository', ['@SyliusOffersPlugin\Repository\OfferRepository']]
+            - ['setEntityManager', ['@doctrine.orm.entity_manager']]
+
+
 
     SyliusOffersPlugin\Controller\Api\OfferController:
         arguments:

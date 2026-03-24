@@ -1,6 +1,13 @@
-{# PrinterTheme - Category Cards (Horizontal Scroll) #}
-{# Shown on the homepage below the hero – inspired by easyprint-dz.com #}
+{# PrinterTheme - Dynamic Category Cards from Sylius Channel Menu Taxon #}
+{# Uses the TaxonMenuComponent to get categories dynamically #}
 
+{# taxons variable is provided by the TaxonMenuComponent embedding this template #}
+{# When used outside the component, we render inline with sylius.channel.menuTaxon.children #}
+
+{% set channel_taxon = sylius.channel.menuTaxon|default(null) %}
+{% set taxon_children = channel_taxon ? channel_taxon.children|default([]) : [] %}
+
+{% if taxon_children|length > 0 %}
 <section class="printer-section printer-categories" id="categories" aria-label="{{ 'printer_shop.categories.title'|trans }}" data-reveal="up">
     <div class="printer-container">
 
@@ -17,108 +24,48 @@
         </div>
 
         <div class="printer-categories__scroll" data-controller="printer-categories">
+            {% for taxon in taxon_children %}
+                {% set slug_lower = taxon.code|default('')|lower %}
 
-            {# Printers #}
-            <a href="{{ path('sylius_shop_product_index', {'slug': 'all', '_locale': app.request.locale}) }}" class="printer-category-card" id="category-printers">
-                <div class="printer-category-card__icon">
-                    <i class="ti ti-printer"></i>
-                </div>
-                <div class="printer-category-card__info">
-                    <h3 class="printer-category-card__name">{{ 'printer_shop.categories.printers'|trans }}</h3>
-                    <span class="printer-category-card__arrow"><i class="ti ti-chevron-right"></i></span>
-                </div>
-            </a>
+                {# Smart icon matching based on taxon code or slug keywords #}
+                {% set icon_class = 'ti-tag' %}
+                {% if 'printer' in slug_lower or 'imprimante' in slug_lower %}
+                    {% set icon_class = 'ti-printer' %}
+                {% elseif 'compatible' in slug_lower %}
+                    {% set icon_class = 'ti-droplet' %}
+                {% elseif 'ink' in slug_lower or 'encre' in slug_lower %}
+                    {% set icon_class = 'ti-color-swatch' %}
+                {% elseif 'refill' in slug_lower or 'recharge' in slug_lower %}
+                    {% set icon_class = 'ti-recycle' %}
+                {% elseif 'toner' in slug_lower %}
+                    {% set icon_class = 'ti-box' %}
+                {% elseif 'paper' in slug_lower or 'papier' in slug_lower %}
+                    {% set icon_class = 'ti-file-text' %}
+                {% elseif 'part' in slug_lower or 'piece' in slug_lower %}
+                    {% set icon_class = 'ti-settings-2' %}
+                {% elseif 'head' in slug_lower or 'tete' in slug_lower %}
+                    {% set icon_class = 'ti-cpu' %}
+                {% elseif 'accessor' in slug_lower %}
+                    {% set icon_class = 'ti-device-desktop' %}
+                {% endif %}
 
-            {# Compatible Cartridges #}
-            <a href="{{ path('sylius_shop_product_index', {'slug': 'all', '_locale': app.request.locale}) }}" class="printer-category-card" id="category-compatible">
-                <div class="printer-category-card__icon">
-                    <i class="ti ti-droplet"></i>
-                </div>
-                <div class="printer-category-card__info">
-                    <h3 class="printer-category-card__name">{{ 'printer_shop.categories.compatible_cartridges'|trans }}</h3>
-                    <span class="printer-category-card__arrow"><i class="ti ti-chevron-right"></i></span>
-                </div>
-            </a>
+                <a href="{{ path('sylius_shop_product_index', {'slug': taxon.slug}) }}"
+                   class="printer-category-card"
+                   id="category-{{ taxon.code }}">
+                    <div class="printer-category-card__icon">
+                        <i class="ti {{ icon_class }}"></i>
+                    </div>
+                    <div class="printer-category-card__info">
+                        <h3 class="printer-category-card__name">{{ taxon.name }}</h3>
+                        <span class="printer-category-card__arrow"><i class="ti ti-chevron-right"></i></span>
+                    </div>
+                </a>
+            {% endfor %}
 
-            {# Ink Cartridges #}
-            <a href="{{ path('sylius_shop_product_index', {'slug': 'all', '_locale': app.request.locale}) }}" class="printer-category-card" id="category-ink">
-                <div class="printer-category-card__icon">
-                    <i class="ti ti-color-swatch"></i>
-                </div>
-                <div class="printer-category-card__info">
-                    <h3 class="printer-category-card__name">{{ 'printer_shop.categories.ink_cartridges'|trans }}</h3>
-                    <span class="printer-category-card__arrow"><i class="ti ti-chevron-right"></i></span>
-                </div>
-            </a>
-
-            {# Refillable Cartridges #}
-            <a href="{{ path('sylius_shop_product_index', {'slug': 'all', '_locale': app.request.locale}) }}" class="printer-category-card" id="category-refillable">
-                <div class="printer-category-card__icon">
-                    <i class="ti ti-recycle"></i>
-                </div>
-                <div class="printer-category-card__info">
-                    <h3 class="printer-category-card__name">{{ 'printer_shop.categories.refillable_cartridges'|trans }}</h3>
-                    <span class="printer-category-card__arrow"><i class="ti ti-chevron-right"></i></span>
-                </div>
-            </a>
-
-            {# Toner #}
-            <a href="{{ path('sylius_shop_product_index', {'slug': 'all', '_locale': app.request.locale}) }}" class="printer-category-card" id="category-toner">
-                <div class="printer-category-card__icon">
-                    <i class="ti ti-box"></i>
-                </div>
-                <div class="printer-category-card__info">
-                    <h3 class="printer-category-card__name">{{ 'printer_shop.categories.toner'|trans }}</h3>
-                    <span class="printer-category-card__arrow"><i class="ti ti-chevron-right"></i></span>
-                </div>
-            </a>
-
-            {# Ink Refill #}
-            <a href="{{ path('sylius_shop_product_index', {'slug': 'all', '_locale': app.request.locale}) }}" class="printer-category-card" id="category-ink-refill">
-                <div class="printer-category-card__icon">
-                    <i class="ti ti-droplet-half-2"></i>
-                </div>
-                <div class="printer-category-card__info">
-                    <h3 class="printer-category-card__name">{{ 'printer_shop.categories.ink_refill'|trans }}</h3>
-                    <span class="printer-category-card__arrow"><i class="ti ti-chevron-right"></i></span>
-                </div>
-            </a>
-
-            {# Paper #}
-            <a href="{{ path('sylius_shop_product_index', {'slug': 'all', '_locale': app.request.locale}) }}" class="printer-category-card" id="category-paper">
-                <div class="printer-category-card__icon">
-                    <i class="ti ti-file-text"></i>
-                </div>
-                <div class="printer-category-card__info">
-                    <h3 class="printer-category-card__name">{{ 'printer_shop.categories.paper'|trans }}</h3>
-                    <span class="printer-category-card__arrow"><i class="ti ti-chevron-right"></i></span>
-                </div>
-            </a>
-
-            {# Spare Parts #}
-            <a href="{{ path('sylius_shop_product_index', {'slug': 'all', '_locale': app.request.locale}) }}" class="printer-category-card" id="category-parts">
-                <div class="printer-category-card__icon">
-                    <i class="ti ti-settings-2"></i>
-                </div>
-                <div class="printer-category-card__info">
-                    <h3 class="printer-category-card__name">{{ 'printer_shop.categories.spare_parts'|trans }}</h3>
-                    <span class="printer-category-card__arrow"><i class="ti ti-chevron-right"></i></span>
-                </div>
-            </a>
-
-            {# Print Heads #}
-            <a href="{{ path('sylius_shop_product_index', {'slug': 'all', '_locale': app.request.locale}) }}" class="printer-category-card" id="category-print-heads">
-                <div class="printer-category-card__icon">
-                    <i class="ti ti-cpu"></i>
-                </div>
-                <div class="printer-category-card__info">
-                    <h3 class="printer-category-card__name">{{ 'printer_shop.categories.print_heads'|trans }}</h3>
-                    <span class="printer-category-card__arrow"><i class="ti ti-chevron-right"></i></span>
-                </div>
-            </a>
-
-            {# Repair Service #}
-            <a href="{{ path('sylius_shop_homepage', {'_locale': app.request.locale}) }}#repair" class="printer-category-card printer-category-card--accent" id="category-repair">
+            {# Always add Repair Service as a special category card #}
+            <a href="{{ path('sylius_repair_service_shop_request') }}"
+               class="printer-category-card printer-category-card--accent"
+               id="category-repair">
                 <div class="printer-category-card__icon">
                     <i class="ti ti-tool"></i>
                 </div>
@@ -127,7 +74,8 @@
                     <span class="printer-category-card__arrow"><i class="ti ti-chevron-right"></i></span>
                 </div>
             </a>
-
         </div>
+
     </div>
 </section>
+{% endif %}

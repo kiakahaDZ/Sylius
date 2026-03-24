@@ -15,7 +15,11 @@ final class ChargilyWebhookVerifier
             return false;
         }
 
-        $secretKey = (string) ($gatewayConfig['secret_key'] ?? '');
+        $isSandbox = (bool) ($gatewayConfig['sandbox'] ?? true);
+        $secretKey = $isSandbox
+            ? (string) ($gatewayConfig['test_secret_key'] ?? '')
+            : (string) ($gatewayConfig['live_secret_key'] ?? '');
+            
         if ($secretKey === '') {
             return false;
         }

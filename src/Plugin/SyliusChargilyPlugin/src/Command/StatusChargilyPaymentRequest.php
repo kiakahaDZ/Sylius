@@ -6,7 +6,7 @@ namespace SyliusChargilyPlugin\Command;
 
 use Sylius\Bundle\PaymentBundle\Command\PaymentRequestHashAwareInterface;
 
-final readonly class StatusChargilyPaymentRequest implements PaymentRequestHashAwareInterface
+final class StatusChargilyPaymentRequest implements PaymentRequestHashAwareInterface
 {
     public function __construct(private string $hash)
     {
@@ -15,5 +15,10 @@ final readonly class StatusChargilyPaymentRequest implements PaymentRequestHashA
     public function getHash(): string
     {
         return $this->hash;
+    }
+
+    public function setHash(string $hash): void
+    {
+        $this->hash = $hash;
     }
 }

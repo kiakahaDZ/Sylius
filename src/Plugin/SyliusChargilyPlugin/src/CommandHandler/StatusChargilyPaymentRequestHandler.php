@@ -1,6 +1,7 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1)
+;
 
 namespace SyliusChargilyPlugin\CommandHandler;
 
@@ -10,13 +11,14 @@ use Sylius\Component\Payment\PaymentRequestTransitions;
 use SyliusChargilyPlugin\Command\StatusChargilyPaymentRequest;
 use SyliusChargilyPlugin\Provider\ChargilyStatusResolver;
 
-final readonly class StatusChargilyPaymentRequestHandler
+final class StatusChargilyPaymentRequestHandler
 {
-    public function __construct(
-        private PaymentRequestProviderInterface $paymentRequestProvider,
-        private StateMachineInterface $stateMachine,
-        private ChargilyStatusResolver $statusResolver,
-    ) {
+    public function __construct(private
+        PaymentRequestProviderInterface $paymentRequestProvider, private
+        StateMachineInterface $stateMachine, private
+        ChargilyStatusResolver $statusResolver,
+        )
+    {
     }
 
     public function __invoke(StatusChargilyPaymentRequest $command): void

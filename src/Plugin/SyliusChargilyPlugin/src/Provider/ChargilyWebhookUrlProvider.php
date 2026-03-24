@@ -1,6 +1,7 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1)
+;
 
 namespace SyliusChargilyPlugin\Provider;
 
@@ -8,7 +9,7 @@ use Sylius\Component\Payment\Model\PaymentMethodInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 
-final readonly class ChargilyWebhookUrlProvider
+final class ChargilyWebhookUrlProvider
 {
     public function __construct(private RouterInterface $router)
     {

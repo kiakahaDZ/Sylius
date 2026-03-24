@@ -1,110 +1,171 @@
-{% extends '@SyliusAdmin/layout.html.twig' %}
+{% extends '@SyliusAdmin/shared/layout/base.html.twig' %}
 
 {% block title %}{{ 'sylius_offers.ui.offers'|trans }} {{ parent() }}{% endblock %}
 
-{% block content %}
-    <div class="ui segment">
-        <div class="ui grid">
-            <div class="column">
-                <div class="ui items">
-                    <div class="item">
-                        <div class="content">
-                            <h1 class="ui header">
-                                <i class="gift icon"></i>
-                                <div class="content">
-                                    {{ 'sylius_offers.ui.offers'|trans }}
-                                    <div class="sub header">
-                                        {{ 'sylius_offers.ui.manage_offers'|trans }}
+{% block body %}
+    <div class="page">
+        {% include '@SyliusAdmin/shared/crud/common/sidebar.html.twig' %}
+        {% include '@SyliusAdmin/shared/crud/common/navbar.html.twig' %}
+
+        <div class="page-wrapper">
+            <div class="page-header d-print-none">
+                <div class="container-xl">
+                    <div class="row g-2 align-items-center">
+                        <div class="col">
+                            <div class="page-pretitle">
+                                {{ 'sylius_offers.ui.manage_offers'|trans }}
+                            </div>
+                            <h2 class="page-title">
+                                <i class="ti ti-gift me-2"></i>
+                                {{ 'sylius_offers.ui.offers'|trans }}
+                            </h2>
+                        </div>
+                        <div class="col-auto ms-auto d-print-none">
+                            <div class="btn-list">
+                                <a href="{{ path('sylius_admin_offer_create') }}" class="btn btn-primary d-none d-sm-inline-block">
+                                    <i class="ti ti-plus"></i>
+                                    {{ 'sylius.ui.create'|trans }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-body">
+                <div class="container-xl">
+                    {# Stats Cards #}
+                    <div class="row row-cards mb-4">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="card card-sm">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <span class="bg-primary text-white avatar"><i class="ti ti-gift"></i></span>
+                                        </div>
+                                        <div class="col">
+                                            <div class="font-weight-medium">{{ offers_count }}</div>
+                                            <div class="text-muted">{{ 'sylius_offers.ui.total_offers'|trans }}</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </h1>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="card card-sm">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <span class="bg-green text-white avatar"><i class="ti ti-check"></i></span>
+                                        </div>
+                                        <div class="col">
+                                            <div class="font-weight-medium">{{ active_offers_count }}</div>
+                                            <div class="text-muted">{{ 'sylius_offers.ui.active_offers'|trans }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="card card-sm">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <span class="bg-yellow text-white avatar"><i class="ti ti-clock"></i></span>
+                                        </div>
+                                        <div class="col">
+                                            <div class="font-weight-medium">{{ upcoming_offers_count|default(0) }}</div>
+                                            <div class="text-muted">{{ 'sylius_offers.ui.upcoming_offers'|trans }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="card card-sm">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <span class="bg-red text-white avatar"><i class="ti ti-alert-triangle"></i></span>
+                                        </div>
+                                        <div class="col">
+                                            <div class="font-weight-medium">{{ expiring_offers_count|default(0) }}</div>
+                                            <div class="text-muted">{{ 'sylius_offers.ui.expiring_offers'|trans }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="table-responsive">
+                            <table class="table table-vcenter table-mobile-md card-table">
+                                <thead>
+                                    <tr>
+                                        <th>{{ 'sylius.ui.image'|trans }}</th>
+                                        <th>{{ 'sylius.ui.title'|trans }}</th>
+                                        <th>{{ 'sylius_offers.ui.offer_type'|trans }}</th>
+                                        <th>{{ 'sylius.ui.enabled'|trans }}</th>
+                                        <th class="w-1"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for offer in resources %}
+                                        <tr>
+                                            <td data-label="{{ 'sylius.ui.image'|trans }}">
+                                                {% if offer.imagePath %}
+                                                    <img src="{{ offer.imagePath|imagine_filter('sylius_admin_product_tiny_thumbnail') }}" class="avatar avatar-sm rounded" alt="{{ offer.title }}">
+                                                {% else %}
+                                                    <span class="avatar avatar-sm rounded">-</span>
+                                                {% endif %}
+                                            </td>
+                                            <td data-label="{{ 'sylius.ui.title'|trans }}">
+                                                <div class="d-flex py-1 align-items-center">
+                                                    <div class="flex-fill">
+                                                        <div class="font-weight-medium">{{ offer.title }}</div>
+                                                        <div class="text-muted">{{ offer.code }}</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td data-label="{{ 'sylius_offers.ui.offer_type'|trans }}">
+                                                <span class="badge bg-blue-lite">{{ offer.type|upper }}</span>
+                                            </td>
+                                            <td data-label="{{ 'sylius.ui.enabled'|trans }}">
+                                                {% if offer.enabled %}
+                                                    <span class="badge bg-green"></span> {{ 'sylius.ui.enabled'|trans }}
+                                                {% else %}
+                                                    <span class="badge bg-red"></span> {{ 'sylius.ui.disabled'|trans }}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <div class="btn-list flex-nowrap">
+                                                    <a href="{{ path('sylius_admin_offer_update', {'id': offer.id}) }}" class="btn btn-sm btn-white">
+                                                        {{ 'sylius.ui.edit'|trans }}
+                                                    </a>
+                                                    <form action="{{ path('sylius_admin_offer_delete', {'id': offer.id}) }}" method="post" onsubmit="return confirm('{{ 'sylius.ui.are_you_sure_you_want_to_delete_this_item'|trans }}')">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <input type="hidden" name="_csrf_token" value="{{ csrf_token(offer.id) }}">
+                                                        <button class="btn btn-sm btn-danger" type="submit">
+                                                            {{ 'sylius.ui.delete'|trans }}
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="5" class="text-center py-4">
+                                                <div class="text-muted">{{ 'sylius.ui.no_results_to_display'|trans }}</div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                
-                {# Stats Cards #}
-                <div class="ui four column stackable grid">
-                    <div class="column">
-                        <div class="ui card">
-                            <div class="content">
-                                <div class="header">
-                                    {{ 'sylius_offers.ui.total_offers'|trans }}
-                                </div>
-                                <div class="meta">
-                                    <span class="right floated">
-                                        <i class="gift icon"></i>
-                                    </span>
-                                    <span class="ui huge statistic">
-                                        {{ offers_count }}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="ui card">
-                            <div class="content">
-                                <div class="header">
-                                    {{ 'sylius_offers.ui.active_offers'|trans }}
-                                </div>
-                                <div class="meta">
-                                    <span class="right floated">
-                                        <i class="green checkmark icon"></i>
-                                    </span>
-                                    <span class="ui huge statistic">
-                                        {{ active_offers_count }}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="ui card">
-                            <div class="content">
-                                <div class="header">
-                                    {{ 'sylius_offers.ui.upcoming_offers'|trans }}
-                                </div>
-                                <div class="meta">
-                                    <span class="right floated">
-                                        <i class="yellow clock icon"></i>
-                                    </span>
-                                    <span class="ui huge statistic">
-                                        {{ upcoming_offers_count|default(0) }}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="ui card">
-                            <div class="content">
-                                <div class="header">
-                                    {{ 'sylius_offers.ui.expiring_offers'|trans }}
-                                </div>
-                                <div class="meta">
-                                    <span class="right floated">
-                                        <i class="red warning icon"></i>
-                                    </span>
-                                    <span class="ui huge statistic">
-                                        {{ expiring_offers_count|default(0) }}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="ui hidden divider"></div>
-                
-                <div class="ui menu">
-                    <a href="{{ path('sylius_admin_offer_create') }}" class="ui primary button">
-                        <i class="plus icon"></i>
-                        {{ 'sylius.ui.create'|trans }}
-                    </a>
-                </div>
-                
-                {{ sylius_grid_render(resources, '@SyliusAdmin/Grid/_default.html.twig') }}
             </div>
         </div>
     </div>
-{% endblock %}
+{% endblock %}

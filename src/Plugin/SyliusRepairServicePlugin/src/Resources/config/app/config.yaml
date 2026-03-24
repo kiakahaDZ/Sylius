@@ -1,3 +1,10 @@
+sylius_twig_hooks:
+    hooks:
+        sylius_shop.homepage.index:
+            repair_service_banner:
+                template: "@SyliusRepairServicePlugin/shop/home/repair_banner.html.twig"
+                priority: 10
+
 doctrine:
     orm:
         mappings:

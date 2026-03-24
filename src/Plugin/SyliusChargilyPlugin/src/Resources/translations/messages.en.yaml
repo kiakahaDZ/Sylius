@@ -9,16 +9,11 @@ sylius_chargily:
             ar: Arabic
             en: English
             label: Checkout locale
-        mode:
-            label: Mode
-            live: Live
-            test: Test
-        payment_method:
-            cib: CIB
-            edahabia: EDAHABIA
-            label: Chargily payment method
-        public_key: Public key
-        secret_key: Secret key
+        sandbox: Enable sandbox mode
+        live_public_key: Live public key
+        live_secret_key: Live secret key
+        test_public_key: Test public key
+        test_secret_key: Test secret key
     shop:
         badges:
             cib: Pay with CIB

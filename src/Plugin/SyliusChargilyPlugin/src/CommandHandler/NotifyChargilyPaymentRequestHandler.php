@@ -1,6 +1,7 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1)
+;
 
 namespace SyliusChargilyPlugin\CommandHandler;
 
@@ -11,13 +12,14 @@ use Sylius\Component\Payment\PaymentTransitions;
 use SyliusChargilyPlugin\Command\NotifyChargilyPaymentRequest;
 use SyliusChargilyPlugin\Provider\ChargilyStatusResolver;
 
-final readonly class NotifyChargilyPaymentRequestHandler
+final class NotifyChargilyPaymentRequestHandler
 {
-    public function __construct(
-        private PaymentRequestProviderInterface $paymentRequestProvider,
-        private StateMachineInterface $stateMachine,
-        private ChargilyStatusResolver $statusResolver,
-    ) {
+    public function __construct(private
+        PaymentRequestProviderInterface $paymentRequestProvider, private
+        StateMachineInterface $stateMachine, private
+        ChargilyStatusResolver $statusResolver,
+        )
+    {
     }
 
     public function __invoke(NotifyChargilyPaymentRequest $command): void
@@ -33,11 +35,11 @@ final readonly class NotifyChargilyPaymentRequestHandler
 
         $payment = $paymentRequest->getPayment();
         $paymentTransition = match ($transition) {
-            PaymentRequestTransitions::TRANSITION_COMPLETE => PaymentTransitions::TRANSITION_COMPLETE,
-            PaymentRequestTransitions::TRANSITION_FAIL => PaymentTransitions::TRANSITION_FAIL,
-            PaymentRequestTransitions::TRANSITION_CANCEL => PaymentTransitions::TRANSITION_CANCEL,
-            default => PaymentTransitions::TRANSITION_PROCESS,
-        };
+                PaymentRequestTransitions::TRANSITION_COMPLETE => PaymentTransitions::TRANSITION_COMPLETE,
+                PaymentRequestTransitions::TRANSITION_FAIL => PaymentTransitions::TRANSITION_FAIL,
+                PaymentRequestTransitions::TRANSITION_CANCEL => PaymentTransitions::TRANSITION_CANCEL,
+                default => PaymentTransitions::TRANSITION_PROCESS,
+            };
 
         $this->stateMachine->apply($payment, PaymentTransitions::GRAPH, $paymentTransition);
     }

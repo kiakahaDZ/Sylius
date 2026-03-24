@@ -4,9 +4,12 @@ services:
         autoconfigure: true
         public: false
 
+    Sylius\Bundle\CoreBundle\OrderPay\Provider\UrlProviderInterface:
+        alias: sylius_shop.provider.order_pay.after_pay_url
+
     SyliusChargilyPlugin\:
         resource: '../../*'
-        exclude: '../../{DependencyInjection,Resources}'
+        exclude: '../../{DependencyInjection,Resources,Command}'
 
     SyliusChargilyPlugin\Controller\ChargilyWebhookAction:
         public: true
@@ -21,28 +24,31 @@ services:
 
     SyliusChargilyPlugin\CommandHandler\CaptureChargilyPaymentRequestHandler:
         tags:
-            - { name: 'messenger.message_handler', bus: 'sylius.payment_request.command_bus', handles: 'SyliusChargilyPlugin\\Command\\CaptureChargilyPaymentRequest' }
+            - { name: 'messenger.message_handler', bus: 'sylius.payment_request.command_bus', handles: 'SyliusChargilyPlugin\Command\CaptureChargilyPaymentRequest' }
 
     SyliusChargilyPlugin\CommandHandler\StatusChargilyPaymentRequestHandler:
         tags:
-            - { name: 'messenger.message_handler', bus: 'sylius.payment_request.command_bus', handles: 'SyliusChargilyPlugin\\Command\\StatusChargilyPaymentRequest' }
+            - { name: 'messenger.message_handler', bus: 'sylius.payment_request.command_bus', handles: 'SyliusChargilyPlugin\Command\StatusChargilyPaymentRequest' }
 
     SyliusChargilyPlugin\CommandHandler\NotifyChargilyPaymentRequestHandler:
         tags:
-            - { name: 'messenger.message_handler', bus: 'sylius.payment_request.command_bus', handles: 'SyliusChargilyPlugin\\Command\\NotifyChargilyPaymentRequest' }
+            - { name: 'messenger.message_handler', bus: 'sylius.payment_request.command_bus', handles: 'SyliusChargilyPlugin\Command\NotifyChargilyPaymentRequest' }
 
     sylius_chargily.command_provider.capture:
-        factory: ['@SyliusChargilyPlugin\\Provider\\ChargilyCommandProviderFactory', 'createCapture']
+        class: Sylius\Bundle\PaymentBundle\CommandProvider\PaymentRequestCommandProviderInterface
+        factory: ['SyliusChargilyPlugin\Provider\ChargilyCommandProviderFactory', 'createCapture']
         tags:
             - { name: 'sylius_chargily.command_provider.action', action: 'capture' }
 
     sylius_chargily.command_provider.status:
-        factory: ['@SyliusChargilyPlugin\\Provider\\ChargilyCommandProviderFactory', 'createStatus']
+        class: Sylius\Bundle\PaymentBundle\CommandProvider\PaymentRequestCommandProviderInterface
+        factory: ['SyliusChargilyPlugin\Provider\ChargilyCommandProviderFactory', 'createStatus']
         tags:
             - { name: 'sylius_chargily.command_provider.action', action: 'status' }
 
     sylius_chargily.command_provider.notify:
-        factory: ['@SyliusChargilyPlugin\\Provider\\ChargilyCommandProviderFactory', 'createNotify']
+        class: Sylius\Bundle\PaymentBundle\CommandProvider\PaymentRequestCommandProviderInterface
+        factory: ['SyliusChargilyPlugin\Provider\ChargilyCommandProviderFactory', 'createNotify']
         tags:
             - { name: 'sylius_chargily.command_provider.action', action: 'notify' }
 
@@ -56,4 +62,3 @@ services:
     SyliusChargilyPlugin\Provider\ChargilyCaptureHttpResponseProvider:
         tags:
             - { name: 'sylius_chargily.http_response_provider.action', action: 'capture' }
-

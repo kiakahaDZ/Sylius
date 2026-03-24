@@ -10,7 +10,7 @@ services:
 
     SyliusBestSellerPlugin\:
         resource: '../../*'
-        exclude: '../../{DependencyInjection,Entity,Migrations,Tests,Kernel.php,Repository}'
+        exclude: '../../{DependencyInjection,Entity,Migrations,Tests,Kernel.php,Repository,Form,Controller}'
 
     SyliusBestSellerPlugin\Repository\BestSellerRepository:
         alias: sylius_best_seller.repository.cache

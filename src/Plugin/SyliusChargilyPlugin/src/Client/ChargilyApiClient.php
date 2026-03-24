@@ -7,7 +7,7 @@ namespace SyliusChargilyPlugin\Client;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-final readonly class ChargilyApiClient implements ChargilyApiClientInterface
+final class ChargilyApiClient implements ChargilyApiClientInterface
 {
     private const BASE_URI_BY_MODE = [
         'live' => 'https://pay.chargily.net/api/v2',
@@ -36,9 +36,12 @@ final readonly class ChargilyApiClient implements ChargilyApiClientInterface
      */
     private function request(array $gatewayConfig, string $method, string $path, array $payload = []): array
     {
-        $mode = (string) ($gatewayConfig['mode'] ?? 'test');
-        $baseUri = self::BASE_URI_BY_MODE[$mode] ?? self::BASE_URI_BY_MODE['test'];
-        $secretKey = (string) ($gatewayConfig['secret_key'] ?? '');
+        $isSandbox = (bool) ($gatewayConfig['sandbox'] ?? true);
+        $baseUri = $isSandbox ? self::BASE_URI_BY_MODE['test'] : self::BASE_URI_BY_MODE['live'];
+        
+        $secretKey = $isSandbox
+            ? (string) ($gatewayConfig['test_secret_key'] ?? '')
+            : (string) ($gatewayConfig['live_secret_key'] ?? '');
 
         if ($secretKey === '') {
             throw new \InvalidArgumentException('Chargily secret key is required.');

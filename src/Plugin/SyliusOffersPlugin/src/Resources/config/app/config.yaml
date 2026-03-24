@@ -19,4 +19,38 @@ sylius_resource:
                 model: SyliusOffersPlugin\Entity\Offer
                 form: SyliusOffersPlugin\Form\Type\OfferType
                 repository: SyliusOffersPlugin\Repository\OfferRepository
-                controller: SyliusOffersPlugin\Controller\Admin\OfferController
+
+sylius_grid:
+    grids:
+        sylius_offers_offer:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: SyliusOffersPlugin\Entity\Offer
+            sorting:
+                position: asc
+            fields:
+                image:
+                    type: image
+                    label: sylius.ui.image
+                    path: imagePath
+                title:
+                    type: string
+                    label: sylius.ui.title
+                type:
+                    type: string
+                    label: sylius_offers.ui.offer_type
+                enabled:
+                    type: twig
+                    label: sylius.ui.enabled
+                    options:
+                        template: "@SyliusUi/Grid/Field/enabled.html.twig"
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

@@ -1,0 +1,31 @@
+{
+    "name": "chargily/epay-sylius",
+    "type": "sylius-plugin",
+    "description": "Chargily Pay V2 plugin for Sylius.",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "ext-json": "*",
+        "sylius/sylius": "^2.2",
+        "symfony/http-client": "^6.4 || ^7.4"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.1",
+        "sylius-labs/coding-standard": "^4.4"
+    },
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Chargily\\EpayPlugin\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    },
+    "config": {
+        "bin-dir": "bin",
+        "sort-packages": true
+    }
+}

@@ -2,8 +2,6 @@ sylius_offers_click:
     path: /offers/{id}/click
     controller: SyliusOffersPlugin\Controller\ClickController::trackClick
 
-sylius_chargily:
-    resource: "@SyliusChargilyPlugin/Resources/config/routing.yaml"
 
 sylius_repair_service_shop:
     resource: "@SyliusRepairServicePlugin/Resources/config/shop_routes.yaml"

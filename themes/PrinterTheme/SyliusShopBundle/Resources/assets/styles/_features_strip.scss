@@ -1,0 +1,77 @@
+/*
+ * PrinterTheme - Features / USP Strip
+ * Bottom-of-homepage trust badges with animated hover
+ */
+
+.printer-features-strip {
+    padding: 3rem 0;
+    background: $printer-surface;
+    border-top: 1px solid $printer-border-light;
+    border-bottom: 1px solid $printer-border-light;
+}
+
+.printer-features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    @media (min-width: 576px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 992px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.printer-feature {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: $border-radius-lg;
+    transition: $transition-base;
+
+    &:hover {
+        background: rgba($printer-dark, 0.02);
+        transform: translateY(-2px);
+
+        .printer-feature__icon {
+            background: $printer-dark;
+            color: #fff;
+            transform: scale(1.05);
+        }
+    }
+}
+
+.printer-feature__icon {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $border-radius;
+    background: rgba($printer-dark, 0.06);
+    color: $printer-dark;
+    font-size: 1.4rem;
+    transition: $transition-base;
+}
+
+.printer-feature__body {
+    flex: 1;
+}
+
+.printer-feature__title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: $text-primary;
+    margin-bottom: 0.125rem;
+}
+
+.printer-feature__desc {
+    color: $text-muted;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin: 0;
+}

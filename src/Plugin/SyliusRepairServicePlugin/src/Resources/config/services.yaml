@@ -6,7 +6,7 @@ services:
 
     SyliusRepairServicePlugin\:
         resource: '../../*'
-        exclude: '../../{DependencyInjection,Entity,Migrations,Resources}'
+        exclude: '../../{DependencyInjection,Entity,Migrations,Resources,Form,Controller}'
 
     SyliusRepairServicePlugin\Repository\RepairRequestRepository:
         factory: ['@doctrine.orm.entity_manager', getRepository]

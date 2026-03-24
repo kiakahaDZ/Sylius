@@ -1,6 +1,7 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1)
+;
 
 namespace SyliusChargilyPlugin\Controller;
 
@@ -22,23 +23,24 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Webmozart\Assert\Assert;
 
-final readonly class ChargilyWebhookAction
+final class ChargilyWebhookAction
 {
     /**
      * @param PaymentMethodRepositoryInterface<PaymentMethodInterface> $paymentMethodRepository
      * @param PaymentRequestFactoryInterface<PaymentRequestInterface> $paymentRequestFactory
      * @param PaymentRequestRepositoryInterface<PaymentRequestInterface> $paymentRequestRepository
      */
-    public function __construct(
-        private PaymentMethodRepositoryInterface $paymentMethodRepository,
-        private NotifyPaymentProviderInterface $notifyPaymentProvider,
-        private PaymentRequestFactoryInterface $paymentRequestFactory,
-        private NotifyPayloadProcessorInterface $notifyPayloadProcessor,
-        private PaymentRequestRepositoryInterface $paymentRequestRepository,
-        private PaymentRequestAnnouncerInterface $paymentRequestAnnouncer,
-        private NotifyResponseProviderInterface $notifyResponseProvider,
-        private ChargilyWebhookVerifier $webhookVerifier,
-    ) {
+    public function __construct(private
+        PaymentMethodRepositoryInterface $paymentMethodRepository, private
+        NotifyPaymentProviderInterface $notifyPaymentProvider, private
+        PaymentRequestFactoryInterface $paymentRequestFactory, private
+        NotifyPayloadProcessorInterface $notifyPayloadProcessor, private
+        PaymentRequestRepositoryInterface $paymentRequestRepository, private
+        PaymentRequestAnnouncerInterface $paymentRequestAnnouncer, private
+        NotifyResponseProviderInterface $notifyResponseProvider, private
+        ChargilyWebhookVerifier $webhookVerifier,
+        )
+    {
     }
 
     public function __invoke(Request $request, string $code): Response

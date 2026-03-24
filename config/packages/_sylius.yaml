@@ -4,6 +4,9 @@ imports:
     - { resource: "@SyliusShopBundle/Resources/config/app/config.yml" }
     - { resource: "@SyliusApiBundle/Resources/config/app/config.yaml" }
     - { resource: "@SyliusAdminBundle/Resources/config/app/config.yml" }
+    - { resource: "@SyliusPayPalPlugin/config/config.yaml" }
+    - { resource: "@SyliusOffersPlugin/Resources/config/app/config.yaml" }
+
     - { resource: "../parameters.yaml" }
 
 parameters:
@@ -15,3 +18,8 @@ sylius_api:
 sylius_shop:
     product_grid:
         include_all_descendants: true
+
+sylius_admin:
+    notifications:
+        enabled: false
+

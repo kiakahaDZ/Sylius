@@ -1,3 +1,6 @@
+{# PrinterTheme - Homepage (Dynamic, Plugin-Driven) #}
+{# NO hardcoded content — all data from Sylius, Taxons, and Plugins #}
+
 {% set homepage_hook = 'sylius_shop.homepage.index' %}
 {% set prefixes = [homepage_hook] %}
 
@@ -5,36 +8,88 @@
 
 {% block title %}{{ sylius.channel.name }} – {{ 'sylius.ui.home'|trans }}{% endblock %}
 
-{% block content %}
-    {# Hero slider - uses Banner entity when available, fallback to static #}
-    {{ render(controller('Plugin\\SyliusBannerPlugin\\Controller\\Shop\\BannerController::heroAction')) }}
+{% block meta %}
+    {{ parent() }}
+    <meta name="description" content="{{ 'printer_shop.meta.description'|trans }}">
+{% endblock %}
 
-    {# Categories horizontal scroll #}
+{% block content %}
+
+    {# ============================================================= #}
+    {# 1. HERO SLIDER — Dynamic from SyliusBannerPlugin              #}
+    {# ============================================================= #}
+    {% include '@SyliusShop/homepage/banner.html.twig' ignore missing %}
+
+    {# ============================================================= #}
+    {# 2. CATEGORIES — Dynamic from Sylius Taxons                     #}
+    {# ============================================================= #}
     {% include '@SyliusShop/homepage/categories.html.twig' ignore missing %}
 
-    {# Featured / Latest products #}
+    {# ============================================================= #}
+    {# 3. FEATURED PRODUCTS — From Sylius latest products             #}
+    {# ============================================================= #}
     <section class="printer-section" id="featured-products" aria-label="{{ 'printer_shop.homepage.featured_products'|trans }}" data-reveal="up">
         <div class="printer-container">
             <div class="printer-section-header">
                 <div>
                     <span class="printer-section-label">{{ 'printer_shop.homepage.shop_label'|trans }}</span>
-                    <h2 class="printer-section-title">
-                        {{ 'printer_shop.homepage.featured_products'|trans }}
-                    </h2>
+                    <h2 class="printer-section-title">{{ 'printer_shop.homepage.featured_products'|trans }}</h2>
                 </div>
-                <a href="{{ path('sylius_shop_product_index', {'slug': 'all'}) }}" class="printer-section-link">
-                    {{ 'printer_shop.homepage.view_all'|trans }}
-                    <i class="ti ti-chevron-right"></i>
-                </a>
+                {% set menu_taxon = sylius.channel.menuTaxon|default(null) %}
+                {% set first_taxon = menu_taxon ? (menu_taxon.children|first)|default(null) : null %}
+                {% if first_taxon %}
+                    <a href="{{ path('sylius_shop_product_index', {'slug': first_taxon.slug}) }}" class="printer-section-link">
+                        {{ 'printer_shop.homepage.view_all'|trans }}
+                        <i class="ti ti-chevron-right"></i>
+                    </a>
+                {% endif %}
             </div>
 
+            {# Hook: renders latest products via Sylius twig hooks #}
             {% hook homepage_hook %}
         </div>
     </section>
 
-    {# Best Sellers (Dynamic Plugin Section) #}
-    {{ component('sylius_best_seller:shop:best_sellers', {period: 'weekly', limit: 8}) }}
+    {# ============================================================= #}
+    {# 4. OFFERS SECTION — From SyliusOffersPlugin (via twig hooks)   #}
+    {#    The plugin auto-injects via sylius_twig_hooks config         #}
+    {# ============================================================= #}
 
-    {# Features / USP strip #}
+    {# ============================================================= #}
+    {# 5. REPAIR SERVICE CTA                                          #}
+    {# ============================================================= #}
+    <section class="printer-repair-banner" id="repair" aria-label="{{ 'printer_shop.repair.title'|trans }}" data-reveal="up">
+        <div class="printer-container">
+            <div class="printer-repair-banner__inner">
+                <div class="printer-repair-banner__content">
+                    <span class="printer-repair-banner__label">
+                        <i class="ti ti-tool"></i>
+                        {{ 'printer_shop.repair.label'|trans }}
+                    </span>
+                    <h2 class="printer-repair-banner__title">{{ 'printer_shop.repair.title'|trans }}</h2>
+                    <p class="printer-repair-banner__desc">{{ 'printer_shop.repair.description'|trans }}</p>
+                    <div class="printer-repair-banner__actions">
+                        <a href="{{ path('sylius_repair_service_shop_request') }}" class="printer-repair-banner__cta">
+                            {{ 'printer_shop.repair.cta'|trans }}
+                            <i class="ti ti-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="printer-repair-banner__visual" aria-hidden="true">
+                    <div class="printer-repair-banner__icon-grid">
+                        <div class="printer-repair-banner__icon-item"><i class="ti ti-settings"></i></div>
+                        <div class="printer-repair-banner__icon-item"><i class="ti ti-cpu"></i></div>
+                        <div class="printer-repair-banner__icon-item"><i class="ti ti-tool"></i></div>
+                        <div class="printer-repair-banner__icon-item"><i class="ti ti-shield-check"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# ============================================================= #}
+    {# 6. FEATURES / USP STRIP                                       #}
+    {# ============================================================= #}
     {% include '@SyliusShop/homepage/features.html.twig' ignore missing %}
+
 {% endblock %}

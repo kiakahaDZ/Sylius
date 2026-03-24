@@ -36,6 +36,7 @@
         "api-platform/symfony": "^4.2.1",
         "babdev/pagerfanta-bundle": "^4.6",
         "behat/transliterator": "^1.5",
+        "chargily/chargily-pay": "^2.0.6",
         "doctrine/collections": "^2.2",
         "doctrine/common": "^3.2",
         "doctrine/dbal": "^3.9",
@@ -73,12 +74,13 @@
         "ramsey/uuid": "^4.7",
         "stof/doctrine-extensions-bundle": "^1.12",
         "sylius-labs/association-hydrator": "^1.2",
-        "sylius-labs/doctrine-migrations-extra-bundle": "^0.3",
+        "sylius-labs/doctrine-migrations-extra-bundle": "^0.2",
         "sylius/fixtures-bundle": "^1.9",
         "sylius/grid": "^1.13",
         "sylius/grid-bundle": "^1.13",
         "sylius/mailer": "^2.1",
         "sylius/mailer-bundle": "^2.1",
+        "sylius/paypal-plugin": "*",
         "sylius/registry": "^1.6",
         "sylius/resource": "^1.12",
         "sylius/resource-bundle": "^1.12",
@@ -142,8 +144,7 @@
         "twig/intl-extra": "^3.16",
         "twig/string-extra": "^3.16",
         "twig/twig": "^3.16",
-        "webmozart/assert": "^1.11",
-        "chargily/chargily-pay": "^2.0.6"
+        "webmozart/assert": "^1.11"
     },
     "replace": {
         "sylius/addressing": "self.version",
@@ -266,12 +267,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Plugin\\": "src/Plugin/",
+            "Plugin\\SyliusBannerPlugin\\": "src/Plugin/SyliusBannerPlugin/",
             "SyliusBestSellerPlugin\\": "src/Plugin/SyliusBestSellerPlugin/src/",
             "SyliusBestSellerPlugin\\Command\\": "src/Plugin/SyliusBestSellerPlugin/Command/",
-            "SyliusChargilyPlugin\\": "src/Plugin/SyliusChargilyPlugin/src/",
+            "ChargilyEpayPlugin\\": "src/Plugin/ChargilyEpayPlugin/src/",
             "SyliusOffersPlugin\\": "src/Plugin/SyliusOffersPlugin/src/",
             "SyliusRepairServicePlugin\\": "src/Plugin/SyliusRepairServicePlugin/src/",
+            "SyliusChargilyPlugin\\": "src/Plugin/SyliusChargilyPlugin/src/",
             "Sylius\\Abstraction\\StateMachine\\": "src/Sylius/Abstraction/StateMachine/src",
             "Sylius\\Behat\\": "src/Sylius/Behat/",
             "Sylius\\Bundle\\": "src/Sylius/Bundle/",

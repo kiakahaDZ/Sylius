@@ -33,21 +33,21 @@
 - [x] Create database migrations (MySQL + PostgreSQL)
 
 ## Phase 5: Chargily Pay Payment Plugin (`SyliusChargilyPlugin`)
-- [ ] Install `chargily/chargily-pay` composer package
-- [ ] Create Chargily payment gateway factory
-- [ ] Create Chargily checkout action (redirect to Chargily hosted page)
-- [ ] Create webhook controller for payment notifications
-- [ ] Create admin configuration form for API keys
-- [ ] Add EDAHABIA and CIB payment method support
-- [ ] Create payment method templates for shop checkout
+- [x] Install `chargily/chargily-pay` composer package
+- [x] Create Chargily payment gateway factory
+- [x] Create Chargily checkout action (redirect to Chargily hosted page)
+- [x] Create webhook controller for payment notifications
+- [x] Create admin configuration form for API keys
+- [x] Add EDAHABIA and CIB payment method support
+- [x] Create payment method templates for shop checkout
 
 ## Phase 6: Printer Repair Service Module
-- [ ] Create `RepairRequest` entity (device, issue, status, customer, etc.)
-- [ ] Create repair request form for shop frontend
-- [ ] Create admin management interface for repair requests
-- [ ] Create repair status workflow (submitted → diagnosed → in_progress → completed)
-- [ ] Expose Repair API endpoints for Flutter app
-- [ ] Create database migrations (MySQL + PostgreSQL)
+- [X] Create `RepairRequest` entity (device, issue, status, customer, etc.)
+- [X] Create repair request form for shop frontend
+- [X] Create admin management interface for repair requests
+- [X] Create repair status workflow (submitted → diagnosed → in_progress → completed)
+- [X] Expose Repair API endpoints for Flutter app
+- [X] Create database migrations (MySQL + PostgreSQL)
 
 ## Phase 7: API Enhancements for Flutter App
 - [ ] Verify all custom entities have proper API Platform resources

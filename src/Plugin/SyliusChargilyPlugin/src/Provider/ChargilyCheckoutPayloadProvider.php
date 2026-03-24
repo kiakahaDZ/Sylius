@@ -1,6 +1,7 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1)
+;
 
 namespace SyliusChargilyPlugin\Provider;
 
@@ -9,12 +10,13 @@ use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Payment\Model\PaymentRequestInterface;
 use Webmozart\Assert\Assert;
 
-final readonly class ChargilyCheckoutPayloadProvider
+final class ChargilyCheckoutPayloadProvider
 {
-    public function __construct(
-        private UrlProviderInterface $afterPayUrlProvider,
-        private ChargilyWebhookUrlProvider $chargilyWebhookUrlProvider,
-    ) {
+    public function __construct(private
+        UrlProviderInterface $afterPayUrlProvider, private
+        ChargilyWebhookUrlProvider $chargilyWebhookUrlProvider,
+        )
+    {
     }
 
     /**
@@ -28,8 +30,8 @@ final readonly class ChargilyCheckoutPayloadProvider
         $order = $payment->getOrder();
         Assert::isInstanceOf($order, OrderInterface::class);
 
-        $supportedMethod = (string) ($gatewayConfig['payment_method'] ?? '');
-        $orderNumber = $order->getNumber() ?? (string) $order->getId();
+        $supportedMethod = (string)($gatewayConfig['payment_method'] ?? '');
+        $orderNumber = $order->getNumber() ?? (string)$order->getId();
 
         return [
             'amount' => $payment->getAmount(),
@@ -38,8 +40,8 @@ final readonly class ChargilyCheckoutPayloadProvider
             'description' => sprintf('Order %s payment', $orderNumber),
             'locale' => $gatewayConfig['locale'] ?? 'ar',
             'metadata' => [
-                'payment_id' => (string) $payment->getId(),
-                'payment_request_hash' => (string) $paymentRequest->getHash(),
+                'payment_id' => (string)$payment->getId(),
+                'payment_request_hash' => (string)$paymentRequest->getHash(),
             ],
             'payment_method' => $supportedMethod !== '' ? $supportedMethod : null,
             'success_url' => $this->afterPayUrlProvider->getUrl($paymentRequest),

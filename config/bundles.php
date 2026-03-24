@@ -68,4 +68,6 @@ return [
     SyliusOffersPlugin\SyliusOffersPlugin::class => ['all' => true],
     SyliusChargilyPlugin\SyliusChargilyPlugin::class => ['all' => true],
     SyliusRepairServicePlugin\SyliusRepairServicePlugin::class => ['all' => true],
+    Sylius\PayPalPlugin\SyliusPayPalPlugin::class => ['all' => true],
+    ChargilyEpayPlugin\ChargilyEpayPlugin::class => ['all' => true],
 ];

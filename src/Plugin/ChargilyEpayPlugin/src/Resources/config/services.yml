@@ -1,0 +1,30 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    chargily_epay_plugin.form.type.gateway_configuration:
+        class: ChargilyEpayPlugin\Form\Type\ChargilyGatewayConfigurationType
+        tags:
+            - { name: sylius.gateway_configuration_type, type: chargily, label: Chargily Pay V2 }
+            - { name: form.type }
+
+    chargily_epay_plugin.gateway_factory:
+        class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
+        arguments: [ChargilyEpayPlugin\ChargilyGatewayFactory]
+        tags:
+            - { name: payum.gateway_factory_builder, factory: chargily }
+
+    chargily_epay_plugin.chargily_action:
+        class: ChargilyEpayPlugin\Action\ChargilyAction
+        arguments:
+            - '@sylius.repository.order'
+            - '@http_client'
+        tags:
+            - { name: payum.action, factory: chargily, alias: payum.action.capture }
+
+    chargily_epay_plugin.invoice_controller:
+        class: ChargilyEpayPlugin\Controller\InvoiceController
+        public: true
+        tags: [ controller.service_arguments ]

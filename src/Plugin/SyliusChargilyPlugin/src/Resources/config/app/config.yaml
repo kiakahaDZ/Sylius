@@ -4,3 +4,13 @@ sylius_twig_hooks:
             chargily_badges:
                 template: '@SyliusChargilyPlugin/shop/shared/form/select_payment/payment/choice/details/chargily_badges.html.twig'
                 priority: -100
+
+        'sylius_admin.payment_method.update.content.form.sections.gateway_configuration.chargily_pay':
+            config:
+                template: '@SyliusChargilyPlugin/admin/payment_method/form/sections/gateway_configuration/config.html.twig'
+                priority: 0
+
+        'sylius_admin.payment_method.create.content.form.sections.gateway_configuration.chargily_pay':
+            config:
+                template: '@SyliusChargilyPlugin/admin/payment_method/form/sections/gateway_configuration/config.html.twig'
+                priority: 0

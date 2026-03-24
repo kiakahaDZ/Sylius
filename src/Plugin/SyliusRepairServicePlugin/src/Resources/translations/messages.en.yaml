@@ -22,6 +22,7 @@ sylius_repair_service:
         no_requests: No repair requests found.
         repair_request: Repair request
         repair_requests: Repair requests
+        repair_service: Repair Service
         request_code: Request code
         request_submitted: Your repair request has been submitted successfully.
         request_updated: Repair request updated successfully.

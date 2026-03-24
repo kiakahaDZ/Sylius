@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Webmozart\Assert\Assert;
 
 #[AsNotifyPaymentProvider]
-final readonly class ChargilyNotifyPaymentProvider implements NotifyPaymentProviderInterface
+final class ChargilyNotifyPaymentProvider implements NotifyPaymentProviderInterface
 {
     /** @param PaymentRepositoryInterface<PaymentInterface> $paymentRepository */
     public function __construct(private PaymentRepositoryInterface $paymentRepository)

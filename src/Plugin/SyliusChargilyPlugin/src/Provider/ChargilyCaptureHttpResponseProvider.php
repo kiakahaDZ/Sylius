@@ -1,6 +1,7 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1)
+;
 
 namespace SyliusChargilyPlugin\Provider;
 
@@ -14,13 +15,14 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Webmozart\Assert\Assert;
 
-final readonly class ChargilyCaptureHttpResponseProvider implements HttpResponseProviderInterface
+final class ChargilyCaptureHttpResponseProvider implements HttpResponseProviderInterface
 {
-    public function __construct(
-        private ChargilyApiClientInterface $chargilyApiClient,
-        private ChargilyCheckoutPayloadProvider $checkoutPayloadProvider,
-        private EntityManagerInterface $paymentRequestManager,
-    ) {
+    public function __construct(private
+        ChargilyApiClientInterface $chargilyApiClient, private
+        ChargilyCheckoutPayloadProvider $checkoutPayloadProvider, private
+        EntityManagerInterface $paymentRequestManager,
+        )
+    {
     }
 
     public function supports(RequestConfiguration $requestConfiguration, PaymentRequestInterface $paymentRequest): bool

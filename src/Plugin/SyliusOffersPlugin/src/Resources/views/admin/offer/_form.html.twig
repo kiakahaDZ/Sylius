@@ -1,129 +1,130 @@
-{% form_theme form '@SyliusAdmin/Form/theme.html.twig' %}
+{% form_theme form '@SyliusAdmin/shared/form_theme.html.twig' %}
 
-{{ form_start(form, {'action': action, 'attr': {'class': 'ui form'}}) }}
-    <div class="ui segment">
-        <div class="two fields">
-            {{ form_row(form.code) }}
-            {{ form_row(form.title) }}
+{{ form_start(form, {'action': action, 'attr': {'class': 'card', 'novalidate': 'novalidate'}}) }}
+    <div class="card-header">
+        <h3 class="card-title">{{ 'sylius_offers.ui.general'|trans }}</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">{{ form_row(form.code) }}</div>
+            <div class="col-md-6">{{ form_row(form.title) }}</div>
         </div>
         
-        {{ form_row(form.description) }}
+        <div class="mb-3">{{ form_row(form.description) }}</div>
         
-        <div class="two fields">
-            {{ form_row(form.image) }}
-            {{ form_row(form.link) }}
+        <div class="row">
+            <div class="col-md-6">{{ form_row(form.image) }}</div>
+            <div class="col-md-6">{{ form_row(form.link) }}</div>
         </div>
         
-        <div class="two fields">
-            {{ form_row(form.badge) }}
-            {{ form_row(form.type) }}
+        <div class="row">
+            <div class="col-md-6">{{ form_row(form.badge) }}</div>
+            <div class="col-md-6">{{ form_row(form.type) }}</div>
         </div>
         
-        <div class="two fields">
-            {{ form_row(form.position) }}
-            {{ form_row(form.enabled) }}
+        <div class="row">
+            <div class="col-md-6">{{ form_row(form.position) }}</div>
+            <div class="col-md-6">{{ form_row(form.enabled) }}</div>
         </div>
         
-        <div class="two fields">
-            {{ form_row(form.startDate) }}
-            {{ form_row(form.endDate) }}
+        <div class="row">
+            <div class="col-md-6">{{ form_row(form.startDate) }}</div>
+            <div class="col-md-6">{{ form_row(form.endDate) }}</div>
         </div>
-        
-        <h4 class="ui dividing header">
-            {{ 'sylius_offers.ui.targeting'|trans }}
-        </h4>
-        
-        <div class="field">
+    </div>
+
+    <div class="card-header">
+        <h3 class="card-title">{{ 'sylius_offers.ui.targeting'|trans }}</h3>
+    </div>
+    <div class="card-body">
+        <div class="mb-3">
             {{ form_label(form.targetUrls) }}
-            <div class="ui relaxed divided list" id="target-urls-list" data-prototype="{{ form_widget(form.targetUrls.vars.prototype)|e }}">
+            <div id="target-urls-list" data-prototype="{{ form_widget(form.targetUrls.vars.prototype)|e }}" class="list-group list-group-flush mb-3">
                 {% for targetUrl in form.targetUrls %}
-                    <div class="item">
-                        <div class="right floated">
-                            <button type="button" class="ui mini red button remove-url">
-                                <i class="trash icon"></i>
-                            </button>
-                        </div>
-                        <div class="content">
+                    <div class="list-group-item d-flex align-items-center">
+                        <div class="flex-fill">
                             {{ form_widget(targetUrl) }}
+                        </div>
+                        <div class="ms-2">
+                            <button type="button" class="btn btn-icon btn-danger remove-url">
+                                <i class="ti ti-trash"></i>
+                            </button>
                         </div>
                     </div>
                 {% endfor %}
             </div>
-            <button type="button" class="ui mini primary button add-url">
-                <i class="plus icon"></i>
+            <button type="button" class="btn btn-sm btn-outline-primary add-url">
+                <i class="ti ti-plus"></i>
                 {{ 'sylius_offers.ui.add_url'|trans }}
             </button>
-            <div class="ui small info message">
-                <i class="info circle icon"></i>
-                {{ 'sylius_offers.ui.target_urls_help'|trans }}
+            <div class="alert alert-info mt-3 py-2 px-3">
+                <i class="ti ti-info-circle me-1"></i>
+                <small>{{ 'sylius_offers.ui.target_urls_help'|trans }}</small>
             </div>
         </div>
         
-        <div class="two fields">
-            {{ form_row(form.targetProducts) }}
-            {{ form_row(form.targetCategories) }}
+        <div class="row">
+            <div class="col-md-6">{{ form_row(form.targetProducts) }}</div>
+            <div class="col-md-6">{{ form_row(form.targetCategories) }}</div>
         </div>
         
-        <div class="two fields">
-            {{ form_row(form.targetChannels) }}
-            {{ form_row(form.targetLocales) }}
+        <div class="row">
+            <div class="col-md-6">{{ form_row(form.targetChannels) }}</div>
+            <div class="col-md-6">{{ form_row(form.targetLocales) }}</div>
+        </div>
+    </div>
+
+    <div class="card-header">
+        <h3 class="card-title">{{ 'sylius_offers.ui.appearance'|trans }}</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">{{ form_row(form.backgroundColor) }}</div>
+            <div class="col-md-4">{{ form_row(form.textColor) }}</div>
+            <div class="col-md-4">{{ form_row(form.buttonColor) }}</div>
         </div>
         
-        <h4 class="ui dividing header">
-            {{ 'sylius_offers.ui.appearance'|trans }}
-        </h4>
-        
-        <div class="three fields">
-            {{ form_row(form.backgroundColor) }}
-            {{ form_row(form.textColor) }}
-            {{ form_row(form.buttonColor) }}
+        <div class="mb-3">{{ form_row(form.buttonText) }}</div>
+    </div>
+    
+    <div class="card-footer d-flex">
+        <div class="btn-list ms-auto">
+            <a href="{{ path('sylius_admin_offer_index') }}" class="btn btn-link">
+                {{ 'sylius.ui.cancel'|trans }}
+            </a>
+            <button type="submit" class="btn btn-primary" data-loading>
+                {{ 'sylius.ui.save'|trans }}
+            </button>
         </div>
-        
-        {{ form_row(form.buttonText) }}
     </div>
     
     {{ form_rest(form) }}
-    
-    <div class="ui hidden divider"></div>
-    
-    <div class="ui two column grid">
-        <div class="column">
-            <div class="ui buttons">
-                <button type="submit" class="ui primary button" data-loading>
-                    {{ 'sylius.ui.save'|trans }}
-                </button>
-                <a href="{{ path('sylius_admin_offer_index') }}" class="ui button">
-                    {{ 'sylius.ui.cancel'|trans }}
-                </a>
-            </div>
-        </div>
-    </div>
 {{ form_end(form) }}
 
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-        $(document).ready(function() {
-            // Add URL functionality
-            $('.add-url').click(function() {
-                var list = $('#target-urls-list');
-                var prototype = list.data('prototype');
-                var newForm = prototype.replace(/__name__/g, list.children().length);
-                var newItem = $('<div class="item"></div>').html(
-                    '<div class="right floated">' +
-                    '<button type="button" class="ui mini red button remove-url">' +
-                    '<i class="trash icon"></i>' +
-                    '</button>' +
-                    '</div>' +
-                    '<div class="content">' + newForm + '</div>'
-                );
-                list.append(newItem);
-            });
-            
-            // Remove URL functionality
-            $(document).on('click', '.remove-url', function() {
-                $(this).closest('.item').remove();
-            });
+<script>
+    $(document).ready(function() {
+        // Add URL functionality
+        $('.add-url').click(function() {
+            var list = $('#target-urls-list');
+            var prototype = list.data('prototype');
+            var index = list.find('.list-group-item').length;
+            var newForm = prototype.replace(/__name__/g, index);
+            var newItem = $(
+                '<div class="list-group-item d-flex align-items-center">' +
+                '<div class="flex-fill">' + newForm + '</div>' +
+                '<div class="ms-2">' +
+                '<button type="button" class="btn btn-icon btn-danger remove-url">' +
+                '<i class="ti ti-trash"></i>' +
+                '</button>' +
+                '</div>' +
+                '</div>'
+            );
+            list.append(newItem);
         });
-    </script>
-{% endblock %}
+        
+        // Remove URL functionality
+        $(document).on('click', '.remove-url', function() {
+            $(this).closest('.list-group-item').remove();
+        });
+    });
+</script>

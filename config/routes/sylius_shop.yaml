@@ -24,3 +24,6 @@ sylius_shop_request_password_reset_token_redirect:
     defaults:
         route: sylius_shop_request_password_reset_token
         permanent: false
+
+sylius_shop_chargily:
+  resource: '@ChargilyEpayPlugin/Resources/config/shop_routing.yml'

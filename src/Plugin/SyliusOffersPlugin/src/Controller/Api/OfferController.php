@@ -5,13 +5,11 @@ declare(strict_types = 1)
 
 namespace SyliusOffersPlugin\Controller\Api;
 
-use FOS\RestBundle\Controller\AbstractFOSRestController;
-use FOS\RestBundle\Controller\Annotations as Rest;
-use SyliusOffersPlugin\Repository\OfferRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class OfferController extends AbstractFOSRestController
+class OfferController extends AbstractController
 {
     private OfferRepository $offerRepository;
 
