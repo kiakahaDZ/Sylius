@@ -19,8 +19,17 @@
   - `src/Plugin/SyliusBannerPlugin` (Banners/Hero)
   - `src/Plugin/SyliusBestSellerPlugin` (Featured/Sales)
   - `src/Plugin/SyliusOffersPlugin` (Marketing/Promos)
-  - `src/Plugin/SyliusChargilyPlugin` (Payment Gateway)
+  - `src/Plugin/SyliusChargilyPlugin` (Gateway Pay V2)
+  - `src/Plugin/ChargilyEpayPlugin` (Legacy Epay Gateway)
   - `src/Plugin/SyliusRepairServicePlugin` (Custom Repairs)
+
+---
+
+## 🧭 Payment Gateway Config (Sylius 2.x)
+**CRITICAL:** Gateway configuration fields (API keys, URLs, etc.) do NOT show up automatically in the Admin UI.
+1. **Twig Hooks:** Must be registered in `src/Resources/config/app/config.yaml`.
+2. **Hook Name:** `sylius_admin.payment_method.[create|update].content.form.sections.gateway_configuration.{factory_name}`.
+3. **Template:** Use `hookable_metadata.context.form.gatewayConfig.config`.
 
 ---
 

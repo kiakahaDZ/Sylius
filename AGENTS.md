@@ -17,6 +17,13 @@ When working on specific areas, check these files for patterns:
 - Admin resources: `resources/admin/Product.xml`
 - Shop resources: `resources/shop/Product.xml`
 
+### Payment Gateways (Sylius 2.x)
+- Configuration Type: `src/Form/Type/GatewayConfigurationType.php`
+- Factory: `src/Payum/GatewayFactory.php`
+- UI Rendering (Twig Hooks): `src/Resources/config/app/config.yaml`
+- Hook Template: `src/Resources/views/admin/payment_method/form/sections/gateway_configuration/config.html.twig`
+- Pattern: Hooks must be named `sylius_admin.payment_method.[create|update].content.form.sections.gateway_configuration.{factory_name}`
+
 ### Services & Configuration
 - Service definitions: `src/Sylius/Bundle/CoreBundle/Resources/config/services.xml`
 - Bundle config: `src/Sylius/Bundle/*/Resources/config/`
@@ -92,6 +99,10 @@ When working on specific areas, check these files for patterns:
 - Suffix interfaces with Interface, traits with Trait
 - Use `use` statements for all non-global classes
 - Sort `use` imports alphabetically and group by type (classes, functions, constants)
+
+### Dependency Injection (Plugins)
+- Use `PrependExtensionInterface` in Extension classes to load `config/app/config.yaml`.
+- Use `Yaml::parseFile` to load plugin-specific Sylius configurations (hooks, grids, etc.).
 
 ## Templates and Hooks
 
