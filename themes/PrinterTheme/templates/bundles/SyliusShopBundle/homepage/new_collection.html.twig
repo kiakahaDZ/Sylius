@@ -1,0 +1,19 @@
+<section class="printer-section printer-new-collection" role="region" aria-labelledby="new-collection-heading" data-reveal="up">
+    <div class="printer-container">
+        <div class="printer-section-header">
+            <h2 class="printer-section-title" id="new-collection-heading">{{ 'sylius.homepage.new_collection'|trans }}</h2>
+        </div>
+        <div class="printer-new-collection__grid photo-grid">
+            {% for i in [1, 2, 3] %}
+                <div class="photo-grid-item-{{ i }} printer-new-collection__cell">
+                    <img
+                        src="{{ asset('build/shop/images/homepage-new-collection-photo-' ~ i ~ '.webp', 'shop') }}"
+                        class="printer-new-collection__img"
+                        alt="{{ 'sylius.homepage.new_collection'|trans }}"
+                        loading="lazy"
+                    >
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

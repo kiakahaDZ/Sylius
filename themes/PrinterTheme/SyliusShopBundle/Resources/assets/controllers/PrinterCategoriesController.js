@@ -6,8 +6,10 @@
 import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
+    static targets = ['scroll'];
+
     connect() {
-        this._scrollContainer = this.element;
+        this._scrollContainer = this.hasScrollTarget ? this.scrollTarget : this.element;
     }
 
     prev() {

@@ -223,6 +223,35 @@
     }
 }
 
+.printer-hero__visual--banner-photo {
+    flex: 1 1 42%;
+    max-width: 640px;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: $border-radius-xl;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.12);
+
+    @media (max-width: 767px) {
+        max-width: 100%;
+        aspect-ratio: 16 / 11;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        padding: 0;
+        filter: none;
+    }
+
+    &:hover img {
+        transform: scale(1.04);
+    }
+}
+
 // =============================================
 // HERO NAVIGATION DOTS
 // =============================================

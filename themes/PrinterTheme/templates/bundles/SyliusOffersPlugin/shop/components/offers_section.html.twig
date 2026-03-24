@@ -1,0 +1,21 @@
+{% set offers = sylius_offers_by_type('card', 8) %}
+
+{% if offers|length > 0 %}
+    <section class="printer-section printer-offers-section" aria-label="{{ 'sylius_offers.ui.offers'|trans }}" data-reveal="up">
+        <div class="printer-container">
+            <div class="printer-section-header">
+                <div>
+                    <span class="printer-section-label">{{ 'sylius_offers.ui.exclusive_offers'|trans|default('Offers') }}</span>
+                    <h2 class="printer-section-title">{{ 'sylius_offers.ui.offers'|trans }}</h2>
+                </div>
+            </div>
+            <div class="printer-offers-grid">
+                {% for offer in offers %}
+                    <div class="printer-offers-grid__cell">
+                        <twig:offer_card :offer="offer" />
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endif %}

@@ -1,0 +1,45 @@
+{# One horizontal product strip per root menu taxon (children of channel menu taxon), when the taxon has catalog products. #}
+{% set channel_taxon = sylius.channel.menuTaxon|default(null) %}
+{% set taxon_children = channel_taxon ? channel_taxon.children|default([]) : [] %}
+
+{% for taxon in taxon_children %}
+    {% set taxon_products = printer_products_for_taxon(taxon, 12, true) %}
+    {% if taxon_products|length > 0 %}
+        <section
+            class="printer-section printer-taxon-slider"
+            id="taxon-slider-{{ taxon.code|e('html_attr') }}"
+            aria-label="{{ taxon.name }}"
+            data-reveal="up"
+            data-controller="printer-categories"
+        >
+            <div class="printer-container">
+                <div class="printer-taxon-slider__header">
+                    <div class="printer-taxon-slider__titles">
+                        <span class="printer-section-label">{{ 'printer_shop.homepage.taxon_collection_label'|trans }}</span>
+                        <h2 class="printer-section-title">{{ taxon.name }}</h2>
+                    </div>
+                    <div class="printer-taxon-slider__nav">
+                        <a href="{{ path('sylius_shop_product_index', {'slug': taxon.slug}) }}" class="printer-section-link printer-taxon-slider__view">
+                            {{ 'printer_shop.homepage.view_all'|trans }}
+                            <i class="ti ti-chevron-right"></i>
+                        </a>
+                        <button type="button" class="printer-categories__nav-btn" aria-label="{{ 'sylius.ui.previous'|trans }}" data-action="click->printer-categories#prev">
+                            <i class="ti ti-chevron-left"></i>
+                        </button>
+                        <button type="button" class="printer-categories__nav-btn" aria-label="{{ 'sylius.ui.next'|trans }}" data-action="click->printer-categories#next">
+                            <i class="ti ti-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="printer-products-scroll printer-taxon-slider__track" data-printer-categories-target="scroll">
+                    {% for product in taxon_products %}
+                        <div class="printer-taxon-slider__cell">
+                            {{ component('sylius_shop:product:card', { product: product, template: '@SyliusShop/product/common/card.html.twig' }) }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endfor %}

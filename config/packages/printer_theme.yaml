@@ -1,0 +1,4 @@
+services:
+    PrinterTheme\Twig\HomepageProductExtension:
+        autowire: true
+        tags: ['twig.extension']

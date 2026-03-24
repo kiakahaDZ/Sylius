@@ -1,0 +1,11 @@
+{% set banners = sylius_offers_by_type('banner', 2) %}
+
+{% if banners|length > 0 %}
+    <section class="printer-section printer-offer-banners-stack" aria-label="{{ 'sylius_offers.ui.offers'|trans }}" data-reveal="up">
+        <div class="printer-container">
+            {% for banner_offer in banners %}
+                <twig:offer_banner :offer="banner_offer" />
+            {% endfor %}
+        </div>
+    </section>
+{% endif %}

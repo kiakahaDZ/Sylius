@@ -239,6 +239,68 @@
     padding-top: 0.75rem;
 }
 
+.printer-product-card__footer {
+    padding: 0 1.25rem 1.15rem;
+    margin-top: auto;
+}
+
+.printer-product-card__cart {
+    width: 100%;
+}
+
+.printer-product-card__cart-muted {
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: $text-muted;
+    padding: 0.5rem 0;
+}
+
+.printer-product-card__cart-form {
+    width: 100%;
+}
+
+.printer-product-card__cart-form-inner {
+    margin: 0;
+}
+
+.printer-product-card__cart-form .my-4 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.printer-product-card__cart-form .btn-primary,
+.printer-product-card__cart-form button[type='submit'] {
+    width: 100%;
+    border-radius: $border-radius-pill;
+    font-weight: 700;
+    padding: 0.55rem 1rem;
+    font-size: 0.82rem;
+}
+
+.printer-product-card__choose-options {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border-radius: $border-radius-pill;
+    border: 1px solid $printer-border-light;
+    background: $printer-surface;
+    color: $text-primary;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: $transition-base;
+
+    &:hover {
+        background: $printer-dark;
+        border-color: $printer-dark;
+        color: #fff;
+    }
+}
+
 .printer-price {
     font-family: $font-family-display;
     font-size: 1.15rem;

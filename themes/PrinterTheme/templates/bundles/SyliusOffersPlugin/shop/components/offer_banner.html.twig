@@ -1,0 +1,33 @@
+<div class="printer-offer-banner printer-offer-banner--custom" style="background: {{ backgroundColor }}; color: {{ textColor }};">
+    <div class="printer-offer-banner__inner">
+        {% if offer.image %}
+            <div class="printer-offer-banner__media">
+                <img src="{{ offer.image }}" alt="{{ offer.title }}" loading="lazy" decoding="async">
+            </div>
+        {% endif %}
+        <div class="printer-offer-banner__content">
+            <h2 class="printer-offer-banner__title">
+                {{ offer.title }}
+                {% if offer.badge %}
+                    <span class="printer-offer-banner__badge">{{ offer.badge }}</span>
+                {% endif %}
+            </h2>
+            {% if offer.description %}
+                <p class="printer-offer-banner__desc">{{ offer.description }}</p>
+            {% endif %}
+            {% if offer.endDate %}
+                <twig:countdown_timer :offer="offer" />
+            {% endif %}
+            {% if offer.link %}
+                <a href="{{ path('sylius_offers_click', { id: offer.id }) }}"
+                   class="printer-offer-banner__cta"
+                   style="background-color: {{ offer.buttonColor|default('#ffffff') }}; color: {{ textColor }};"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    {{ buttonText }}
+                    <i class="ti ti-arrow-right"></i>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>

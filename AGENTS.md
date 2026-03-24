@@ -32,6 +32,9 @@ When working on specific areas, check these files for patterns:
 - Admin templates: `src/Sylius/Bundle/AdminBundle/templates/`
 - Shop templates: `src/Sylius/Bundle/ShopBundle/templates/`
 - Twig hooks: check existing hooks in templates for naming patterns
+- **PrinterTheme (this project):** Shop UI overrides live under `themes/PrinterTheme/templates/bundles/` mirroring bundle paths (`SyliusShopBundle/`, `SyliusOffersPlugin/`, etc.). Theme SCSS/Stimulus: `themes/PrinterTheme/SyliusShopBundle/Resources/assets/`.
+- **Homepage hook merge:** Bundles may `prepend` `sylius_twig_hooks`. To override or **disable** a hookable (`enabled: false`) after bundles load, use a late-loaded file such as `config/packages/zz_printer_homepage_hooks.yaml` so the app wins.
+- **Shop-only PHP outside plugins:** Namespace `PrinterTheme\` → `src/PrinterTheme/` (see `composer.json` autoload). Example: `PrinterTheme\Twig\HomepageProductExtension` registered in `config/packages/printer_theme.yaml`.
 
 ### Tests
 - PHPUnit functional: `tests/Functional/`
@@ -144,7 +147,8 @@ When working on specific areas, check these files for patterns:
 
 - Use TypeScript where possible
 - Use Stimulus controllers for interactive components
-- Place controllers in `assets/admin/controllers/` or `assets/shop/controllers/`
+- Sylius core: `assets/admin/controllers/` or `assets/shop/controllers/`
+- **PrinterTheme:** `themes/PrinterTheme/SyliusShopBundle/Resources/assets/controllers/` (loaded via theme Encore entry)
 - Follow existing naming conventions for controller files
 
 ## CSS
@@ -154,6 +158,7 @@ When working on specific areas, check these files for patterns:
 - Keep component styles modular – 1 component = 1 partial
 - Use variables from Sylius theme
 - Place all theme variables in `_variables.scss`
+- **PrinterTheme:** Partials under `themes/PrinterTheme/SyliusShopBundle/Resources/assets/styles/`, imported from `main.scss`
 - Avoid `!important` unless absolutely necessary
 - Prefer `rem` over `px` for spacing, font size, etc.
 - Use `mixins/` for reusable logic (e.g., `@include icon-size(24px)`)
@@ -166,3 +171,5 @@ When working on specific areas, check these files for patterns:
 - **Missing serialization groups**: API properties need proper groups in `properties/*.xml`
 - **Wrong namespace**: Components have no Symfony dependency, Bundles can
 - **Forgetting tests**: API changes need PHPUnit tests in `tests/Api/`
+- **Homepage duplicates**: If the theme renders banners, best sellers, or offers **explicitly**, disable the same `sylius_twig_hooks` hookables (or remove the explicit blocks). Never chain `homepage/banner.html.twig` → controller → template that includes `banner.html.twig` again; use a dedicated fallback (e.g. `banner_static_fallback.html.twig`).
+- **Autoload**: After adding classes under `src/PrinterTheme/`, run `composer dump-autoload`.

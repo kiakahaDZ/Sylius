@@ -44,9 +44,9 @@
 ---
 
 ## 🎯 Project-Specific Rules
-1. **Dynamic Only:** NO hardcoded HTML in `themes/PrinterTheme`. Use Sylius Hooks/Templates.
-2. **Theme Overrides:** Place in `themes/PrinterTheme/templates/bundles/[BundleName]/`.
-3. **Component Logic:** Use `themes/PrinterTheme/SyliusShopBundle/Resources/assets/styles/` for SCSS partials.
+1. **Dynamic first:** Prefer Sylius data, hooks, and components. Static marketing copy lives only in **translations** (`translations/messages.*.yaml`) and the **hero fallback** template (`homepage/banner_static_fallback.html.twig`), not scattered in random templates.
+2. **Theme Overrides:** Place in `themes/PrinterTheme/templates/bundles/[BundleName]/` (e.g. `SyliusShopBundle/`, `SyliusOffersPlugin/`).
+3. **Component Logic:** SCSS partials in `themes/PrinterTheme/SyliusShopBundle/Resources/assets/styles/`; Stimulus in `.../Resources/assets/controllers/` (Encore `entry.js` loads them).
 4. **Multilingual (i18n):**
    - French (`fr_FR`), English (`en_US`), Arabic (`ar_DZ`).
    - RTL check: Arabic requires `ar` translation files and the theme must handle `dir="rtl"` layout.
@@ -59,10 +59,11 @@
 ---
 
 ## 🧭 Project Architecture Map
-- **Configs:** `config/packages/_sylius.yaml`, `config/routes.yaml`
+- **Configs:** `config/packages/_sylius.yaml`, `config/routes.yaml`, `config/packages/printer_theme.yaml` (services), `config/packages/zz_printer_homepage_hooks.yaml` (twig-hooks overrides — `zz_` so app config wins over bundle `prepend`)
 - **Theme Root:** `themes/PrinterTheme/`
-- **Custom Logic:** `src/Plugin/` (Each plugin contains internal `src/`, `Resources/`, `Controller/`)
-- **Translations:** `translations/` (Global) or `src/Plugin/*/Resources/translations/`
+- **Shop glue (non-plugin PHP):** `src/PrinterTheme/` — PSR-4 `PrinterTheme\\` in `composer.json` (e.g. `Twig\HomepageProductExtension`: `printer_products_for_taxon`, `printer_latest_channel_products`)
+- **Custom Logic:** `src/Plugin/` (each plugin: `src/`, `Resources/`, `Controller/` as applicable)
+- **Translations:** `translations/` (global, including `printer_shop.*`) or `src/Plugin/*/Resources/translations/`
 
 ---
 
@@ -70,7 +71,9 @@
 - **Style:** Inspired by `easyprint-dz.com` (Modern, Glassmorphism, Premium).
 - **Icons:** Use **Tabler Icons 1.x**.
 - **Animations:** Gentle scroll reveals, card lift hovers, interactive buttons.
-- **Homepage Sequence:** Hero -> Top Categories -> Best Sellers -> Offers -> Features Strip.
+- **Homepage sequence:** Dynamic hero (`BannerController` via `homepage/banner.html.twig`) → **taxon product sliders** (per menu-taxon child, `taxon_product_sliders.html.twig`) → categories → **best sellers component** → **offer banners + offers section** (SyliusOffersPlugin templates overridden in theme) → **`{% hook sylius_shop.homepage.index %}`** (latest deals, new collection, latest products only; duplicate hookables disabled in `zz_printer_homepage_hooks.yaml`) → repair CTA → features strip.
+- **Hero image:** Plugin template uses `printer-hero__visual--banner-photo` for uploaded banner art (`object-fit: cover`, framed aspect ratio).
+- **Product cards:** Simple products → compact add-to-cart (`product/common/add_to_cart_card.html.twig`); configurable → “choose options” link to product page (`printer_shop.product.choose_options`).
 
 ---
 

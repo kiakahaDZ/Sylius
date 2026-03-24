@@ -1,0 +1,41 @@
+.printer-taxon-slider {
+    padding: 2.5rem 0;
+}
+
+.printer-taxon-slider__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.printer-taxon-slider__titles {
+    flex: 1;
+    min-width: 200px;
+}
+
+.printer-taxon-slider__nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.printer-taxon-slider__view {
+    margin-right: 0.5rem;
+}
+
+.printer-taxon-slider__track {
+    margin: 0 -0.25rem;
+    padding-bottom: 0.5rem;
+}
+
+.printer-taxon-slider__cell {
+    min-width: 240px;
+    max-width: 280px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    padding: 0 0.25rem;
+}

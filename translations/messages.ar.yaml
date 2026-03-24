@@ -1,8 +1,12 @@
 printer_shop:
+    meta:
+        description: 'طابعات، حبر، حبر جاف، وصيانة احترافية — توصيل سريع ودعم خبير.'
+
     homepage:
         shop_label: 'المتجر'
         featured_products: 'المنتجات المميّزة'
         view_all: 'عرض الكل'
+        taxon_collection_label: 'تشكيلة'
 
     hero:
         tagline_1: 'حلول طباعة موثوقة، خدمة احترافية، وجودة يمكنك الاعتماد عليها.'
@@ -53,8 +57,20 @@ printer_shop:
         payment: 'دفع آمن'
         payment_desc: 'الذهبية و CIB مقبولة'
 
+    repair:
+        label: 'خدمة في موقعك'
+        title: 'إصلاح وصيانة الطابعات'
+        description: 'فنّيون معتمدون، قطع أصلية، وتسليم سريع للشركات والمكاتب.'
+        cta: 'اطلب إصلاحاً'
+
+    best_sellers:
+        title: 'الأكثر مبيعاً'
+        subtitle: 'أشهر المنتجات هذا الأسبوع'
+        sales: 'مبيعات'
+
     product:
         add_to_cart: 'أضف إلى السلة'
+        choose_options: 'اختيار الخيارات'
         quick_view: 'معاينة سريعة'
         out_of_stock: 'نفذ من المخزون'
         new: 'جديد'

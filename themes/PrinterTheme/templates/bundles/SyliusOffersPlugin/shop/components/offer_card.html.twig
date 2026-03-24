@@ -1,0 +1,38 @@
+<article class="printer-offer-card" style="background-color: {{ backgroundColor }}; color: {{ textColor }};">
+    {% if offer.image %}
+        <div class="printer-offer-card__image">
+            <img src="{{ offer.image }}" alt="{{ offer.title }}" loading="lazy" decoding="async">
+        </div>
+    {% endif %}
+
+    {% if offer.badge %}
+        <span class="printer-offer-card__badge">{{ offer.badge }}</span>
+    {% endif %}
+
+    <div class="printer-offer-card__body">
+        <h3 class="printer-offer-card__title">{{ offer.title }}</h3>
+        {% if offer.description %}
+            <p class="printer-offer-card__desc">
+                {{ offer.description|slice(0, 140) }}{% if offer.description|length > 140 %}…{% endif %}
+            </p>
+        {% endif %}
+        {% if hasCountdown %}
+            <div class="printer-offer-card__countdown">
+                <twig:countdown_timer :offer="offer" />
+            </div>
+        {% endif %}
+    </div>
+
+    {% if offer.link %}
+        <div class="printer-offer-card__footer">
+            <a href="{{ path('sylius_offers_click', { id: offer.id }) }}"
+               class="printer-offer-card__btn"
+               style="background-color: {{ buttonColor }}; color: {{ textColor }};"
+               target="_blank"
+               rel="noopener noreferrer">
+                {{ buttonText }}
+                <i class="ti ti-external-link"></i>
+            </a>
+        </div>
+    {% endif %}
+</article>

@@ -89,9 +89,17 @@
         </div>
     </div>
 
-    {# Add to cart form block #}
     {% if not product.variants.empty %}
-        {{ component('sylius_shop:product:add_to_cart_form', { product: product, template: '@SyliusShop/product/show/content/info/summary/add_to_cart.html.twig' }) }}
+        <div class="printer-product-card__footer">
+            {% if product.simple %}
+                {{ component('sylius_shop:product:add_to_cart_form', { product: product, template: '@SyliusShop/product/common/add_to_cart_card.html.twig' }) }}
+            {% else %}
+                <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}" class="printer-product-card__choose-options">
+                    {{ 'printer_shop.product.choose_options'|trans }}
+                    <i class="ti ti-chevron-right"></i>
+                </a>
+            {% endif %}
+        </div>
     {% endif %}
 
 </div>

@@ -1,8 +1,12 @@
 printer_shop:
+    meta:
+        description: 'Imprimantes, encres, toners et réparation pro — livraison rapide et assistance experte.'
+
     homepage:
         shop_label: 'Boutique'
         featured_products: 'Produits en Vedette'
         view_all: 'Voir Tout'
+        taxon_collection_label: 'Collection'
 
     hero:
         tagline_1: 'Des solutions d''impression fiables, un service professionnel et une qualité sur laquelle vous pouvez compter.'
@@ -53,8 +57,20 @@ printer_shop:
         payment: 'Paiement Sécurisé'
         payment_desc: 'EDAHABIA & CIB acceptés'
 
+    repair:
+        label: 'Service sur site'
+        title: 'Réparation et maintenance d’imprimantes'
+        description: 'Techniciens certifiés, pièces d’origine et délais courts pour les entreprises.'
+        cta: 'Demander une réparation'
+
+    best_sellers:
+        title: 'Meilleures ventes'
+        subtitle: 'Produits les plus populaires cette semaine'
+        sales: 'ventes'
+
     product:
         add_to_cart: 'Ajouter au panier'
+        choose_options: 'Choisir les options'
         quick_view: 'Aperçu'
         out_of_stock: 'En rupture de stock'
         new: 'Nouveau'

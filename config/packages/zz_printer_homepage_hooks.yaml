@@ -1,0 +1,12 @@
+# Loaded late (zz_*) so hookables registered via bundle prepend stay overridden.
+sylius_twig_hooks:
+    hooks:
+        sylius_shop.homepage.index:
+            banner:
+                enabled: false
+            best_sellers:
+                enabled: false
+            offer_banners:
+                enabled: false
+            offers:
+                enabled: false

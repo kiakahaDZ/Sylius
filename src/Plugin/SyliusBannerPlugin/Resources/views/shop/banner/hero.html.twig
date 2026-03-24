@@ -22,8 +22,8 @@
                         </div>
                     </div>
                     {% if banner.imagePath %}
-                        <div class="printer-hero__visual">
-                            <img src="{{ banner.imagePath|imagine_filter('sylius_shop_product_large_thumbnail') }}" alt="{{ banner.title }}" loading="{{ loop.first ? 'eager' : 'lazy' }}">
+                        <div class="printer-hero__visual printer-hero__visual--banner-photo">
+                            <img src="{{ banner.imagePath|imagine_filter('sylius_shop_product_large_thumbnail') }}" alt="{{ banner.title }}" loading="{{ loop.first ? 'eager' : 'lazy' }}" decoding="async">
                         </div>
                     {% endif %}
                 </div>
@@ -45,6 +45,6 @@
         {% endif %}
     </section>
 {% else %}
-    {# Fallback: include default static hero #}
-    {% include '@SyliusShop/homepage/banner.html.twig' %}
+    {# Fallback: static hero (not homepage/banner.html.twig — that delegates to this controller). #}
+    {% include '@SyliusShop/homepage/banner_static_fallback.html.twig' %}
 {% endif %}

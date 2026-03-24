@@ -1,8 +1,12 @@
 printer_shop:
+    meta:
+        description: 'Printers, ink, toner, and professional repair — fast delivery and expert support.'
+
     homepage:
         shop_label: 'Shop'
         featured_products: 'Featured Products'
         view_all: 'View All'
+        taxon_collection_label: 'Collection'
 
     hero:
         tagline_1: 'Reliable printing solutions, professional service, and quality you can count on.'
@@ -53,8 +57,20 @@ printer_shop:
         payment: 'Secure Payment'
         payment_desc: 'EDAHABIA & CIB accepted'
 
+    repair:
+        label: 'On-site service'
+        title: 'Printer repair & maintenance'
+        description: 'Certified technicians, genuine parts, and quick turnaround for offices and businesses.'
+        cta: 'Request a repair'
+
+    best_sellers:
+        title: 'Best sellers'
+        subtitle: 'Most popular products this week'
+        sales: 'sales'
+
     product:
         add_to_cart: 'Add to Cart'
+        choose_options: 'Choose options'
         quick_view: 'Quick View'
         out_of_stock: 'Out of Stock'
         new: 'New'

@@ -8,7 +8,7 @@
 {% set taxon_children = channel_taxon ? channel_taxon.children|default([]) : [] %}
 
 {% if taxon_children|length > 0 %}
-<section class="printer-section printer-categories" id="categories" aria-label="{{ 'printer_shop.categories.title'|trans }}" data-reveal="up">
+<section class="printer-section printer-categories" id="categories" aria-label="{{ 'printer_shop.categories.title'|trans }}" data-reveal="up" data-controller="printer-categories">
     <div class="printer-container">
 
         <div class="printer-categories__header">
@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        <div class="printer-categories__scroll" data-controller="printer-categories">
+        <div class="printer-categories__scroll" data-printer-categories-target="scroll">
             {% for taxon in taxon_children %}
                 {% set slug_lower = taxon.code|default('')|lower %}
 

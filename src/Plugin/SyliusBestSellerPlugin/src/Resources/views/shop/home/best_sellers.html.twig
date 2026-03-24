@@ -1,5 +1,5 @@
 {# src/Resources/views/shop/home/best_sellers.html.twig #}
-{% if this.bestSellers is not empty %}
+{% if bestSellers is not empty %}
     {% set section_title = 'printer_shop.best_sellers.title'|trans %}
     {% set section_subtitle = 'printer_shop.best_sellers.subtitle'|trans %}
 
@@ -22,7 +22,7 @@
 
             <div class="printer-best-sellers__scroll-wrapper position-relative">
                 <div class="printer-best-sellers__scroll" data-best-seller-scroll-target="container">
-                    {% for item in this.bestSellers %}
+                    {% for item in bestSellers %}
                         <div class="best-seller-item">
                             {# Sales Indicator Badge #}
                             <div class="best-seller-stat-badge">
