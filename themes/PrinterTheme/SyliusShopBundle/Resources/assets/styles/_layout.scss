@@ -206,6 +206,97 @@ a {
     }
 }
 
+// Sylius shop taxon menu (#navbarNav) — PrinterTheme polish
+.printer-header-taxon-nav {
+    background: $printer-surface;
+    border-bottom: 1px solid $printer-border-light;
+}
+
+.printer-navbar-shop.navbar {
+    background: transparent;
+}
+
+.printer-navbar-nav {
+    .nav-link,
+    .printer-nav-link {
+        position: relative;
+        color: $text-secondary;
+        font-weight: 600;
+        font-size: 0.88rem;
+        padding: 0.55rem 1rem;
+        border-radius: $border-radius-pill;
+        transition:
+            color 0.2s ease,
+            background 0.2s ease,
+            box-shadow 0.25s ease,
+            transform 0.2s ease;
+        text-decoration: none;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0.2rem;
+            width: 0;
+            height: 2px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, $printer-cyan, $printer-blue);
+            transform: translateX(-50%);
+            transition: width 0.25s ease;
+            opacity: 0.85;
+            pointer-events: none;
+        }
+
+        &:hover,
+        &:focus-visible {
+            color: $printer-dark;
+            background: rgba($printer-dark, 0.06);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba($printer-dark, 0.08);
+
+            &::after {
+                width: 65%;
+            }
+        }
+
+        &.active {
+            color: $printer-dark;
+            background: rgba($printer-cyan, 0.12);
+        }
+    }
+
+    .dropdown-toggle.nav-link::after {
+        margin-inline-start: 0.35rem;
+        transition: transform 0.2s ease;
+    }
+
+    .dropdown.show > .dropdown-toggle.nav-link::after {
+        transform: rotate(180deg);
+    }
+}
+
+.printer-nav-link__icon {
+    font-size: 1rem;
+    margin-inline-end: 0.35rem;
+    vertical-align: -0.125em;
+}
+
+.printer-nav-link--repair {
+    border: 1px solid rgba($printer-orange, 0.45);
+    background: linear-gradient(135deg, rgba($printer-orange, 0.12), rgba($printer-cyan, 0.08));
+    color: $printer-dark;
+
+    &::after {
+        background: linear-gradient(90deg, $printer-orange, $printer-cyan);
+    }
+
+    &:hover,
+    &:focus-visible {
+        background: linear-gradient(135deg, rgba($printer-orange, 0.22), rgba($printer-cyan, 0.15));
+        border-color: rgba($printer-orange, 0.65);
+    }
+}
+
 // =============================================
 // NAV PILLS (categories in header)
 // =============================================

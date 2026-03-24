@@ -1,3 +1,9 @@
+sylius_shop:
+    product:
+        badge_new: 'Nouveau'
+        badge_sale: 'Promo'
+        badge_bestseller: 'Best-seller'
+
 printer_shop:
     meta:
         description: 'Imprimantes, encres, toners et réparation pro — livraison rapide et assistance experte.'

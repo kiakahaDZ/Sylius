@@ -263,6 +263,13 @@
     }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 // Stagger children animations
 .stagger-children {
     > * {

@@ -1,3 +1,10 @@
+# Keys used by product card badges (Twig: sylius_shop.product.*)
+sylius_shop:
+    product:
+        badge_new: 'New'
+        badge_sale: 'Sale'
+        badge_bestseller: 'Best seller'
+
 printer_shop:
     meta:
         description: 'Printers, ink, toner, and professional repair — fast delivery and expert support.'

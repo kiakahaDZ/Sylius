@@ -1,3 +1,9 @@
+sylius_shop:
+    product:
+        badge_new: 'جديد'
+        badge_sale: 'تخفيض'
+        badge_bestseller: 'الأكثر مبيعاً'
+
 printer_shop:
     meta:
         description: 'طابعات، حبر، حبر جاف، وصيانة احترافية — توصيل سريع ودعم خبير.'

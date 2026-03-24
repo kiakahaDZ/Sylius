@@ -1,0 +1,21 @@
+{# Always render the bar so hook-only items (e.g. repair) show even when there are zero menu taxons. #}
+<div class="w-100 border-bottom printer-header-taxon-nav">
+    <nav
+        class="navbar offcanvas-lg offcanvas-start offcanvas-wide p-0 printer-navbar-shop"
+        id="navbarNav"
+        role="navigation"
+        aria-label="{{ 'sylius.ui.taxon_navigation_desktop'|trans }}"
+    >
+        <div class="offcanvas-header w-full">
+            <h1 class="offcanvas-title fs-5">
+                {{ 'sylius.ui.taxons'|trans }}
+            </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#navbarNav" aria-label="{{ 'sylius.ui.close'|trans }}"></button>
+        </div>
+        <div class="offcanvas-body justify-content-lg-center align-items-lg-center w-full py-0">
+            <div class="navbar-nav my-2 flex-column flex-lg-row flex-lg-wrap gap-lg-2 gap-xl-3 align-items-lg-center printer-navbar-nav" {{ sylius_test_html_attribute('menu') }}>
+                {% hook 'menu' with { taxons } %}
+            </div>
+        </div>
+    </nav>
+</div>

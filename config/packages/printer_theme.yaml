@@ -2,3 +2,10 @@ services:
     PrinterTheme\Twig\HomepageProductExtension:
         autowire: true
         tags: ['twig.extension']
+
+sylius_twig_hooks:
+    hooks:
+        sylius_shop.base.header.navbar.menu:
+            repair_service:
+                template: '@SyliusShop/shared/layout/base/header/navbar/menu/repair_nav_link.html.twig'
+                priority: -100
