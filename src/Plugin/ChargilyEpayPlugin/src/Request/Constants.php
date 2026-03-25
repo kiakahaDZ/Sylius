@@ -6,7 +6,7 @@
  * Time: 1:57 AM
  */
 
-namespace Chargily\EpayPlugin\Request;
+namespace ChargilyEpayPlugin\Request;
 
 class Constants
 {

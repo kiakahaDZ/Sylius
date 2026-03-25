@@ -1,6 +1,7 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1)
+;
 
 namespace ChargilyEpayPlugin;
 
@@ -36,14 +37,14 @@ final class ChargilyGatewayFactory extends GatewayFactory
                 $config->validateNotEmpty($config['payum.required_options']);
 
                 return [
-                    'secret_key' => $config['secret_key'],
-                    'webhook_secret' => $config['webhook_secret'],
-                    'api_base_url' => rtrim((string) $config['api_base_url'], '/'),
-                    'description' => $config['description'],
-                    'payment_method' => $config['payment_method'],
-                    'success_url' => $config['success_url'],
-                    'failure_url' => $config['failure_url'],
-                    'locale' => $config['locale'],
+                'secret_key' => $config['secret_key'],
+                'webhook_secret' => $config['webhook_secret'],
+                'api_base_url' => rtrim((string)$config['api_base_url'], '/'),
+                'description' => $config['description'],
+                'payment_method' => $config['payment_method'],
+                'success_url' => "https://127.0.0.1:8000/" . $config['success_url'],
+                'failure_url' => "https://127.0.0.1:8000/" . $config['failure_url'],
+                'locale' => $config['locale'],
                 ];
             };
         }

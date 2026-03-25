@@ -22,6 +22,7 @@ final class ChargilyAction implements ApiAwareInterface, ActionInterface
     public function __construct(
         private readonly ?OrderRepositoryInterface $orderRepository,
         private readonly ?HttpClientInterface $httpClient,
+        private readonly ?\Symfony\Component\HttpFoundation\RequestStack $requestStack = null,
     ) {
     }
 
@@ -51,13 +52,27 @@ final class ChargilyAction implements ApiAwareInterface, ActionInterface
             throw new \RuntimeException(sprintf('Order with id "%s" was not found.', (string) $orderId));
         }
 
+        $schemeAndHttpHost = $this->requestStack?->getCurrentRequest()?->getSchemeAndHttpHost() ?? '';
+
+        $successUrl = $this->api['success_url'];
+        $failureUrl = $this->api['failure_url'];
+
+        if ($schemeAndHttpHost !== '') {
+            if (!str_starts_with($successUrl, 'http')) {
+                $successUrl = $schemeAndHttpHost . $successUrl;
+            }
+            if (!str_starts_with($failureUrl, 'http')) {
+                $failureUrl = $schemeAndHttpHost . $failureUrl;
+            }
+        }
+
         $payload = [
             'amount' => $order->getTotal(),
             'currency' => strtolower($order->getCurrencyCode()),
             'payment_method' => $this->api['payment_method'],
-            'success_url' => $this->api['success_url'],
-            'failure_url' => $this->api['failure_url'],
-            'webhook_endpoint' => rtrim($this->api['failure_url'], '/') . '/chargily/response/' . $order->getNumber(),
+            'success_url' => $successUrl,
+            'failure_url' => $failureUrl,
+            'webhook_endpoint' => rtrim($failureUrl, '/') . '/chargily/response/' . $order->getNumber(),
             'description' => sprintf('%s (%s)', (string) $this->api['description'], $order->getNumber()),
             'locale' => $this->normalizeLocale((string) $order->getLocaleCode(), (string) $this->api['locale']),
             'metadata' => [

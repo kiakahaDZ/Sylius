@@ -14,11 +14,11 @@
         <div class="printer-categories__header">
             <h2 class="printer-categories__title">{{ 'printer_shop.categories.title'|trans }}</h2>
             <div class="printer-categories__nav">
-                <button class="printer-categories__nav-btn" aria-label="{{ 'sylius.ui.previous'|trans }}" data-action="click->printer-categories#prev">
-                    <i class="ti ti-chevron-left"></i>
+                <button type="button" class="printer-categories__nav-btn" aria-label="{{ 'sylius.ui.previous'|trans }}" data-action="click->printer-categories#prev">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                 </button>
-                <button class="printer-categories__nav-btn" aria-label="{{ 'sylius.ui.next'|trans }}" data-action="click->printer-categories#next">
-                    <i class="ti ti-chevron-right"></i>
+                <button type="button" class="printer-categories__nav-btn" aria-label="{{ 'sylius.ui.next'|trans }}" data-action="click->printer-categories#next">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </button>
             </div>
         </div>
@@ -57,7 +57,9 @@
                     </div>
                     <div class="printer-category-card__info">
                         <h3 class="printer-category-card__name">{{ taxon.name }}</h3>
-                        <span class="printer-category-card__arrow"><i class="ti ti-chevron-right"></i></span>
+                    <span class="printer-category-card__arrow">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </span>
                     </div>
                 </a>
             {% endfor %}
@@ -71,7 +73,9 @@
                 </div>
                 <div class="printer-category-card__info">
                     <h3 class="printer-category-card__name">{{ 'printer_shop.categories.repair'|trans }}</h3>
-                    <span class="printer-category-card__arrow"><i class="ti ti-chevron-right"></i></span>
+                    <span class="printer-category-card__arrow">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </span>
                 </div>
             </a>
         </div>

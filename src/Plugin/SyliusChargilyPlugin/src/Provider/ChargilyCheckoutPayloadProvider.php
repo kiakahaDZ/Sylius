@@ -12,10 +12,11 @@ use Webmozart\Assert\Assert;
 
 final class ChargilyCheckoutPayloadProvider
 {
-    public function __construct(private
-        UrlProviderInterface $afterPayUrlProvider, private
-        ChargilyWebhookUrlProvider $chargilyWebhookUrlProvider,
-        )
+    public function __construct(
+        private UrlProviderInterface $afterPayUrlProvider,
+        private ChargilyWebhookUrlProvider $chargilyWebhookUrlProvider,
+        private \Symfony\Component\HttpFoundation\RequestStack $requestStack,
+    )
     {
     }
 
@@ -33,10 +34,21 @@ final class ChargilyCheckoutPayloadProvider
         $supportedMethod = (string)($gatewayConfig['payment_method'] ?? '');
         $orderNumber = $order->getNumber() ?? (string)$order->getId();
 
+        $schemeAndHttpHost = $this->requestStack->getCurrentRequest()?->getSchemeAndHttpHost() ?? '';
+        $successUrl = $this->afterPayUrlProvider->getUrl($paymentRequest);
+        $failureUrl = $this->afterPayUrlProvider->getUrl($paymentRequest);
+
+        if ($schemeAndHttpHost !== '' && !str_starts_with($successUrl, 'http')) {
+            $successUrl = $schemeAndHttpHost . $successUrl;
+        }
+        if ($schemeAndHttpHost !== '' && !str_starts_with($failureUrl, 'http')) {
+            $failureUrl = $schemeAndHttpHost . $failureUrl;
+        }
+
         return [
             'amount' => $payment->getAmount(),
             'chargily_pay_fees_allocation' => $gatewayConfig['fees_allocation'] ?? 'merchant',
-            'currency' => $payment->getCurrencyCode(),
+            'currency' => strtolower($payment->getCurrencyCode()),
             'description' => sprintf('Order %s payment', $orderNumber),
             'locale' => $gatewayConfig['locale'] ?? 'ar',
             'metadata' => [
@@ -44,9 +56,10 @@ final class ChargilyCheckoutPayloadProvider
                 'payment_request_hash' => (string)$paymentRequest->getHash(),
             ],
             'payment_method' => $supportedMethod !== '' ? $supportedMethod : null,
-            'success_url' => $this->afterPayUrlProvider->getUrl($paymentRequest),
-            'failure_url' => $this->afterPayUrlProvider->getUrl($paymentRequest),
-            'webhook_url' => $this->chargilyWebhookUrlProvider->getUrl($paymentRequest->getMethod()),
+            'success_url' => $successUrl,
+            'failure_url' => $failureUrl,
+            'webhook_endpoint' => "https://kiakaha.com/chargily/webhook/chargely",
         ];
     }
+    // $this->chargilyWebhookUrlProvider->getUrl($paymentRequest->getMethod())
 }

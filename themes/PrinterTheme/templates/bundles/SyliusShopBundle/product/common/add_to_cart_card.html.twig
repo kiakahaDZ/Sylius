@@ -7,7 +7,7 @@
     {% else %}
         {{ loader.render() }}
         <div class="printer-product-card__cart-form" {{ sylius_test_html_attribute('product-selecting-variant') }}>
-            {{ form_start(form, {'attr': {'data-action': 'live#action:prevent live#$render', 'data-live-action-param': 'addToCart', 'class': 'printer-product-card__cart-form-inner'}}) }}
+            {{ form_start(form, {'attr': {'data-action': 'live#action:prevent', 'data-live-action-param': 'addToCart', 'class': 'printer-product-card__cart-form-inner'}}) }}
             {{ form_errors(form) }}
             
             <div class="d-none">

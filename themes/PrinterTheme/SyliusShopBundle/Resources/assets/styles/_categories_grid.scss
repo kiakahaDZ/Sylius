@@ -37,23 +37,42 @@
 }
 
 .printer-categories__nav-btn {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
     border-radius: 50%;
-    border: 1px solid $printer-border;
+    border: 1.5px solid $printer-border;
     background: $printer-surface;
-    color: $text-secondary;
+    color: $text-primary;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: $transition-base;
-    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    line-height: 1;
+
+    i {
+        font-size: 1.25rem !important;
+        line-height: 1;
+        font-weight: 600;
+        display: block;
+    }
 
     &:hover {
         background: $printer-dark;
         color: #fff;
         border-color: $printer-dark;
+        box-shadow: $printer-shadow-sm;
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    &::before {
+        content: none; // Fix for potential pseudo-element issues
     }
 }
 

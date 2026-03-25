@@ -1,10 +1,20 @@
 import './styles/main.scss';
 
 import { startStimulusApp } from '@symfony/stimulus-bridge';
+import PrinterCategoriesController from './controllers/PrinterCategoriesController';
+import BestSellerScrollController from './controllers/BestSellerScrollController';
+import PrinterHeroController from './controllers/PrinterHeroController';
+import PrinterRevealController from './controllers/PrinterRevealController';
 
-// Registers Stimulus controllers from the theme
 export const app = startStimulusApp(require.context(
     './controllers',
     true,
     /\.(j|t)sx?$/
 ));
+
+console.log('Printer theme Stimulus app starting...');
+
+app.register('printer-categories', PrinterCategoriesController);
+app.register('best-seller-scroll', BestSellerScrollController);
+app.register('printer-hero', PrinterHeroController);
+app.register('printer-reveal', PrinterRevealController);
