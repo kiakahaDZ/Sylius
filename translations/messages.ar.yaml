@@ -7,6 +7,9 @@ sylius_shop:
 printer_shop:
     meta:
         description: 'طابعات، حبر، حبر جاف، وصيانة احترافية — توصيل سريع ودعم خبير.'
+    
+    ui:
+        loading: 'جاري التحميل...'
 
     homepage:
         shop_label: 'المتجر'

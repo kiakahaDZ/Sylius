@@ -7,11 +7,30 @@
 
 {% block javascripts %}
     {{ parent() }}
+    {{ encore_entry_script_tags('printer-theme', null, 'shop') }}
 {% endblock %}
 
-{# Mount scroll-reveal once so [data-reveal] sections get .revealed (otherwise they stay opacity: 0). #}
+{# Mount scroll-reveal and transitions #}
 {% block body %}
-    <div class="printer-reveal-root" data-controller="printer-reveal">
-        {{ parent() }}
+    <div class="printer-app-root" data-controller="printer-reveal printer-transition">
+        <!-- Premium Preloader -->
+        <div id="printer-loader" data-printer-transition-target="loader">
+            <div class="loader-bg-blob loader-bg-blob--1"></div>
+            <div class="loader-bg-blob loader-bg-blob--2"></div>
+            
+            <div class="loader-content">
+                <div class="loader-logo">
+                    {% include '@SyliusShop/shared/logo.html.twig' %}
+                </div>
+                <div class="loader-progress">
+                    <div class="loader-progress-bar" data-printer-transition-target="progressBar"></div>
+                </div>
+                <div class="loader-text">{{ 'printer_shop.ui.loading'|trans }}</div>
+            </div>
+        </div>
+
+        <div class="printer-reveal-root">
+            {{ parent() }}
+        </div>
     </div>
 {% endblock %}

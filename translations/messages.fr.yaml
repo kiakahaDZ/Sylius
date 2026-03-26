@@ -7,6 +7,9 @@ sylius_shop:
 printer_shop:
     meta:
         description: 'Imprimantes, encres, toners et réparation pro — livraison rapide et assistance experte.'
+    
+    ui:
+        loading: 'Expérience en cours...'
 
     homepage:
         shop_label: 'Boutique'

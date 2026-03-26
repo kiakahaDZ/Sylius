@@ -8,6 +8,9 @@ sylius_shop:
 printer_shop:
     meta:
         description: 'Printers, ink, toner, and professional repair — fast delivery and expert support.'
+    
+    ui:
+        loading: 'Experience Loading...'
 
     homepage:
         shop_label: 'Shop'
