@@ -8,17 +8,32 @@
  */
 
 import '@sylius/shop-bundle/entrypoint';
-
 import { startStimulusApp } from '@symfony/stimulus-bridge';
+
+console.log('STIMULUS APP STARTING - PRINTER THEME VERSION');
+
+// Core controllers
 import ProductShowImagesController from './controllers/ProductShowImagesController';
 
-// Registers Stimulus controllers from controllers.json and in the controllers/ directory
+// Theme controllers (Imported from theme directory)
+import PrinterCategoriesController from '../../../../../../themes/PrinterTheme/SyliusShopBundle/Resources/assets/controllers/PrinterCategoriesController';
+import BestSellerScrollController from '../../../../../../themes/PrinterTheme/SyliusShopBundle/Resources/assets/controllers/BestSellerScrollController';
+import PrinterHeroController from '../../../../../../themes/PrinterTheme/SyliusShopBundle/Resources/assets/controllers/PrinterHeroController';
+import PrinterRevealController from '../../../../../../themes/PrinterTheme/SyliusShopBundle/Resources/assets/controllers/PrinterRevealController';
+
 export const app = startStimulusApp(require.context(
     '@symfony/stimulus-bridge/lazy-controller-loader!./controllers',
     true,
     /\.[jt]sx?$/
 ));
 
+// Register core
 app.register('product-show-images', ProductShowImagesController);
+
+// Register theme
+app.register('printer-categories', PrinterCategoriesController);
+app.register('best-seller-scroll', BestSellerScrollController);
+app.register('printer-hero', PrinterHeroController);
+app.register('printer-reveal', PrinterRevealController);
 
 app.debug = process.env.NODE_ENV !== 'production';

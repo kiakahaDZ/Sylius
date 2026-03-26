@@ -6,22 +6,38 @@ export default class extends Controller {
     connect() {
         console.log('PrinterCategoriesController connected');
         this.scrollAmount = 500;
-        this.container = this.hasScrollTarget ? this.scrollTarget : this.element.querySelector('.printer-categories__scroll, .printer-taxon-slider__track, .printer-products-scroll');
+    }
+
+    getContainer() {
+        if (this.hasScrollTarget) {
+            return this.scrollTarget;
+        }
+        return this.element.querySelector('.printer-categories__scroll, .printer-taxon-slider__track, .printer-products-scroll') || this.element;
     }
 
     next(event) {
         if (event) event.preventDefault();
-        console.log('Next clicked', this.container);
-        if (this.container) {
-            this.container.scrollBy({ left: 600, behavior: 'smooth' });
+        const container = this.getContainer();
+        console.log('Next clicked', container);
+        if (container) {
+            if (typeof container.scrollBy === 'function') {
+                container.scrollBy({ left: this.scrollAmount, behavior: 'smooth' });
+            } else {
+                container.scrollLeft += this.scrollAmount;
+            }
         }
     }
 
     prev(event) {
         if (event) event.preventDefault();
-        console.log('Prev clicked', this.container);
-        if (this.container) {
-            this.container.scrollBy({ left: -600, behavior: 'smooth' });
+        const container = this.getContainer();
+        console.log('Prev clicked', container);
+        if (container) {
+            if (typeof container.scrollBy === 'function') {
+                container.scrollBy({ left: -this.scrollAmount, behavior: 'smooth' });
+            } else {
+                container.scrollLeft -= this.scrollAmount;
+            }
         }
     }
 }

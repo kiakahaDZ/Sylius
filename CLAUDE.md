@@ -46,7 +46,7 @@
 ## 🎯 Project-Specific Rules
 1. **Dynamic first:** Prefer Sylius data, hooks, and components. Static marketing copy lives only in **translations** (`translations/messages.*.yaml`) and the **hero fallback** template (`homepage/banner_static_fallback.html.twig`), not scattered in random templates.
 2. **Theme Overrides:** Place in `themes/PrinterTheme/templates/bundles/[BundleName]/` (e.g. `SyliusShopBundle/`, `SyliusOffersPlugin/`).
-3. **Component Logic:** SCSS partials in `themes/PrinterTheme/SyliusShopBundle/Resources/assets/styles/`; Stimulus in `.../Resources/assets/controllers/` (Encore `entry.js` loads them).
+3. **Component Logic:** SCSS partials in `themes/PrinterTheme/SyliusShopBundle/Resources/assets/styles/`. Stimulus in `assets/shop/controllers/` (consolidated into core app to prevent double-initialization).
 4. **Multilingual (i18n):**
    - French (`fr_FR`), English (`en_US`), Arabic (`ar_DZ`).
    - RTL check: Arabic requires `ar` translation files and the theme must handle `dir="rtl"` layout.
@@ -55,6 +55,7 @@
    - Use `readonly` for immutable objects.
    - Method signatures must include types.
    - Use `snake_case` for templates and `camelCase` for PHP.
+6. **Payment Debugging:** Webhook endpoint for `SyliusChargilyPlugin` is currently configured in `ChargilyCheckoutPayloadProvider.php`. Check this if webhooks (payment confirmations) are failing.
 
 ---
 
@@ -85,4 +86,4 @@
 - **`[data-reveal]` hidden on load**: `PrinterRevealController` must check `getBoundingClientRect()` on `connect()` and immediately add `.revealed` to elements already in the viewport — not only rely on IntersectionObserver callbacks.
 - **Admin menu item missing**: If `$menu->getChild('sales')` is null, `AdminMenuListener` silently returns. Always add a fallback `addChild()` to create a dedicated top-level section.
 - **Plugin pages unstyled**: Override plugin Twig templates in `themes/PrinterTheme/templates/bundles/{PluginName}/` to apply the PrinterTheme layout; otherwise plugins render bare Sylius HTML.
-- **Encore entry**: The `printer-theme` entry in `webpack.config.js` must load `entry.js` which calls `startStimulusApp`. All Stimulus controllers in `themes/PrinterTheme/.../controllers/` are auto-registered via that context.
+- **Encore entry**: The `printer-theme` entry in `webpack.config.js` loads `entry.js` which is now **styles-only**. Stimulus controllers are auto-registered by the core app's entryPoint from `assets/shop/controllers/`. Do NOT register Stimulus in `printer-theme` as it causes double-initialization (e.g. double cart additions).

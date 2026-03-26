@@ -146,10 +146,10 @@ When working on specific areas, check these files for patterns:
 ## JavaScript
 
 - Use TypeScript where possible
-- Use Stimulus controllers for interactive components
-- Sylius core: `assets/admin/controllers/` or `assets/shop/controllers/`
-- **PrinterTheme:** `themes/PrinterTheme/SyliusShopBundle/Resources/assets/controllers/` (loaded via theme Encore entry)
-- Follow existing naming conventions for controller files
+- Stimulus controllers for interactive components:
+    - Sylius core: `assets/admin/controllers/` or `assets/shop/controllers/`
+    - **PrinterTheme (Consolidated):** All theme Stimulus controllers (e.g., `PrinterHeroController`, `PrinterRevealController`) now live in `assets/shop/controllers/` and are registered by the core Sylius shop app to prevent double-initialization.
+- Follow existing naming conventions for controller files.
 
 ## CSS
 
@@ -173,5 +173,7 @@ When working on specific areas, check these files for patterns:
 - **Forgetting tests**: API changes need PHPUnit tests in `tests/Api/`
 - **Homepage duplicates**: If the theme renders banners, best sellers, or offers **explicitly**, disable the same `sylius_twig_hooks` hookables (or remove the explicit blocks). Never chain `homepage/banner.html.twig` → controller → template that includes `banner.html.twig` again; use a dedicated fallback (e.g. `banner_static_fallback.html.twig`).
 - **Autoload**: After adding classes under `src/PrinterTheme/`, run `composer dump-autoload`.
+- **Double Initialisation/Addition**: Avoid loading Stimulus or JS multiple times via multiple Encore entries (e.g. core + theme). This causes bugs like products being added to the cart twice with doubled quantities. Use `assets/shop/controllers/` for all shop JS.
 - **Scroll-reveal hidden elements**: `[data-reveal]` starts with `opacity: 0`. The Stimulus controller (`PrinterRevealController`) must immediately reveal elements already in the viewport on `connect()`, not only on IntersectionObserver callbacks. Check `getBoundingClientRect()` vs `window.innerHeight` on connect.
 - **Admin menu not showing**: If a plugin's `MenuListener` calls `$menu->getChild('sales')` and receives null, the listener exits silently. Always add a fallback that creates a dedicated top-level menu section instead of returning early.
+- **Payment Webhook URL**: In `SyliusChargilyPlugin`, verify the webhook endpoint URL in `ChargilyCheckoutPayloadProvider`. It may be hardcoded or require explicit configuration for different environments.

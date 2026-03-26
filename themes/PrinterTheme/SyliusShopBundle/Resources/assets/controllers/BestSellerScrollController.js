@@ -6,20 +6,41 @@ export default class extends Controller {
     connect() {
         console.log('BestSellerScrollController connected');
         this.scrollAmount = 350;
-        this.scrollContainer = this.hasContainerTarget ? this.containerTarget : (this.hasScrollTarget ? this.scrollTarget : this.element.querySelector('.printer-best-sellers__scroll'));
+    }
+
+    getContainer() {
+        if (this.hasContainerTarget) {
+            return this.containerTarget;
+        }
+        if (this.hasScrollTarget) {
+            return this.scrollTarget;
+        }
+        return this.element.querySelector('.printer-best-sellers__scroll') || this.element;
     }
 
     next(event) {
         if (event) event.preventDefault();
-        if (this.scrollContainer) {
-            this.scrollContainer.scrollBy({ left: this.scrollAmount, behavior: 'smooth' });
+        const container = this.getContainer();
+        console.log('Next clicked', container);
+        if (container) {
+            if (typeof container.scrollBy === 'function') {
+                container.scrollBy({ left: this.scrollAmount, behavior: 'smooth' });
+            } else {
+                container.scrollLeft += this.scrollAmount;
+            }
         }
     }
 
     prev(event) {
         if (event) event.preventDefault();
-        if (this.scrollContainer) {
-            this.scrollContainer.scrollBy({ left: -this.scrollAmount, behavior: 'smooth' });
+        const container = this.getContainer();
+        console.log('Prev clicked', container);
+        if (container) {
+            if (typeof container.scrollBy === 'function') {
+                container.scrollBy({ left: -this.scrollAmount, behavior: 'smooth' });
+            } else {
+                container.scrollLeft -= this.scrollAmount;
+            }
         }
     }
 }

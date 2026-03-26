@@ -1,5 +1,3 @@
-import './styles/main.scss';
-
 import { startStimulusApp } from '@symfony/stimulus-bridge';
 import PrinterCategoriesController from './controllers/PrinterCategoriesController';
 import BestSellerScrollController from './controllers/BestSellerScrollController';
@@ -16,5 +14,3 @@ console.log('Printer theme Stimulus app starting...');
 
 app.register('printer-categories', PrinterCategoriesController);
 app.register('best-seller-scroll', BestSellerScrollController);
-app.register('printer-hero', PrinterHeroController);
-app.register('printer-reveal', PrinterRevealController);
