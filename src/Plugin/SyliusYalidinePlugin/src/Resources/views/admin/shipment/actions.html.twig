@@ -1,0 +1,22 @@
+{% set shipment = hookable_metadata.context.resource %}
+
+{% if shipment.method is not null and shipment.method.code in yalidine_method_codes %}
+    <div class="card mt-4">
+        <div class="card-header">
+            <h3 class="card-title">{{ 'sylius_yalidine.admin.card_title'|trans }}</h3>
+        </div>
+        <div class="card-body d-flex flex-wrap gap-2 align-items-center">
+            <span class="text-muted">{{ 'sylius_yalidine.admin.tracking'|trans }}:</span>
+            <strong>{{ shipment.tracking ?? ('sylius_yalidine.admin.not_available'|trans) }}</strong>
+
+            {% if shipment.tracking %}
+                <a href="{{ path('sylius_yalidine_admin_shipment_sync_status', {'id': shipment.id}) }}" class="btn btn-outline-primary btn-sm">
+                    {{ 'sylius_yalidine.admin.sync_status'|trans }}
+                </a>
+                <a href="{{ path('sylius_yalidine_admin_shipment_print_ticket', {'id': shipment.id}) }}" class="btn btn-primary btn-sm" target="_blank" rel="noopener">
+                    {{ 'sylius_yalidine.admin.print_ticket'|trans }}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}

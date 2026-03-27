@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ 'sylius_yalidine.admin.print_title'|trans }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 24px; }
+        h1 { margin-bottom: 16px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { width: 30%; background: #f5f5f5; }
+    </style>
+</head>
+<body>
+<h1>{{ 'sylius_yalidine.admin.print_title'|trans }}</h1>
+
+<table>
+    <tr><th>{{ 'sylius_yalidine.admin.tracking'|trans }}</th><td>{{ parcel.tracking|default(shipment.tracking) }}</td></tr>
+    <tr><th>{{ 'sylius_yalidine.admin.order_id'|trans }}</th><td>{{ parcel.order_id|default('-') }}</td></tr>
+    <tr><th>{{ 'sylius_yalidine.admin.customer'|trans }}</th><td>{{ parcel.firstname|default(parcel.to_name|default('-')) }} {{ parcel.familyname|default('') }}</td></tr>
+    <tr><th>{{ 'sylius_yalidine.admin.phone'|trans }}</th><td>{{ parcel.contact_phone|default(parcel.to_phone|default('-')) }}</td></tr>
+    <tr><th>{{ 'sylius_yalidine.admin.address'|trans }}</th><td>{{ parcel.address|default(parcel.to_address|default('-')) }}</td></tr>
+    <tr><th>{{ 'sylius_yalidine.admin.wilaya'|trans }}</th><td>{{ parcel.to_wilaya_name|default(parcel.to_wilaya|default('-')) }}</td></tr>
+    <tr><th>{{ 'sylius_yalidine.admin.commune'|trans }}</th><td>{{ parcel.to_commune_name|default(parcel.to_commune|default('-')) }}</td></tr>
+    <tr><th>{{ 'sylius_yalidine.admin.products'|trans }}</th><td>{{ parcel.product_list|default('-') }}</td></tr>
+    <tr><th>{{ 'sylius_yalidine.admin.cod_amount'|trans }}</th><td>{{ parcel.price|default('-') }}</td></tr>
+    <tr><th>{{ 'sylius_yalidine.admin.delivery_fee'|trans }}</th><td>{{ parcel.delivery_fee|default('-') }}</td></tr>
+    <tr><th>{{ 'sylius_yalidine.admin.status'|trans }}</th><td>{{ parcel.last_status|default(parcel.status|default('-')) }}</td></tr>
+</table>
+
+<script>
+    window.print();
+</script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+sylius_yalidine_plugin:
+    resource: '@SyliusYalidinePlugin/Resources/config/routing.yaml'

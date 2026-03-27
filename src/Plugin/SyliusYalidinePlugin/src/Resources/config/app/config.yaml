@@ -1,0 +1,8 @@
+sylius_twig_hooks:
+    hooks:
+        'sylius_admin.shipment.show.content.page_body':
+            sylius_yalidine_actions:
+                template: '@SyliusYalidinePlugin/admin/shipment/actions.html.twig'
+                context:
+                    yalidine_method_codes: '%sylius_yalidine.shipping_method_codes%'
+                priority: -100
