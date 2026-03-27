@@ -1,0 +1,48 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    SyliusYalidinePlugin\:
+        resource: '../../*'
+        exclude: '../../{DependencyInjection,Resources}'
+
+    SyliusYalidinePlugin\Client\YalidineClient:
+        arguments:
+            $apiId: '%sylius_yalidine.api_id%'
+            $apiToken: '%sylius_yalidine.api_token%'
+            $baseUrl: '%sylius_yalidine.api_base_url%'
+
+    SyliusYalidinePlugin\Client\YalidineClientInterface: '@SyliusYalidinePlugin\Client\YalidineClient'
+
+    SyliusYalidinePlugin\Provider\YalidineParcelPayloadProvider:
+        arguments:
+            $defaultToWilaya: '%sylius_yalidine.default_to_wilaya%'
+
+    SyliusYalidinePlugin\Resolver\YalidineShipmentResolver:
+        arguments:
+            $shippingMethodCodes: '%sylius_yalidine.shipping_method_codes%'
+
+    SyliusYalidinePlugin\EventListener\CreateYalidineShipmentOnOrderCompleteListener:
+        arguments:
+            $shipmentRepository: '@sylius.repository.shipment'
+            $logger: '@logger'
+        tags:
+            - { name: kernel.event_subscriber }
+
+    SyliusYalidinePlugin\Controller\Admin\YalidineShipmentController:
+        public: true
+        arguments:
+            $shipmentRepository: '@sylius.repository.shipment'
+        tags:
+            - { name: controller.service_arguments }
+
+    SyliusYalidinePlugin\Webhook\YalidineWebhookAction:
+        public: true
+        arguments:
+            $shipmentRepository: '@sylius.repository.shipment'
+            $cache: '@cache.app'
+            $webhookToken: '%sylius_yalidine.webhook_token%'
+        tags:
+            - { name: controller.service_arguments }

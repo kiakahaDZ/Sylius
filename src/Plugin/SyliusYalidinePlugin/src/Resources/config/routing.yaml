@@ -1,0 +1,17 @@
+sylius_yalidine_admin_shipment_sync_status:
+    path: /%sylius_admin.path_name%/yalidine/shipments/{id}/sync-status
+    methods: [GET]
+    defaults:
+        _controller: SyliusYalidinePlugin\Controller\Admin\YalidineShipmentController::syncStatusAction
+
+sylius_yalidine_admin_shipment_print_ticket:
+    path: /%sylius_admin.path_name%/yalidine/shipments/{id}/print-ticket
+    methods: [GET]
+    defaults:
+        _controller: SyliusYalidinePlugin\Controller\Admin\YalidineShipmentController::printTicketAction
+
+sylius_yalidine_webhook:
+    path: /yalidine/webhook
+    methods: [POST]
+    defaults:
+        _controller: SyliusYalidinePlugin\Webhook\YalidineWebhookAction

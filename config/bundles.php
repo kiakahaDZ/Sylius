@@ -67,6 +67,7 @@ return [
     SyliusBestSellerPlugin\SyliusBestSellerPlugin::class => ['all' => true],
     SyliusOffersPlugin\SyliusOffersPlugin::class => ['all' => true],
     SyliusChargilyPlugin\SyliusChargilyPlugin::class => ['all' => true],
+    SyliusYalidinePlugin\SyliusYalidinePlugin::class => ['all' => true],
     SyliusRepairServicePlugin\SyliusRepairServicePlugin::class => ['all' => true],
     Sylius\PayPalPlugin\SyliusPayPalPlugin::class => ['all' => true],
     ChargilyEpayPlugin\ChargilyEpayPlugin::class => ['all' => true],
