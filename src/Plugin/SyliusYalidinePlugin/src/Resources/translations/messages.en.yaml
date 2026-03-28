@@ -19,3 +19,15 @@ sylius_yalidine:
         status_synced: 'Yalidine shipment status synced successfully.'
         sync_failed: 'Failed to sync Yalidine shipment status.'
         not_yalidine_shipment: 'The selected shipment is not managed by Yalidine.'
+        view_parcel: 'View parcel details'
+    calculator:
+        label: 'Yalidine API (Dynamic Fees)'
+    form:
+        calculator:
+            amount: 'Fixed Fallback Amount (Set 0 for Dynamic API Pricing)'
+    shop:
+        wilaya: 'Wilaya'
+        commune: 'Commune (city)'
+        select_wilaya: '— Select wilaya —'
+        select_commune: '— Select commune —'
+        estimated_fee: 'Estimated delivery fee'

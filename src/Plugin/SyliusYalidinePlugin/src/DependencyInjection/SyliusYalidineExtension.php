@@ -26,6 +26,8 @@ final class SyliusYalidineExtension extends Extension implements PrependExtensio
         $container->setParameter('sylius_yalidine.api_token', $config['api_token']);
         $container->setParameter('sylius_yalidine.webhook_token', $config['webhook_token']);
         $container->setParameter('sylius_yalidine.default_to_wilaya', $config['default_to_wilaya']);
+        $container->setParameter('sylius_yalidine.default_from_wilaya', $config['default_from_wilaya']);
+        $container->setParameter('sylius_yalidine.default_from_wilaya_id', (int) $config['default_from_wilaya']);
         $container->setParameter('sylius_yalidine.shipping_method_codes', $this->normalizeShippingMethodCodes($config['shipping_method_codes']));
     }
 

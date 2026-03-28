@@ -17,4 +17,19 @@ interface YalidineClientInterface
      * @return array<string, mixed>
      */
     public function getParcel(string $tracking): array;
+
+    /**
+     * @return list<array<string, mixed>>
+     */
+    public function getWilayas(): array;
+
+    /**
+     * @return list<array<string, mixed>>
+     */
+    public function getCommunes(int $wilayaId): array;
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getFees(int $fromWilayaId, int $toWilayaId): array;
 }

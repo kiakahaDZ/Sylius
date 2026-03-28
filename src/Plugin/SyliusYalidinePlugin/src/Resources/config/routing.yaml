@@ -10,8 +10,32 @@ sylius_yalidine_admin_shipment_print_ticket:
     defaults:
         _controller: SyliusYalidinePlugin\Controller\Admin\YalidineShipmentController::printTicketAction
 
+sylius_yalidine_admin_shipment_view_parcel:
+    path: /%sylius_admin.path_name%/yalidine/shipments/{id}/view-parcel
+    methods: [GET]
+    defaults:
+        _controller: SyliusYalidinePlugin\Controller\Admin\YalidineShipmentController::viewParcelAction
+
 sylius_yalidine_webhook:
     path: /yalidine/webhook
     methods: [POST]
     defaults:
         _controller: SyliusYalidinePlugin\Webhook\YalidineWebhookAction
+
+sylius_yalidine_shop_api_wilayas:
+    path: /yalidine/api/wilayas
+    methods: [GET]
+    defaults:
+        _controller: SyliusYalidinePlugin\Controller\Shop\YalidineApiController::wilayas
+
+sylius_yalidine_shop_api_communes:
+    path: /yalidine/api/communes
+    methods: [GET]
+    defaults:
+        _controller: SyliusYalidinePlugin\Controller\Shop\YalidineApiController::communes
+
+sylius_yalidine_shop_api_fees:
+    path: /yalidine/api/fees
+    methods: [GET]
+    defaults:
+        _controller: SyliusYalidinePlugin\Controller\Shop\YalidineApiController::fees

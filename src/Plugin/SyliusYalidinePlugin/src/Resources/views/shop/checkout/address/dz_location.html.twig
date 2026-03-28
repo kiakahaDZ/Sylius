@@ -1,0 +1,115 @@
+{#
+  Full DZ location block for Sylius checkout address form.
+  Replaces the standard `country`, `province`, and `city` hookables.
+
+  Mounts the `yalidine-address` Stimulus controller on the outer wrapper.
+  When country ≠ DZ the controller shows the standard city text field.
+  When country = DZ it hides it and shows wilaya + commune dropdowns.
+#}
+{% set form = hookable_metadata.context.form %}
+{% set address_id = form.vars.id %}
+
+<div
+    data-controller="yalidine-address"
+    data-yalidine-address-wilayas-url-value="{{ path('sylius_yalidine_shop_api_wilayas') }}"
+    data-yalidine-address-communes-url-value="{{ path('sylius_yalidine_shop_api_communes') }}"
+    data-yalidine-address-fees-url-value="{{ path('sylius_yalidine_shop_api_fees') }}"
+>
+    {# ── Country ── #}
+    <div class="mb-3">
+        {{ form_row(form.countryCode, {
+            attr: {
+                'data-yalidine-address-target': 'countrySelect',
+                'data-action': 'change->yalidine-address#countryChanged',
+            }
+        }) }}
+    </div>
+
+    {# ── Standard city (shown for non-DZ countries) ── #}
+    <div data-yalidine-address-target="standardCity">
+        {{ form_row(form.city) }}
+    </div>
+
+    {# ── Province/postcode hidden fields (DZ: written by JS; other: left visible) ── #}
+    {% if form.provinceCode is defined %}
+        <div data-yalidine-address-target="standardProvince">
+            {{ form_row(form.provinceCode) }}
+        </div>
+        <input
+            type="hidden"
+            name="{{ form.provinceCode.vars.full_name }}"
+            data-yalidine-address-target="provinceCode"
+            value="{{ form.provinceCode.vars.value }}"
+        >
+    {% elseif form.provinceName is defined %}
+        <div data-yalidine-address-target="standardProvince">
+            {{ form_row(form.provinceName) }}
+        </div>
+        <input
+            type="hidden"
+            name="{{ form.provinceName.vars.full_name }}"
+            data-yalidine-address-target="provinceName"
+            value="{{ form.provinceName.vars.value }}"
+        >
+    {% endif %}
+
+    {# ── DZ Wilaya + Commune (hidden until DZ is selected) ── #}
+    <div class="d-none" data-yalidine-address-target="dzFields">
+
+        {# Hidden city input for form submit (JS writes commune name here) #}
+        <input
+            type="hidden"
+            name="{{ form.city.vars.full_name }}"
+            data-yalidine-address-target="cityHidden"
+            value="{{ form.city.vars.value }}"
+        >
+
+        {# Wilaya dropdown #}
+        <div class="mb-3">
+            <label class="form-label fw-semibold" for="{{ address_id }}_wilaya">
+                {{ 'sylius_yalidine.shop.wilaya'|trans }}
+                <span class="text-danger">*</span>
+            </label>
+            <select
+                id="{{ address_id }}_wilaya"
+                class="form-select"
+                data-yalidine-address-target="wilayaSelect"
+                data-action="change->yalidine-address#wilayaChanged"
+                data-placeholder="{{ 'sylius_yalidine.shop.select_wilaya'|trans }}"
+            >
+                <option value="">{{ 'sylius_yalidine.shop.select_wilaya'|trans }}</option>
+            </select>
+        </div>
+
+        {# Commune dropdown #}
+        <div class="mb-3">
+            <label class="form-label fw-semibold" for="{{ address_id }}_commune">
+                {{ 'sylius_yalidine.shop.commune'|trans }}
+                <span class="text-danger">*</span>
+            </label>
+            <select
+                id="{{ address_id }}_commune"
+                class="form-select"
+                data-yalidine-address-target="communeSelect"
+                data-action="change->yalidine-address#communeChanged"
+                data-placeholder="{{ 'sylius_yalidine.shop.select_commune'|trans }}"
+            >
+                <option value="">{{ 'sylius_yalidine.shop.select_commune'|trans }}</option>
+            </select>
+        </div>
+
+        {# Delivery fee estimate #}
+        <div class="d-none alert alert-info d-flex align-items-center gap-3 py-2 px-3 mb-3 rounded-3" data-fee-wrapper>
+            <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 text-info" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M12 9h.01"/><path d="M11 12h1v4h1"/>
+                <circle cx="12" cy="12" r="9"/>
+            </svg>
+            <div>
+                <small class="fw-semibold d-block text-info-emphasis">{{ 'sylius_yalidine.shop.estimated_fee'|trans }}</small>
+                <span data-yalidine-address-target="feeDisplay" class="small fw-medium"></span>
+            </div>
+        </div>
+
+    </div>{# /dzFields #}
+</div>

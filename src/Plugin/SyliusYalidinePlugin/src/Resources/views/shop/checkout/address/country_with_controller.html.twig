@@ -1,0 +1,19 @@
+{#
+  Overrides the standard country hookable to mount the `yalidine-address`
+  Stimulus controller on the wrapping div. This is the controller root that
+  also encompasses the wilaya_commune hookable rendered just below.
+#}
+{% set form = hookable_metadata.context.form %}
+
+<div
+    data-controller="yalidine-address"
+    data-yalidine-address-wilayas-url-value="{{ path('sylius_yalidine_shop_api_wilayas') }}"
+    data-yalidine-address-communes-url-value="{{ path('sylius_yalidine_shop_api_communes') }}"
+    data-yalidine-address-fees-url-value="{{ path('sylius_yalidine_shop_api_fees') }}"
+>
+    {{ form_row(form.countryCode, {
+        attr: {
+            'data-yalidine-address-target': 'countrySelect',
+            'data-action': 'change->yalidine-address#countryChanged',
+        }
+    }) }}

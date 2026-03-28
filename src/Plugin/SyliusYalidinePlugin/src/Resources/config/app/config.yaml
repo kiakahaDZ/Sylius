@@ -3,6 +3,38 @@ sylius_twig_hooks:
         'sylius_admin.shipment.show.content.page_body':
             sylius_yalidine_actions:
                 template: '@SyliusYalidinePlugin/admin/shipment/actions.html.twig'
-                context:
-                    yalidine_method_codes: '%sylius_yalidine.shipping_method_codes%'
                 priority: -100
+
+        'sylius_admin.order.show.content.sections.shipments.item':
+            sylius_yalidine_actions:
+                template: '@SyliusYalidinePlugin/admin/shipment/actions.html.twig'
+                priority: -100
+
+        'sylius_shop.shared.form.address':
+            # Disable individual country/province/city hookables — replaced by dz_location
+            country:
+                enabled: false
+            province:
+                enabled: false
+            city:
+                enabled: false
+            # Single block: country select + wilaya/commune + fee estimate
+            dz_location:
+                template: '@SyliusYalidinePlugin/shop/checkout/address/dz_location.html.twig'
+                priority: 400
+
+winzou_state_machine:
+    sylius_order:
+        callbacks:
+            after:
+                sylius_yalidine_create_parcel_on_fulfill:
+                    on: ['fulfill']
+                    do: ['@SyliusYalidinePlugin\EventListener\CreateYalidineShipmentOnOrderCompleteListener', 'createForOrder']
+                    args: ['object']
+    sylius_shipment:
+        callbacks:
+            after:
+                sylius_yalidine_create_parcel_on_ship:
+                    on: ['ship']
+                    do: ['@SyliusYalidinePlugin\EventListener\CreateYalidineShipmentOnOrderCompleteListener', 'createForOrder']
+                    args: ['object.getOrder()']

@@ -18,11 +18,25 @@ services:
 
     SyliusYalidinePlugin\Provider\YalidineParcelPayloadProvider:
         arguments:
+            $defaultFromWilaya: '%sylius_yalidine.default_from_wilaya%'
             $defaultToWilaya: '%sylius_yalidine.default_to_wilaya%'
+
+    SyliusYalidinePlugin\Controller\Shop\YalidineApiController:
+        public: true
+        arguments:
+            $defaultFromWilaya: '%sylius_yalidine.default_from_wilaya%'
+        tags:
+            - { name: controller.service_arguments }
 
     SyliusYalidinePlugin\Resolver\YalidineShipmentResolver:
         arguments:
-            $shippingMethodCodes: '%sylius_yalidine.shipping_method_codes%'
+            $shippingMethodCodes: '%env(csv:YALIDINE_SHIPPING_METHOD_CODES)%'
+
+    SyliusYalidinePlugin\Twig\YalidineExtension:
+        arguments:
+            $shippingMethodCodes: '%env(csv:YALIDINE_SHIPPING_METHOD_CODES)%'
+        tags:
+            - { name: twig.extension }
 
     SyliusYalidinePlugin\EventListener\CreateYalidineShipmentOnOrderCompleteListener:
         arguments:
@@ -44,5 +58,21 @@ services:
             $shipmentRepository: '@sylius.repository.shipment'
             $cache: '@cache.app'
             $webhookToken: '%sylius_yalidine.webhook_token%'
+            $logger: '@logger'
         tags:
             - { name: controller.service_arguments }
+
+    # ── Yalidine Shipping Calculator ──
+    SyliusYalidinePlugin\Calculator\YalidineCalculator:
+        arguments:
+            $defaultFromWilayaId: '%sylius_yalidine.default_from_wilaya_id%'
+            $logger: '@logger'
+        tags:
+            - name: sylius.shipping_calculator
+              calculator: yalidine
+              form_type: SyliusYalidinePlugin\Form\Type\YalidineCalculatorConfigurationType
+              label: sylius_yalidine.calculator.label
+
+    SyliusYalidinePlugin\Form\Type\YalidineCalculatorConfigurationType:
+        tags:
+            - { name: form.type }

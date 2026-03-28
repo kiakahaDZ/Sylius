@@ -1,6 +1,7 @@
-{% set shipment = hookable_metadata.context.resource %}
+{% set shipment = hookable_metadata.context.shipment ?? hookable_metadata.context.resource ?? null %}
+{% set yalidine_method_codes = yalidine_shipping_method_codes() %}
 
-{% if shipment.method is not null and shipment.method.code in yalidine_method_codes %}
+{% if shipment is not null and shipment.method is not null and shipment.method.code in yalidine_method_codes %}
     <div class="card mt-4">
         <div class="card-header">
             <h3 class="card-title">{{ 'sylius_yalidine.admin.card_title'|trans }}</h3>
@@ -11,10 +12,13 @@
 
             {% if shipment.tracking %}
                 <a href="{{ path('sylius_yalidine_admin_shipment_sync_status', {'id': shipment.id}) }}" class="btn btn-outline-primary btn-sm">
-                    {{ 'sylius_yalidine.admin.sync_status'|trans }}
+                    <i class="ti ti-refresh"></i> {{ 'sylius_yalidine.admin.sync_status'|trans }}
+                </a>
+                <a href="{{ path('sylius_yalidine_admin_shipment_view_parcel', {'id': shipment.id}) }}" class="btn btn-outline-info btn-sm">
+                    <i class="ti ti-eye"></i> {{ 'sylius_yalidine.admin.view_parcel'|trans }}
                 </a>
                 <a href="{{ path('sylius_yalidine_admin_shipment_print_ticket', {'id': shipment.id}) }}" class="btn btn-primary btn-sm" target="_blank" rel="noopener">
-                    {{ 'sylius_yalidine.admin.print_ticket'|trans }}
+                    <i class="ti ti-printer"></i> {{ 'sylius_yalidine.admin.print_ticket'|trans }}
                 </a>
             {% endif %}
         </div>

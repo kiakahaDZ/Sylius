@@ -19,3 +19,9 @@ sylius_yalidine:
         status_synced: 'Le statut de l''expédition Yalidine a été synchronisé avec succès.'
         sync_failed: 'Échec de la synchronisation du statut d''expédition Yalidine.'
         not_yalidine_shipment: 'L''expédition sélectionnée n''est pas gérée par Yalidine.'
+    shop:
+        wilaya: 'Wilaya'
+        commune: 'Commune'
+        select_wilaya: '— Sélectionner une wilaya —'
+        select_commune: '— Sélectionner une commune —'
+        estimated_fee: 'Frais de livraison estimés'

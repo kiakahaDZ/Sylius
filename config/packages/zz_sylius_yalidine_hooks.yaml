@@ -1,0 +1,9 @@
+sylius_twig_hooks:
+    hooks:
+        'sylius_shop.shared.form.address':
+            country:
+                enabled: false
+            province:
+                enabled: false
+            city:
+                enabled: false

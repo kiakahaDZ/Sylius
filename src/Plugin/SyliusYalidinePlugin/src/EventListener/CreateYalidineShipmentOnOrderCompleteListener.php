@@ -39,7 +39,12 @@ final readonly class CreateYalidineShipmentOnOrderCompleteListener implements Ev
             return;
         }
 
-        foreach ($subject->getShipments() as $shipment) {
+        $this->createForOrder($subject);
+    }
+
+    public function createForOrder(OrderInterface $order): void
+    {
+        foreach ($order->getShipments() as $shipment) {
             if (!$shipment instanceof ShipmentInterface) {
                 continue;
             }
@@ -49,20 +54,41 @@ final readonly class CreateYalidineShipmentOnOrderCompleteListener implements Ev
             }
 
             try {
-                $payload = $this->parcelPayloadProvider->provide($subject, $shipment);
+                $payload = $this->parcelPayloadProvider->provide($order, $shipment);
                 $response = $this->yalidineClient->createParcel($payload);
-                $tracking = $response['tracking'] ?? null;
 
+                // The API returns keyed by order_id when bulk-creating:
+                // { "OrderNumber": { "success": true, "tracking": "yal-XXX", "label": "...", ... } }
+                $orderNumber = (string) $order->getNumber();
+                $parcelResult = $response[$orderNumber] ?? reset($response);
+
+                if (!is_array($parcelResult)) {
+                    throw new \RuntimeException('Yalidine API response has unexpected format.');
+                }
+
+                $success = (bool) ($parcelResult['success'] ?? false);
+                if (!$success) {
+                    $message = $parcelResult['message'] ?? 'Unknown error';
+                    throw new \RuntimeException(sprintf('Yalidine parcel creation failed: %s', $message));
+                }
+
+                $tracking = $parcelResult['tracking'] ?? null;
                 if (!is_string($tracking) || $tracking === '') {
                     throw new \RuntimeException('Yalidine API response did not return a valid tracking code.');
                 }
 
                 $shipment->setTracking($tracking);
                 $this->shipmentRepository->add($shipment);
+
+                $this->logger->info('Yalidine parcel created.', [
+                    'tracking' => $tracking,
+                    'order_number' => $orderNumber,
+                    'label' => $parcelResult['label'] ?? null,
+                ]);
             } catch (\Throwable $throwable) {
                 $this->logger->error('Unable to create Yalidine parcel.', [
                     'exception' => $throwable,
-                    'order_number' => $subject->getNumber(),
+                    'order_number' => $order->getNumber(),
                     'shipment_id' => $shipment->getId(),
                 ]);
             }

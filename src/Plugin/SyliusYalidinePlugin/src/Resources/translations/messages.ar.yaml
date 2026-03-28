@@ -18,4 +18,10 @@ sylius_yalidine:
         status: 'الحالة'
         status_synced: 'تمت مزامنة حالة شحنة ياليدين بنجاح.'
         sync_failed: 'فشلت مزامنة حالة شحنة ياليدين.'
-        not_yalidine_shipment: 'الشحنة المحددة ليست مُدارة عبر ياليدين.'
+        not_yalidine_shipment: 'لا يتم إدارة الشحنة المحددة بواسطةياليدين.'
+    shop:
+        wilaya: 'الولاية'
+        commune: 'البلدية'
+        select_wilaya: '— اختر الولاية —'
+        select_commune: '— اختر البلدية —'
+        estimated_fee: 'رسوم التوصيل المقدرة'

@@ -1,0 +1,93 @@
+{#
+  Yalidine DZ Wilaya + Commune form block.
+
+  This replaces the standard "province" and "city" hookables for the address
+  form. It uses the `yalidine-address` Stimulus controller which must be
+  mounted on a parent element that also contains the country <select>.
+
+  Design: mount the Stimulus controller on an outer wrapper that contains
+  BOTH the country field AND this block.
+  We do that by overriding the `country` hookable (priority 400) to output
+  the country field inside a data-controller wrapper, then this block
+  (priority 350, between country & city) adds the DZ-specific fields.
+#}
+{% set form = hookable_metadata.context.form %}
+{% set address_id = form.vars.id %}
+
+{#
+  Hidden Sylius fields — always submitted; JS writes the selected values.
+  We hide the native province inputs and render our own dropdowns.
+#}
+{% if form.provinceCode is defined %}
+    {{ form_widget(form.provinceCode, {
+        attr: {
+            'data-yalidine-address-target': 'provinceCode',
+            class: 'd-none',
+        }
+    }) }}
+{% elseif form.provinceName is defined %}
+    {{ form_widget(form.provinceName, {
+        attr: {
+            'data-yalidine-address-target': 'provinceName',
+            class: 'd-none',
+        }
+    }) }}
+{% endif %}
+
+{{ form_widget(form.city, {
+    attr: {
+        'data-yalidine-address-target': 'cityHidden',
+        class: 'd-none',
+    }
+}) }}
+
+{# ── DZ-only section (shown/hidden by Stimulus) ── #}
+<div class="d-none" data-yalidine-address-target="dzFields">
+
+    {# Wilaya #}
+    <div class="mb-3">
+        <label class="form-label fw-semibold" for="{{ address_id }}_wilaya">
+            {{ 'sylius_yalidine.shop.wilaya'|trans }}
+            <span class="text-danger">*</span>
+        </label>
+        <select
+            id="{{ address_id }}_wilaya"
+            class="form-select"
+            data-yalidine-address-target="wilayaSelect"
+            data-action="change->yalidine-address#wilayaChanged"
+            data-placeholder="{{ 'sylius_yalidine.shop.select_wilaya'|trans }}"
+        >
+            <option value="">{{ 'sylius_yalidine.shop.select_wilaya'|trans }}</option>
+        </select>
+    </div>
+
+    {# Commune #}
+    <div class="mb-3">
+        <label class="form-label fw-semibold" for="{{ address_id }}_commune">
+            {{ 'sylius_yalidine.shop.commune'|trans }}
+            <span class="text-danger">*</span>
+        </label>
+        <select
+            id="{{ address_id }}_commune"
+            class="form-select"
+            data-yalidine-address-target="communeSelect"
+            data-action="change->yalidine-address#communeChanged"
+            data-placeholder="{{ 'sylius_yalidine.shop.select_commune'|trans }}"
+        >
+            <option value="">{{ 'sylius_yalidine.shop.select_commune'|trans }}</option>
+        </select>
+    </div>
+
+    {# Fee estimate badge #}
+    <div class="d-none alert alert-info d-flex align-items-center gap-3 py-2 px-3 mb-3" data-fee-wrapper>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 9h.01"/><path d="M11 12h1v4h1"/>
+            <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"/>
+        </svg>
+        <div>
+            <small class="fw-semibold d-block">{{ 'sylius_yalidine.shop.estimated_fee'|trans }}</small>
+            <span data-yalidine-address-target="feeDisplay" class="small"></span>
+        </div>
+    </div>
+
+</div>

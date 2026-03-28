@@ -22,6 +22,7 @@
   - `src/Plugin/SyliusChargilyPlugin` (Gateway Pay V2)
   - `src/Plugin/ChargilyEpayPlugin` (Legacy Epay Gateway)
   - `src/Plugin/SyliusRepairServicePlugin` (Custom Repairs)
+  - `src/Plugin/SyliusYalidinePlugin` (Yalidine Shipping — DZ delivery, dynamic fee calculator, Wilaya/Commune checkout UI, automated parcel creation & webhook tracking)
 
 ---
 
@@ -87,3 +88,6 @@
 - **Admin menu item missing**: If `$menu->getChild('sales')` is null, `AdminMenuListener` silently returns. Always add a fallback `addChild()` to create a dedicated top-level section.
 - **Plugin pages unstyled**: Override plugin Twig templates in `themes/PrinterTheme/templates/bundles/{PluginName}/` to apply the PrinterTheme layout; otherwise plugins render bare Sylius HTML.
 - **Encore entry**: The `printer-theme` entry in `webpack.config.js` loads `entry.js` which is now **styles-only**. Stimulus controllers are auto-registered by the core app's entryPoint from `assets/shop/controllers/`. Do NOT register Stimulus in `printer-theme` as it causes double-initialization (e.g. double cart additions).
+- **`prepend()` vs `load()` parameter order**: In a bundle Extension, `prepend()` runs BEFORE `load()`. Do NOT reference container parameters (e.g. `%plugin.some_param%`) inside a `sylius_twig_hooks` context block in `prepend()` config — those parameters don't exist yet. Instead, expose the value via a Twig Extension service.
+- **Invalid env default syntax in arrayNode**: `%env(default:literal_value:ENV_VAR)%` is NOT valid — `default:` expects another env var name, not a literal. Use `%env(ENV_VAR)%` directly and set a fallback in `.env`. For `arrayNode` defaults, use `->defaultValue([])` and configure via `config/packages/sylius_*.yaml`.
+- **Yalidine shipping method codes**: Configured via `YALIDINE_SHIPPING_METHOD_CODES` env var (set in `.env`, default `yalidine`). When injecting into `services.yaml`, it MUST use the `%env(csv:YALIDINE_SHIPPING_METHOD_CODES)%` processor so that the string is correctly evaluated as an array at runtime instead of compile-time. The admin shipment page uses `yalidine_shipping_method_codes()` Twig function (from `SyliusYalidinePlugin\Twig\YalidineExtension`) to conditionally show Yalidine shipment actions.

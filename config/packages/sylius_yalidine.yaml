@@ -1,2 +1,2 @@
 sylius_yalidine:
-    shipping_method_codes: ['%env(default:yalidine:YALIDINE_SHIPPING_METHOD_CODES)%']
+    shipping_method_codes: ['%env(YALIDINE_SHIPPING_METHOD_CODES)%']
