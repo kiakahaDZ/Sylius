@@ -2,34 +2,39 @@ sylius_offers_api_get_offers:
     path: /offers
     methods: [GET]
     defaults:
-        _controller: sylius_offers.controller.api.offer:getOffersAction
+        _controller: SyliusOffersPlugin\Controller\Api\OfferController::getOffersAction
+
 
 sylius_offers_api_get_offer:
     path: /offers/{id}
     methods: [GET]
     defaults:
-        _controller: sylius_offers.controller.api.offer:getOfferAction
+        _controller: SyliusOffersPlugin\Controller\Api\OfferController::getOfferAction
+
 
 sylius_offers_api_track_click:
     path: /offers/{id}/click
     methods: [POST]
     defaults:
-        _controller: sylius_offers.controller.api.offer:trackClickAction
+        _controller: SyliusOffersPlugin\Controller\Api\OfferController::trackClickAction
+
 
 sylius_offers_api_upcoming:
     path: /offers/upcoming
     methods: [GET]
     defaults:
-        _controller: sylius_offers.controller.api.offer:getUpcomingOffersAction
+        _controller: SyliusOffersPlugin\Controller\Api\OfferController::getUpcomingOffersAction
+
 
 sylius_offers_api_expiring:
     path: /offers/expiring
     methods: [GET]
     defaults:
-        _controller: sylius_offers.controller.api.offer:getExpiringOffersAction
+        _controller: SyliusOffersPlugin\Controller\Api\OfferController::getExpiringOffersAction
+
 
 sylius_offers_api_best_performing:
     path: /offers/best-performing
     methods: [GET]
     defaults:
-        _controller: sylius_offers.controller.api.offer:getBestPerformingOffersAction
+        _controller: SyliusOffersPlugin\Controller\Api\OfferController::getBestPerformingOffersAction

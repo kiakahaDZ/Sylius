@@ -5,23 +5,30 @@ declare(strict_types = 1)
 
 namespace SyliusOffersPlugin\Controller\Api;
 
+use SyliusOffersPlugin\Repository\OfferRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RequestStack;
+
 
 class OfferController extends AbstractController
 {
     private OfferRepository $offerRepository;
+    private RequestStack $requestStack;
 
-    public function __construct(OfferRepository $offerRepository)
+    public function __construct(OfferRepository $offerRepository, RequestStack $requestStack)
     {
         $this->offerRepository = $offerRepository;
+        $this->requestStack = $requestStack;
     }
+
 
     /**
      * @Rest\Get("/offers")
      */
-    public function getOffers(Request $request): Response
+    public function getOffersAction(Request $request): Response
+
     {
         $type = $request->query->get('type');
         $limit = (int)$request->query->get('limit', 10);
@@ -55,7 +62,8 @@ class OfferController extends AbstractController
     /**
      * @Rest\Get("/offers/{id}")
      */
-    public function getOffer(int $id): Response
+    public function getOfferAction(int $id): Response
+
     {
         $offer = $this->offerRepository->find($id);
 
@@ -78,7 +86,8 @@ class OfferController extends AbstractController
     /**
      * @Rest\Post("/offers/{id}/click")
      */
-    public function trackClick(int $id): Response
+    public function trackClickAction(int $id): Response
+
     {
         $offer = $this->offerRepository->find($id);
 
@@ -103,7 +112,8 @@ class OfferController extends AbstractController
     /**
      * @Rest\Get("/offers/upcoming")
      */
-    public function getUpcomingOffers(Request $request): Response
+    public function getUpcomingOffersAction(Request $request): Response
+
     {
         $days = (int)$request->query->get('days', 7);
         $offers = $this->offerRepository->findUpcomingOffers($days);
@@ -126,7 +136,8 @@ class OfferController extends AbstractController
     /**
      * @Rest\Get("/offers/expiring")
      */
-    public function getExpiringOffers(Request $request): Response
+    public function getExpiringOffersAction(Request $request): Response
+
     {
         $days = (int)$request->query->get('days', 7);
         $offers = $this->offerRepository->findExpiringOffers($days);
@@ -149,7 +160,8 @@ class OfferController extends AbstractController
     /**
      * @Rest\Get("/offers/best-performing")
      */
-    public function getBestPerformingOffers(Request $request): Response
+    public function getBestPerformingOffersAction(Request $request): Response
+
     {
         $limit = (int)$request->query->get('limit', 10);
         $offers = $this->offerRepository->findBestPerformingOffers($limit);
@@ -176,8 +188,9 @@ class OfferController extends AbstractController
             'code' => $offer->getCode(),
             'title' => $offer->getTitle(),
             'description' => $offer->getDescription(),
-            'image' => $offer->getImage(),
+            'image' => $this->getOfferImageUrl($offer->getImage()),
             'link' => $offer->getLink(),
+
             'badge' => $offer->getBadge(),
             'type' => $offer->getType(),
             'position' => $offer->getPosition(),
@@ -206,6 +219,18 @@ class OfferController extends AbstractController
         return $data;
     }
 
+    private function getOfferImageUrl(?string $imagePath): ?string
+    {
+        if (!$imagePath) {
+            return null;
+        }
+
+        $request = $this->requestStack->getCurrentRequest();
+        $baseUrl = $request ? $request->getSchemeAndHttpHost() : '';
+
+        return $baseUrl . '/media/image/' . $imagePath;
+    }
+
     private function calculateRemainingTime(\DateTimeInterface $endDate): array
     {
         $now = new \DateTime();
@@ -220,4 +245,4 @@ class OfferController extends AbstractController
             'is_expired' => $endDate <= $now,
         ];
     }
-}
+}

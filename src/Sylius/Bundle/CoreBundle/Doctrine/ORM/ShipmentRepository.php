@@ -107,7 +107,7 @@ class ShipmentRepository extends EntityRepository implements ShipmentRepositoryI
 
     public function countReadyByChannel(ChannelInterface $channel): int
     {
-        return $this->createQueryBuilder('o')
+        return (int) $this->createQueryBuilder('o')
             ->select('COUNT(o.id)')
             ->innerJoin('o.order', 'orders')
             ->andWhere('o.state = :state')

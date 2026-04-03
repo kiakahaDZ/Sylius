@@ -10,7 +10,8 @@ services:
 
     SyliusBestSellerPlugin\:
         resource: '../../*'
-        exclude: '../../{DependencyInjection,Entity,Migrations,Tests,Kernel.php,Repository,Form,Controller}'
+        exclude: '../../{DependencyInjection,Entity,Migrations,Tests,Kernel.php,Repository,Form}'
+
 
     SyliusBestSellerPlugin\Repository\BestSellerRepository:
         alias: sylius_best_seller.repository.cache
@@ -36,3 +37,9 @@ services:
 
     SyliusBestSellerPlugin\Command\RecalculateBestSellersCommand:
         tags: ['console.command']
+
+    SyliusBestSellerPlugin\Controller\Api\BestSellerController:
+        public: true
+
+    SyliusBestSellerPlugin\Controller\Admin\BestSellerConfigController:
+        public: true

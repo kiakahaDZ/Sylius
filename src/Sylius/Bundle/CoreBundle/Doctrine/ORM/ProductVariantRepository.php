@@ -79,7 +79,7 @@ class ProductVariantRepository extends BaseProductVariantRepository implements P
 
     public function countTrackedOutOfStock(): int
     {
-        return $this->createQueryBuilder('o')
+        return (int) $this->createQueryBuilder('o')
             ->select('COUNT(o.id)')
             ->andWhere('o.tracked = :tracked')
             ->andWhere('o.onHand = :onHand')

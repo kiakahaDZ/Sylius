@@ -92,7 +92,7 @@ class PaymentRepository extends EntityRepository implements PaymentRepositoryInt
 
     public function countNewByChannel(ChannelInterface $channel): int
     {
-        return $this->createQueryBuilder('o')
+        return (int) $this->createQueryBuilder('o')
             ->select('COUNT(o.id)')
             ->innerJoin('o.order', 'orders')
             ->andWhere('o.state = :state')

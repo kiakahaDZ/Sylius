@@ -15,11 +15,10 @@ console.log('STIMULUS APP STARTING - PRINTER THEME VERSION');
 // Core controllers
 import ProductShowImagesController from './controllers/ProductShowImagesController';
 
-// Theme controllers (Imported from theme directory)
-import PrinterCategoriesController from '../../../../../../themes/PrinterTheme/SyliusShopBundle/Resources/assets/controllers/PrinterCategoriesController';
-import BestSellerScrollController from '../../../../../../themes/PrinterTheme/SyliusShopBundle/Resources/assets/controllers/BestSellerScrollController';
-import PrinterHeroController from '../../../../../../themes/PrinterTheme/SyliusShopBundle/Resources/assets/controllers/PrinterHeroController';
-import PrinterRevealController from '../../../../../../themes/PrinterTheme/SyliusShopBundle/Resources/assets/controllers/PrinterRevealController';
+import PrinterCategoriesController from '../../../../../../assets/shop/controllers/PrinterCategoriesController';
+import BestSellerScrollController from '../../../../../../assets/shop/controllers/BestSellerScrollController';
+import PrinterHeroController from '../../../../../../assets/shop/controllers/PrinterHeroController';
+import PrinterRevealController from '../../../../../../assets/shop/controllers/PrinterRevealController';
 
 export const app = startStimulusApp(require.context(
     '@symfony/stimulus-bridge/lazy-controller-loader!./controllers',

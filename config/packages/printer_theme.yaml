@@ -1,7 +1,15 @@
 services:
-    PrinterTheme\Twig\HomepageProductExtension:
+    _defaults:
         autowire: true
+        autoconfigure: true
+        public: false
+
+    PrinterTheme\Twig\HomepageProductExtension:
         tags: ['twig.extension']
+
+    PrinterTheme\Serializer\ImageNormalizer:
+        tags:
+            - { name: 'serializer.normalizer', priority: 100 }
 
 sylius_twig_hooks:
     hooks:

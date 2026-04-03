@@ -30,6 +30,7 @@ services:
     SyliusOffersPlugin\Controller\Api\OfferController:
         arguments:
             - '@SyliusOffersPlugin\Repository\OfferRepository'
+            - '@request_stack'
         public: true
 
     sylius_offers.controller.api.offer:

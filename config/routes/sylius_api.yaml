@@ -9,3 +9,11 @@ sylius_offers_api:
 sylius_repair_service_api:
     resource: "@SyliusRepairServicePlugin/Resources/config/api_routes.yaml"
     prefix: /api/v1
+
+sylius_best_seller_api:
+    resource: "@SyliusBestSellerPlugin/Resources/config/api_routes.yaml"
+    prefix: /api/v1
+
+sylius_banner_api:
+    resource: "@SyliusBannerPlugin/Resources/config/routing/shop.yaml"
+    prefix: /api/v1

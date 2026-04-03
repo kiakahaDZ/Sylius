@@ -567,7 +567,7 @@ class OrderRepository extends BaseOrderRepository implements OrderRepositoryInte
 
     public function countNewByChannel(ChannelInterface $channel): int
     {
-        return $this->createQueryBuilder('o')
+        return (int) $this->createQueryBuilder('o')
             ->select('COUNT(o.id)')
             ->andWhere('o.state = :state')
             ->andWhere('o.channel = :channel')

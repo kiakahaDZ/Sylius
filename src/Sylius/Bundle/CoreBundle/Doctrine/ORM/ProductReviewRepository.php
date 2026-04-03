@@ -61,7 +61,7 @@ class ProductReviewRepository extends EntityRepository implements ProductReviewR
 
     public function countAcceptedByProduct(ProductInterface $product): int
     {
-        return $this->createQueryBuilder('o')
+        return (int) $this->createQueryBuilder('o')
             ->select('COUNT(o.id)')
             ->andWhere('o.reviewSubject = :product')
             ->andWhere('o.status = :status')
@@ -99,7 +99,7 @@ class ProductReviewRepository extends EntityRepository implements ProductReviewR
 
     public function countNew(): int
     {
-        return $this->createQueryBuilder('o')
+        return (int) $this->createQueryBuilder('o')
             ->select('COUNT(o.id)')
             ->andWhere('o.status = :status')
             ->setParameter('status', ReviewInterface::STATUS_NEW)

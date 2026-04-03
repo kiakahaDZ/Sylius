@@ -11,20 +11,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use Symfony\Component\HttpFoundation\RequestStack;
+
 class BestSellerController extends AbstractController
 {
+    private RequestStack $requestStack;
+
     private BestSellerCacheManager $bestSellerCacheManager;
     private ProductRepositoryInterface $productRepository;
 
     public function __construct(
         BestSellerCacheManager $bestSellerCacheManager,
-        ProductRepositoryInterface $productRepository
+        ProductRepositoryInterface $productRepository,
+        RequestStack $requestStack
     ) {
         $this->bestSellerCacheManager = $bestSellerCacheManager;
         $this->productRepository = $productRepository;
+        $this->requestStack = $requestStack;
     }
 
-    public function getBestSellers(Request $request): Response
+
+    public function getBestSellersAction(Request $request): Response
+
     {
         $period = (string) $request->query->get('period', 'weekly');
         $limit = (int) $request->query->get('limit', 10);
@@ -61,7 +69,8 @@ class BestSellerController extends AbstractController
         ]);
     }
 
-    public function getTopProduct(Request $request): Response
+    public function getTopProductAction(Request $request): Response
+
     {
         $period = (string) $request->query->get('period', 'weekly');
 
@@ -93,7 +102,8 @@ class BestSellerController extends AbstractController
         ]);
     }
 
-    public function getProductStats(int $productId, Request $request): Response
+    public function getProductStatsAction(int $productId, Request $request): Response
+
     {
         $period = (string) $request->query->get('period', 'weekly');
 
@@ -126,6 +136,14 @@ class BestSellerController extends AbstractController
             return null;
         }
 
-        return $image->getPath();
+        $path = $image->getPath();
+        $request = $this->requestStack->getCurrentRequest();
+        
+        if ($request) {
+            return $request->getSchemeAndHttpHost() . '/media/image/' . $path;
+        }
+
+        return '/media/image/' . $path;
     }
+
 }
