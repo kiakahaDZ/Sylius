@@ -1,0 +1,6 @@
+{% set taxon = hookable_metadata.context.taxon %}
+
+<a class="nav-link d-flex align-items-center gap-1" href="{{ path('sylius_shop_product_index', {'slug': taxon.slug, '_locale': taxon.translation.locale}) }}" data-controller="printer-menu-dropdown" data-action="mouseenter->printer-menu-dropdown#show mouseleave->printer-menu-dropdown#hide" data-printer-menu-dropdown-delay-value="150" role="button" aria-expanded="false">
+	{{ taxon.name }}
+	{{ ux_icon('tabler:chevron-down', { 'class': 'icon icon-sm'}) }}
+</a>

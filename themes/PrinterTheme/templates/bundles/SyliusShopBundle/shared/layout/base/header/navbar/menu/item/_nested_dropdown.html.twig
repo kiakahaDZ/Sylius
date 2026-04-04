@@ -1,0 +1,23 @@
+{# Recursive macro for nested taxon dropdown items #}
+{% macro render_nested_items(taxons, depth = 0) %}
+	{% import _self as macros %}
+
+	{% for child_taxon in taxons %}
+		{% if child_taxon.enabledChildren|length > 0 %}
+			{# This child has its own children - render as submenu #}
+			<div class="dropdown-submenu">
+				<a class="dropdown-item dropdown-toggle" href="{{ path('sylius_shop_product_index', {'slug': child_taxon.slug, '_locale': child_taxon.translation.locale}) }}" data-controller="printer-menu-dropdown" data-action="mouseenter->printer-menu-dropdown#show mouseleave->printer-menu-dropdown#hide" role="button" aria-expanded="false" {{ sylius_test_html_attribute('menu-item', child_taxon.name) }}>
+					{{ child_taxon.name }}
+				</a>
+				<div class="dropdown-menu" data-printer-menu-dropdown-target="dropdown">
+					{{ macros.render_nested_items(child_taxon.enabledChildren, depth + 1) }}
+				</div>
+			</div>
+		{% else %}
+			{# Leaf node - render as simple link #}
+			<a class="dropdown-item" href="{{ path('sylius_shop_product_index', {'slug': child_taxon.slug, '_locale': child_taxon.translation.locale}) }}" {{ sylius_test_html_attribute('menu-item', child_taxon.name) }}>
+				{{ child_taxon.name }}
+			</a>
+		{% endif %}
+	{% endfor %}
+{% endmacro %}

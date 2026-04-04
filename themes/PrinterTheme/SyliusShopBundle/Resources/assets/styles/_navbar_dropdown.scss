@@ -1,0 +1,115 @@
+// Nested dropdown menu styling for taxon navigation
+.dropdown-submenu {
+    position: relative;
+
+    > .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+        margin-left: 1px;
+        border-radius: 0.375rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+
+    // Chevron icon for submenu items
+    > .dropdown-toggle::after {
+        content: '';
+        display: inline-block;
+        width: 0.5em;
+        height: 0.5em;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(-45deg);
+        margin-left: 0.5em;
+        vertical-align: middle;
+    }
+}
+
+// RTL support for nested dropdowns
+[dir='rtl'] .dropdown-submenu {
+    > .dropdown-menu {
+        left: auto;
+        right: 100%;
+        margin-left: 0;
+        margin-right: 1px;
+    }
+
+    > .dropdown-toggle::after {
+        transform: rotate(135deg);
+        margin-left: 0;
+        margin-right: 0.5em;
+    }
+}
+
+// Hover behavior for desktop (min-width: 992px = lg breakpoint)
+@media (min-width: 992px) {
+    // Show dropdown on hover
+    .dropdown:hover > .dropdown-menu {
+        display: block;
+    }
+
+    // Show nested submenu on hover
+    .dropdown-submenu:hover > .dropdown-menu {
+        display: block;
+    }
+
+    // Keep dropdown open when hovering over it
+    .dropdown-menu:hover {
+        display: block;
+    }
+}
+
+// Dropdown item styling
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover,
+    &:focus {
+        background-color: var(--bs-primary-bg-subtle);
+        color: var(--bs-primary);
+    }
+
+    &.active,
+    &:active {
+        background-color: var(--bs-primary);
+        color: #fff;
+    }
+}
+
+// Nested dropdown item indentation
+.dropdown-submenu .dropdown-item {
+    padding-left: 1.5rem;
+
+    [dir='rtl'] & {
+        padding-left: 1rem;
+        padding-right: 1.5rem;
+    }
+}
+
+// Deeper nesting indentation
+.dropdown-submenu .dropdown-submenu .dropdown-item {
+    padding-left: 2rem;
+
+    [dir='rtl'] & {
+        padding-left: 1rem;
+        padding-right: 2rem;
+    }
+}
+
+// Dropdown menu styling
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    padding: 0.5rem 0;
+    min-width: 200px;
+}
+
+// Navbar dropdown wrapper
+.printer-navbar-nav .dropdown {
+    position: static;
+
+    @media (min-width: 992px) {
+        position: relative;
+    }
+}

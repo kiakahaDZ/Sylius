@@ -1,0 +1,6 @@
+{% set taxon = hookable_metadata.context.taxon %}
+{% import '@SyliusShop/shared/layout/base/header/navbar/menu/item/_nested_dropdown.html.twig' as nested_dropdown %}
+
+<div class="dropdown-menu">
+	{{ nested_dropdown.render_nested_items(taxon.enabledChildren) }}
+</div>
