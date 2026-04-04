@@ -32,6 +32,7 @@
 ###< sylius/sylius ###
 
 ###> symfony/framework-bundle ###
+.env
 .env.*.local
 .env.local
 .env.local.php
