@@ -73,6 +73,85 @@
         box-shadow: $printer-shadow-md;
     }
 
+    // Enhance mobile offcanvas visibility (the "claire" issue)
+    .printer-navbar-shop.offcanvas-lg {
+        background-color: rgba($printer-dark, 0.98) !important; // Darker and opaque
+        backdrop-filter: blur(15px);
+        width: 280px;
+
+        .offcanvas-header {
+            background: rgba($printer-dark, 1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.25rem 1.5rem;
+
+            .offcanvas-title {
+                color: #fff;
+                font-family: $font-family-display;
+                font-weight: 700;
+            }
+
+            .btn-close {
+                background-color: #fff;
+                opacity: 0.8;
+                border-radius: 50%;
+                padding: 0.5rem;
+                margin-top: 0;
+                transition: $transition-fast;
+
+                &:hover {
+                    opacity: 1;
+                    transform: rotate(90deg);
+                }
+            }
+        }
+
+        .offcanvas-body {
+            padding: 1rem 0;
+            background: transparent;
+        }
+
+        .navbar-nav {
+            gap: 2px;
+        }
+
+        .nav-link, .printer-nav-link {
+            color: rgba(255, 255, 255, 0.85) !important;
+            padding: 1rem 1.5rem !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 0;
+            font-weight: 500;
+            font-size: 0.95rem;
+
+            &:hover, &.active {
+                background: rgba(255, 255, 255, 0.08);
+                color: #fff !important;
+            }
+
+            &::after {
+                display: none; // Remove the desktop underline
+            }
+        }
+    }
+
+    // Toggler visibility fix
+    .navbar-toggler {
+        border-color: $printer-border;
+        background: $gray-100;
+        padding: 0.5rem;
+        border-radius: 0.75rem;
+        color: $printer-dark;
+        transition: $transition-base;
+
+        &:focus {
+            box-shadow: 0 0 0 0.25rem rgba($printer-dark, 0.1);
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
     .printer-nav-pills {
         flex-wrap: wrap;
     }

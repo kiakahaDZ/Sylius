@@ -5,6 +5,11 @@
     {{ encore_entry_link_tags('printer-theme', null, 'shop') }}
 {% endblock %}
 
+{% block metatags %}
+    {{ parent() }}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('printer-theme', null, 'shop') }}
