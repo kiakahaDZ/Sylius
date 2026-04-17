@@ -52,9 +52,15 @@
                 <a href="{{ path('sylius_shop_product_index', {'slug': taxon.slug}) }}"
                    class="printer-category-card"
                    id="category-{{ taxon.code }}">
-                    <div class="printer-category-card__icon">
-                        <i class="ti {{ icon_class }}"></i>
-                    </div>
+                    {% if taxon.images|length > 0 %}
+                        <div class="printer-category-card__image">
+                            <img src="{{ taxon.images.first.path|imagine_filter('sylius_shop_product_thumbnail') }}" alt="{{ taxon.name }}">
+                        </div>
+                    {% else %}
+                        <div class="printer-category-card__icon">
+                            <i class="ti {{ icon_class }}"></i>
+                        </div>
+                    {% endif %}
                     <div class="printer-category-card__info">
                         <h3 class="printer-category-card__name">{{ taxon.name }}</h3>
                     <span class="printer-category-card__arrow">

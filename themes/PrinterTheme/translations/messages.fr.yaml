@@ -6,6 +6,7 @@ printer_shop:
         featured_products: "Produits en Vedette"
         shop_label: "Notre Boutique"
         view_all: "Voir tout"
+        new_collection: 'NovaPrint'
         hero:
             subtitle: "Qualité Professionnelle pour vos Impressions"
             cta: "Découvrir"

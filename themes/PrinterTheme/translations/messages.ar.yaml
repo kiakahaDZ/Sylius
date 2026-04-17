@@ -6,6 +6,7 @@ printer_shop:
         featured_products: "المنتجات المميزة"
         shop_label: "متجرنا"
         view_all: "عرض الكل"
+        new_collection: 'NovaPrint'
         hero:
             subtitle: "جودة احترافية لمطبوعاتك"
             cta: "اكتشف"

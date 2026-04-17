@@ -1,167 +1,173 @@
 {# PrinterTheme – Premium Footer #}
 
-<footer class="printer-footer" id="site-footer">
-    {# ── Newsletter CTA Strip ── #}
-    <div class="printer-footer__newsletter">
-        <div class="container">
-            <div class="printer-footer__newsletter-inner">
-                <div class="printer-footer__newsletter-content">
-                    <div class="printer-footer__newsletter-icon">
-                        <i class="ti ti-mail-forward"></i>
-                    </div>
-                    <div>
-                        <h3 class="printer-footer__newsletter-title">{{ 'printer_shop.footer.newsletter'|trans }}</h3>
-                        <p class="printer-footer__newsletter-desc">{{ 'printer_shop.footer.newsletter_desc'|trans }}</p>
-                    </div>
-                </div>
-                <form class="printer-footer__newsletter-form" action="#" method="post">
-                    <div class="printer-footer__newsletter-input-wrap">
-                        <input type="email" class="printer-footer__newsletter-input" placeholder="{{ 'printer_shop.footer.email_placeholder'|trans }}" required />
-                        <button type="submit" class="printer-footer__newsletter-btn">
-                            {{ 'printer_shop.footer.subscribe'|trans }}
-                            <i class="ti ti-arrow-right"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+<footer
+	class="printer-footer" id="site-footer">
+	{# ── Newsletter CTA Strip ── #}
+	<div class="printer-footer__newsletter">
+		<div class="container">
+			<div class="printer-footer__newsletter-inner">
+				<div class="printer-footer__newsletter-content">
+					<div class="printer-footer__newsletter-icon">
+						<i class="ti ti-mail-forward"></i>
+					</div>
+					<div>
+						<h3 class="printer-footer__newsletter-title">{{ 'printer_shop.footer.newsletter'|trans }}</h3>
+						<p class="printer-footer__newsletter-desc">{{ 'printer_shop.footer.newsletter_desc'|trans }}</p>
+					</div>
+				</div>
+				<form class="printer-footer__newsletter-form" action="#" method="post">
+					<div class="printer-footer__newsletter-input-wrap">
+						<input type="email" class="printer-footer__newsletter-input" placeholder="{{ 'printer_shop.footer.email_placeholder'|trans }}" required/>
+						<button type="submit" class="printer-footer__newsletter-btn">
+							{{ 'printer_shop.footer.subscribe'|trans }}
+							<i class="ti ti-arrow-right"></i>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
-    {# ── Main Footer Content ── #}
-    <div class="printer-footer__main">
-        <div class="container">
-            <div class="row g-4 g-lg-5">
-                {# Column 1 – Brand / About #}
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="printer-footer__brand">
-                        <a href="{{ path('sylius_shop_homepage') }}" class="printer-footer__logo" aria-label="{{ 'sylius.ui.sylius_logo_aria'|trans }}">
-                            <div class="printer-footer__logo-wrap">
-                                {% include '@SyliusShop/shared/logo.html.twig' %}
-                            </div>
-                        </a>
-                        <p class="printer-footer__about">{{ 'printer_shop.footer.about_desc'|trans }}</p>
+	{# ── Main Footer Content ── #}
+	<div class="printer-footer__main">
+		<div class="container">
+			<div
+				class="row g-4 g-lg-5">
+				{# Column 1 – Brand / About #}
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="printer-footer__brand">
+						<a href="{{ path('sylius_shop_homepage') }}" class="printer-footer__logo" aria-label="{{ 'sylius.ui.sylius_logo_aria'|trans }}">
+							<div class="printer-footer__logo-wrap">
+								{% include '@SyliusShop/shared/logo.html.twig' %}
+							</div>
+						</a>
+						<p class="printer-footer__about">{{ 'printer_shop.footer.about_desc'|trans }}</p>
 
-                        {# Contact info #}
-                        <div class="printer-footer__contact-list">
-                            <div class="printer-footer__contact-item">
-                                <i class="ti ti-map-pin"></i>
-                                <span>{{ 'printer_shop.footer.address_value'|trans }}</span>
-                            </div>
-                            <div class="printer-footer__contact-item">
-                                <i class="ti ti-phone"></i>
-                                <a href="tel:+213555123456">{{ 'printer_shop.footer.phone_value'|trans }}</a>
-                            </div>
-                            <div class="printer-footer__contact-item">
-                                <i class="ti ti-mail"></i>
-                                <a href="mailto:contact@novaprintdz.com">{{ 'printer_shop.footer.email_value'|trans }}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+						{# Contact info #}
+						<div class="printer-footer__contact-list">
+							<div class="printer-footer__contact-item">
+								<i class="ti ti-map-pin"></i>
+								<span>{{ 'printer_shop.footer.address_value'|trans }}</span>
+							</div>
+							<div class="printer-footer__contact-item">
+								<i class="ti ti-phone"></i>
+								<a href="tel:+213555123456">{{ 'printer_shop.footer.phone_value'|trans }}</a>
+							</div>
+							<div class="printer-footer__contact-item">
+								<i class="ti ti-mail"></i>
+								<a href="mailto:contact@novaprintdz.com">{{ 'printer_shop.footer.email_value'|trans }}</a>
+							</div>
+						</div>
+					</div>
+				</div>
 
-                {# Column 2 – Quick Links + Customer Service #}
-                <div class="col-6 col-md-3 col-lg-2">
-                    <h4 class="printer-footer__heading">{{ 'printer_shop.footer.quick_links'|trans }}</h4>
-                    <nav class="printer-footer__nav" aria-label="{{ 'printer_shop.footer.quick_links'|trans }}">
-                        <a href="{{ path('sylius_shop_homepage') }}">{{ 'sylius.ui.home'|trans }}</a>
-                        <a href="#">{{ 'printer_shop.footer.about_us'|trans }}</a>
-                        <a href="{{ path('sylius_shop_contact_request') }}">{{ 'printer_shop.footer.contact_us'|trans }}</a>
-                        <a href="#">{{ 'printer_shop.footer.faq'|trans }}</a>
-                    </nav>
-                </div>
+				{# Column 2 – Quick Links + Customer Service #}
+				<div class="col-6 col-md-3 col-lg-2">
+					<h4 class="printer-footer__heading">{{ 'printer_shop.footer.quick_links'|trans }}</h4>
+					<nav class="printer-footer__nav" aria-label="{{ 'printer_shop.footer.quick_links'|trans }}">
+						<a href="{{ path('sylius_shop_homepage') }}">{{ 'sylius.ui.home'|trans }}</a>
+						<a href="#">{{ 'printer_shop.footer.about_us'|trans }}</a>
+						<a href="{{ path('sylius_shop_contact_request') }}">{{ 'printer_shop.footer.contact_us'|trans }}</a>
+						<a href="#">{{ 'printer_shop.footer.faq'|trans }}</a>
+					</nav>
+				</div>
 
-                <div class="col-6 col-md-3 col-lg-2">
-                    <h4 class="printer-footer__heading">{{ 'printer_shop.footer.customer_service'|trans }}</h4>
-                    <nav class="printer-footer__nav" aria-label="{{ 'printer_shop.footer.customer_service'|trans }}">
-                        <a href="#">{{ 'printer_shop.footer.shipping_policy'|trans }}</a>
-                        <a href="#">{{ 'printer_shop.footer.returns_policy'|trans }}</a>
-                        <a href="#">{{ 'printer_shop.footer.terms'|trans }}</a>
-                        <a href="#">{{ 'printer_shop.footer.privacy'|trans }}</a>
-                    </nav>
-                </div>
+				<div class="col-6 col-md-3 col-lg-2">
+					<h4 class="printer-footer__heading">{{ 'printer_shop.footer.customer_service'|trans }}</h4>
+					<nav class="printer-footer__nav" aria-label="{{ 'printer_shop.footer.customer_service'|trans }}">
+						<a href="#">{{ 'printer_shop.footer.shipping_policy'|trans }}</a>
+						<a href="#">{{ 'printer_shop.footer.returns_policy'|trans }}</a>
+						<a href="#">{{ 'printer_shop.footer.terms'|trans }}</a>
+						<a href="#">{{ 'printer_shop.footer.privacy'|trans }}</a>
+					</nav>
+				</div>
 
-                {# Column 3 – Working Hours + Social #}
-                <div class="col-12 col-md-6 col-lg-4">
-                    <h4 class="printer-footer__heading">{{ 'printer_shop.footer.working_hours'|trans }}</h4>
-                    <div class="printer-footer__hours">
-                        <div class="printer-footer__hours-row">
-                            <span>{{ 'printer_shop.footer.hours_weekdays'|trans }}</span>
-                            <span class="printer-footer__hours-time">08:00 – 18:00</span>
-                        </div>
-                        <div class="printer-footer__hours-row">
-                            <span>{{ 'printer_shop.footer.hours_friday'|trans }}</span>
-                            <span class="printer-footer__hours-time printer-footer__hours-time--closed">{{ 'printer_shop.footer.closed'|trans }}</span>
-                        </div>
-                        <div class="printer-footer__hours-row">
-                            <span>{{ 'printer_shop.footer.hours_saturday'|trans }}</span>
-                            <span class="printer-footer__hours-time">08:00 – 13:00</span>
-                        </div>
-                    </div>
+				{# Column 3 – Working Hours + Social #}
+				<div class="col-12 col-md-6 col-lg-4">
+					<h4 class="printer-footer__heading">{{ 'printer_shop.footer.working_hours'|trans }}</h4>
+					<div class="printer-footer__hours">
+						<div class="printer-footer__hours-row">
+							<span>{{ 'printer_shop.footer.hours_weekdays'|trans }}</span>
+							<span class="printer-footer__hours-time">08:00 – 18:00</span>
+						</div>
+						<div class="printer-footer__hours-row">
+							<span>{{ 'printer_shop.footer.hours_friday'|trans }}</span>
+							<span class="printer-footer__hours-time printer-footer__hours-time--closed">{{ 'printer_shop.footer.closed'|trans }}</span>
+						</div>
+						<div class="printer-footer__hours-row">
+							<span>{{ 'printer_shop.footer.hours_saturday'|trans }}</span>
+							<span class="printer-footer__hours-time">08:00 – 13:00</span>
+						</div>
+					</div>
 
-                    {# Social Media #}
-                    <h4 class="printer-footer__heading mt-4">{{ 'printer_shop.footer.social_networks'|trans }}</h4>
-                    <div class="printer-footer__social">
-                        <a href="https://www.facebook.com/" target="_blank" rel="noopener" class="printer-footer__social-link" aria-label="Facebook">
-                            <i class="ti ti-brand-facebook"></i>
-                        </a>
-                        <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="printer-footer__social-link" aria-label="Instagram">
-                            <i class="ti ti-brand-instagram"></i>
-                        </a>
-                        <a href="https://www.tiktok.com/" target="_blank" rel="noopener" class="printer-footer__social-link" aria-label="TikTok">
-                            <i class="ti ti-brand-tiktok"></i>
-                        </a>
-                        <a href="https://wa.me/213555123456" target="_blank" rel="noopener" class="printer-footer__social-link printer-footer__social-link--whatsapp" aria-label="WhatsApp">
-                            <i class="ti ti-brand-whatsapp"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+					{# Social Media #}
+					<h4 class="printer-footer__heading mt-4">{{ 'printer_shop.footer.social_networks'|trans }}</h4>
+					<div class="printer-footer__social">
+						<a href="https://www.facebook.com/" target="_blank" rel="noopener" class="printer-footer__social-link" aria-label="Facebook">
+							<i class="ti ti-brand-facebook"></i>
+						</a>
+						<a href="https://www.instagram.com/" target="_blank" rel="noopener" class="printer-footer__social-link" aria-label="Instagram">
+							<i class="ti ti-brand-instagram"></i>
+						</a>
+						<a href="https://www.tiktok.com/" target="_blank" rel="noopener" class="printer-footer__social-link" aria-label="TikTok">
+							<i class="ti ti-brand-tiktok"></i>
+						</a>
+						<a href="https://wa.me/213665908917" target="_blank" rel="noopener" class="printer-footer__social-link printer-footer__social-link--whatsapp" aria-label="WhatsApp">
+							<i class="ti ti-brand-whatsapp"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    {# ── Payment Methods Strip ── #}
-    <div class="printer-footer__payments">
-        <div class="container">
-            <div class="printer-footer__payments-inner">
-                <span class="printer-footer__payments-label">{{ 'printer_shop.footer.payment_methods'|trans }}</span>
-                <div class="printer-footer__payments-icons">
-                    {# Cash on Delivery #}
-                    <div class="printer-footer__payment-badge" title="{{ 'printer_shop.footer.cash_on_delivery'|trans }}">
-                        <i class="ti ti-cash"></i>
-                        <span>{{ 'printer_shop.footer.cod_short'|trans }}</span>
-                    </div>
-                    {# Chargily #}
-                    <div class="printer-footer__payment-badge" title="Chargily Pay">
-                        <i class="ti ti-credit-card"></i>
-                        <span>Chargily</span>
-                    </div>
-                    {# PayPal #}
-                    <div class="printer-footer__payment-badge" title="PayPal">
-                        <i class="ti ti-brand-paypal"></i>
-                        <span>PayPal</span>
-                    </div>
-                    {# Binance Pay #}
-                    <div class="printer-footer__payment-badge" title="Binance Pay">
-                        <i class="ti ti-currency-bitcoin"></i>
-                        <span>Binance</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	{# ── Payment Methods Strip ── #}
+	<div class="printer-footer__payments">
+		<div class="container">
+			<div class="printer-footer__payments-inner">
+				<span class="printer-footer__payments-label">{{ 'printer_shop.footer.payment_methods'|trans }}</span>
+				<div
+					class="printer-footer__payments-icons">
+					{# Cash on Delivery #}
+					<div class="printer-footer__payment-badge" title="{{ 'printer_shop.footer.cash_on_delivery'|trans }}">
+						<i class="ti ti-cash"></i>
+						<span>{{ 'printer_shop.footer.cod_short'|trans }}</span>
+					</div>
+					{# Chargily #}
+					<div class="printer-footer__payment-badge" title="Chargily Pay">
+						<i class="ti ti-credit-card"></i>
+						<span>Chargily</span>
+					</div>
+					{# PayPal #}
+					<div class="printer-footer__payment-badge" title="PayPal">
+						<i class="ti ti-brand-paypal"></i>
+						<span>PayPal</span>
+					</div>
+					{# Binance Pay #}
+					<div class="printer-footer__payment-badge" title="Binance Pay">
+						<i class="ti ti-currency-bitcoin"></i>
+						<span>Binance</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    {# ── Bottom Bar ── #}
-    <div class="printer-footer__bottom">
-        <div class="container">
-            <div class="printer-footer__bottom-inner">
-                <p class="printer-footer__copy">
-                    &copy; {{ "now"|date("Y") }} {{ 'sylius.ui.your_store'|trans }}. {{ 'printer_shop.footer.all_rights_reserved'|trans }}
-                </p>
-                <p class="printer-footer__powered">
-                    {{ 'sylius.ui.powered_by'|trans }}
-                    <a href="https://sylius.com" target="_blank" rel="noopener">Sylius</a>
-                </p>
-            </div>
-        </div>
-    </div>
+	{# ── Bottom Bar ── #}
+	<div class="printer-footer__bottom">
+		<div class="container">
+			<div class="printer-footer__bottom-inner">
+				<p class="printer-footer__copy">
+					&copy;
+					{{ "now"|date("Y") }}
+					{{ 'sylius.ui.your_store'|trans }}.
+					{{ 'printer_shop.footer.all_rights_reserved'|trans }}
+				</p>
+				<p class="printer-footer__powered">
+					{{ 'sylius.ui.powered_by'|trans }}
+					<a href="https://www.linkedin.com/in/brahim-bouakkadia" target="_blank" rel="noopener">Brahim Bouakkadia</a>
+				</p>
+			</div>
+		</div>
+	</div>
 </footer>

@@ -187,9 +187,9 @@
     margin-bottom: 1.25rem;
 }
 
+//filter: brightness(0) invert(1);
 .printer-footer__logo-wrap {
     width: 140px;
-    filter: brightness(0) invert(1);
     opacity: 0.9;
     transition: opacity 0.3s;
 
@@ -437,15 +437,42 @@
     }
 
     // Specific badge accents
-    &:nth-child(1) i { color: $printer-green; }     // COD – green
-    &:nth-child(2) i { color: $printer-cyan-light; } // Chargily – cyan
-    &:nth-child(3) i { color: #0070BA; }             // PayPal – blue
-    &:nth-child(4) i { color: #F0B90B; }             // Binance – yellow
+    &:nth-child(1) i {
+        color: $printer-green;
+    }
 
-    &:nth-child(1):hover i { color: lighten($printer-green, 10%); }
-    &:nth-child(2):hover i { color: lighten($printer-cyan-light, 10%); }
-    &:nth-child(3):hover i { color: lighten(#0070BA, 15%); }
-    &:nth-child(4):hover i { color: lighten(#F0B90B, 10%); }
+    // COD – green
+    &:nth-child(2) i {
+        color: $printer-cyan-light;
+    }
+
+    // Chargily – cyan
+    &:nth-child(3) i {
+        color: #0070BA;
+    }
+
+    // PayPal – blue
+    &:nth-child(4) i {
+        color: #F0B90B;
+    }
+
+    // Binance – yellow
+
+    &:nth-child(1):hover i {
+        color: lighten($printer-green, 10%);
+    }
+
+    &:nth-child(2):hover i {
+        color: lighten($printer-cyan-light, 10%);
+    }
+
+    &:nth-child(3):hover i {
+        color: lighten(#0070BA, 15%);
+    }
+
+    &:nth-child(4):hover i {
+        color: lighten(#F0B90B, 10%);
+    }
 }
 
 // =============================================

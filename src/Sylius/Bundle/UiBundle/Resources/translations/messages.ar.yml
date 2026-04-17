@@ -1016,7 +1016,7 @@ sylius:
         your_products: 'منتجاتك'
         your_profile: 'ملفك الشخصي'
         your_shopping_cart: 'سلة التسوق الخاصة بك'
-        your_store: 'متجرك'
+        your_store: 'NovaPrint'
         youtube: 'يوتيوب'
         zone: 'منطقة'
         zone_consisting_of_countries: 'منطقة تتكون من دول'

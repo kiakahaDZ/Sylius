@@ -1,0 +1,66 @@
+<div class="printer-taxonomy-sidebar mb-4" {{ sylius_test_html_attribute('vertical-menu') }}>
+    <h3 class="printer-taxonomy-title h5 mb-3 fw-bold border-bottom pb-2">
+        {{ taxon.name|default('Categories'|trans) }}
+    </h3>
+    <div class="d-flex flex-column gap-2 mt-3">
+        {% if taxon.parent is not empty and not taxon.parent.isRoot() and taxon.parent.enabled %}
+            <a href="{{ path('sylius_shop_product_index', {'slug': taxon.parent.slug, '_locale': taxon.parent.translation.locale}) }}" class="printer-taxonomy-link printer-taxonomy-link--up d-flex align-items-center py-2 px-3 rounded-3 text-decoration-none transition-base" {{ sylius_test_html_attribute('vertical-menu-go-level-up') }}>
+                <i class="ti ti-arrow-left me-2"></i>
+                <span class="fw-medium">{{ 'sylius.ui.go_level_up'|trans }}</span>
+            </a>
+        {% endif %}
+
+        {% for child in taxon.enabledChildren %}
+            <a href="{{ path('sylius_shop_product_index', {'slug': child.slug, '_locale': child.translation.locale}) }}" class="printer-taxonomy-link d-flex align-items-center justify-content-between py-2 px-3 rounded-3 text-decoration-none transition-base" {{ sylius_test_html_attribute('vertical-menu-item') }}>
+                <span class="fw-medium">{{ child.name }}</span>
+                <i class="ti ti-chevron-right opacity-50"></i>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+.printer-taxonomy-sidebar {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+.printer-taxonomy-title {
+    color: #212529;
+    letter-spacing: -0.3px;
+    text-transform: capitalize;
+}
+.printer-taxonomy-link {
+    color: #495057;
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+.printer-taxonomy-link:hover {
+    background-color: #ffffff;
+    color: #f05c1e; /* Printer orange theme color */
+    border-color: rgba(240, 92, 30, 0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+    transform: translateX(4px);
+}
+.printer-taxonomy-link:hover .ti-chevron-right {
+    transform: translateX(3px);
+    opacity: 1 !important;
+    transition: transform 0.3s ease;
+}
+.printer-taxonomy-link--up {
+    background-color: rgba(0,0,0,0.03);
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+}
+.printer-taxonomy-link--up:hover {
+    background-color: rgba(0,0,0,0.06);
+    color: #212529;
+    transform: translateX(-4px);
+    border-color: transparent;
+}
+.transition-base {
+    transition: all 0.3s ease;
+}
+</style>
