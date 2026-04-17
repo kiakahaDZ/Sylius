@@ -47,7 +47,7 @@ sylius:
         banner_button: "اكتشف المجموعة الجديدة"
         carousel_header: "منتجات مميزة"
         latest_deals: "أحدث العروض"
-        new_collection: "مجموعة جديدة"
+        new_collection: "NovaPrint"
         newsletter: "النشرة الإخبارية"
         newsletter_description: "اشترك في نشرتنا الإخبارية لتتلقى أحدث العروض في انتظارك! (<i>يمكنك تعديل هذا المحتوى من خلال تجاوز المفتاح sylius.homepage.newsletter_description في ملف الترجمة</i>)"
         subscribe: "اشترك"
