@@ -16,6 +16,7 @@ printer_shop:
         featured_products: 'Produits en Vedette'
         view_all: 'Voir Tout'
         taxon_collection_label: 'Collection'
+        new_collection: "NovaPrint"
 
     hero:
         tagline_1: 'Des solutions d''impression fiables, un service professionnel et une qualité sur laquelle vous pouvez compter.'

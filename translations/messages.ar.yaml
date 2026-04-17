@@ -16,6 +16,8 @@ printer_shop:
         featured_products: 'المنتجات المميّزة'
         view_all: 'عرض الكل'
         taxon_collection_label: 'تشكيلة'
+        latest_deals: "أحدث العروض"
+        new_collection: "NovaPrint"
 
     hero:
         tagline_1: 'حلول طباعة موثوقة، خدمة احترافية، وجودة يمكنك الاعتماد عليها.'
