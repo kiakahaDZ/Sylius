@@ -44,7 +44,7 @@ sylius:
         banner_button: 'Jetez un coup d''œil à la nouvelle collection'
         carousel_header: 'Les produits stars'
         latest_deals: 'Dernières offres'
-        new_collection: 'Nouvelle collection'
+        new_collection: 'NovaPrint'
         newsletter: 'Newsletter'
         newsletter_description: 'Abonnez-vous à notre newsletter pour recevoir les nouvelles offres qui n''attendent que vous ! (<i>Vous pouvez modifier ce contenu en surchargeant la clé "sylius.homepage.newsletter_description" dans votre fichier de traduction</i>)'
         subscribe: 'S''abonner'
