@@ -6,7 +6,7 @@
 		<div class="printer-new-collection__grid photo-grid">
 			{% for i in [1, 2, 3] %}
 				<div class="photo-grid-item-{{ i }} printer-new-collection__cell">
-					<img src="{{ asset('build/shop/images/homepage-new-collection-photo-' ~ i ~ '.jpeg', 'shop') }}" class="printer-new-collection__img" alt="{{ 'sylius.homepage.new_collection'|trans }}" loading="lazy">
+					<img src="{{ asset('assets/shop/img/homepage-new-collection-photo-' ~ i ~ '.jpeg') }}" class="printer-new-collection__img" alt="{{ 'sylius.homepage.new_collection'|trans }}" loading="lazy">
 				</div>
 			{% endfor %}
 		</div>
