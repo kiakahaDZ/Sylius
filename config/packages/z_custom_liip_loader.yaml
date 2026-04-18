@@ -1,0 +1,12 @@
+liip_imagine:
+    loaders:
+        sylius_image:
+            filesystem:
+                data_root:
+                    - "%kernel.project_dir%/public/media/image"
+                    - "%kernel.project_dir%/public"
+        default:
+            filesystem:
+                data_root:
+                    - "%kernel.project_dir%/public/media/image"
+                    - "%kernel.project_dir%/public"
