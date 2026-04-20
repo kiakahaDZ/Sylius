@@ -519,3 +519,92 @@
         }
     }
 }
+
+// =============================================
+// APP DOWNLOAD STRIP
+// =============================================
+
+.printer-footer__app-download {
+    margin-top: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.printer-footer__play-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: $border-radius;
+    padding: 0.6rem 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+        transform: skewX(-25deg);
+        transition: all 0.5s ease;
+    }
+
+    &:hover {
+        background: rgba(255,255,255,0.1);
+        border-color: $printer-orange;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba($printer-orange, 0.2);
+
+        &::before {
+            left: 200%;
+        }
+        
+        i {
+            color: #3DDC84;
+        }
+        .printer-footer__play-large {
+            color: #ffffff;
+        }
+    }
+}
+
+.printer-footer__play-btn-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+
+    i {
+        font-size: 1.8rem;
+        color: rgba(255,255,255,0.7);
+        transition: color 0.3s ease;
+    }
+}
+
+.printer-footer__play-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.printer-footer__play-small {
+    font-size: 0.6rem;
+    font-weight: 600;
+    line-height: 1;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    margin-bottom: 0.15rem;
+}
+
+.printer-footer__play-large {
+    font-family: $headings-font-family;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    color: rgba(255,255,255,0.85);
+    transition: color 0.3s ease;
+}
