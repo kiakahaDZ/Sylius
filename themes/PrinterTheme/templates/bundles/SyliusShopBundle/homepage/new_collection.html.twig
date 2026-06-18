@@ -1,14 +1,23 @@
+{% set settings = get_store_settings() %}
 <section class="printer-section printer-new-collection" role="region" aria-labelledby="new-collection-heading" data-reveal="up">
 	<div class="printer-container">
 		<div class="printer-section-header">
-			<h2 class="printer-section-title" id="new-collection-heading">{{ 'sylius.homepage.new_collection'|trans }}</h2>
+			<h2 class="printer-section-title" id="new-collection-heading">{{ settings and settings.newCollectionTitle ? settings.newCollectionTitle : 'sylius.homepage.new_collection'|trans }}</h2>
 		</div>
 		<div class="printer-new-collection__grid photo-grid">
-			{% for i in [1, 2, 3] %}
-				<div class="photo-grid-item-{{ i }} printer-new-collection__cell">
-					<img src="{{ asset('assets/shop/img/homepage-new-collection-photo-' ~ i ~ '.jpeg') }}" class="printer-new-collection__img" alt="{{ 'sylius.homepage.new_collection'|trans }}" loading="lazy">
-				</div>
-			{% endfor %}
+			{% set img1 = settings and settings.newCollectionImage1 ? asset(settings.newCollectionImage1) : asset('assets/shop/img/homepage-new-collection-photo-1.jpeg') %}
+			{% set img2 = settings and settings.newCollectionImage2 ? asset(settings.newCollectionImage2) : asset('assets/shop/img/homepage-new-collection-photo-2.jpeg') %}
+			{% set img3 = settings and settings.newCollectionImage3 ? asset(settings.newCollectionImage3) : asset('assets/shop/img/homepage-new-collection-photo-3.jpeg') %}
+			
+			<div class="photo-grid-item-1 printer-new-collection__cell">
+				<img src="{{ img1 }}" class="printer-new-collection__img" alt="Collection Image 1" loading="lazy">
+			</div>
+			<div class="photo-grid-item-2 printer-new-collection__cell">
+				<img src="{{ img2 }}" class="printer-new-collection__img" alt="Collection Image 2" loading="lazy">
+			</div>
+			<div class="photo-grid-item-3 printer-new-collection__cell">
+				<img src="{{ img3 }}" class="printer-new-collection__img" alt="Collection Image 3" loading="lazy">
+			</div>
 		</div>
 	</div>
 </section>

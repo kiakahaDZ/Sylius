@@ -32,44 +32,44 @@
 	<div class="printer-home-catalog printer-container" data-reveal="up">
 		{% hook homepage_hook %}
 	</div>
-
-	<section class="printer-repair-banner" id="repair" aria-label="{{ 'printer_shop.repair.title'|trans }}" data-reveal="up">
-		<div class="printer-container">
-			<div class="printer-repair-banner__inner">
-				<div class="printer-repair-banner__content">
-					<span class="printer-repair-banner__label">
-						<i class="ti ti-tool"></i>
-						{{ 'printer_shop.repair.label'|trans }}
-					</span>
-					<h2 class="printer-repair-banner__title">{{ 'printer_shop.repair.title'|trans }}</h2>
-					<p class="printer-repair-banner__desc">{{ 'printer_shop.repair.description'|trans }}</p>
-					<div class="printer-repair-banner__actions">
-						<a href="{{ path('sylius_repair_service_shop_request') }}" class="printer-repair-banner__cta">
-							{{ 'printer_shop.repair.cta'|trans }}
-							<i class="ti ti-arrow-right"></i>
-						</a>
-					</div>
-				</div>
-				<div class="printer-repair-banner__visual" aria-hidden="true">
-					<div class="printer-repair-banner__icon-grid">
-						<div class="printer-repair-banner__icon-item">
-							<i class="ti ti-settings"></i>
-						</div>
-						<div class="printer-repair-banner__icon-item">
-							<i class="ti ti-cpu"></i>
-						</div>
-						<div class="printer-repair-banner__icon-item">
+	{#
+		<section class="printer-repair-banner" id="repair" aria-label="{{ 'printer_shop.repair.title'|trans }}" data-reveal="up">
+			<div class="printer-container">
+				<div class="printer-repair-banner__inner">
+					<div class="printer-repair-banner__content">
+						<span class="printer-repair-banner__label">
 							<i class="ti ti-tool"></i>
+							{{ 'printer_shop.repair.label'|trans }}
+						</span>
+						<h2 class="printer-repair-banner__title">{{ 'printer_shop.repair.title'|trans }}</h2>
+						<p class="printer-repair-banner__desc">{{ 'printer_shop.repair.description'|trans }}</p>
+						<div class="printer-repair-banner__actions">
+							<a href="{{ path('sylius_repair_service_shop_request') }}" class="printer-repair-banner__cta">
+								{{ 'printer_shop.repair.cta'|trans }}
+								<i class="ti ti-arrow-right"></i>
+							</a>
 						</div>
-						<div class="printer-repair-banner__icon-item">
-							<i class="ti ti-shield-check"></i>
+					</div>
+					<div class="printer-repair-banner__visual" aria-hidden="true">
+						<div class="printer-repair-banner__icon-grid">
+							<div class="printer-repair-banner__icon-item">
+								<i class="ti ti-settings"></i>
+							</div>
+							<div class="printer-repair-banner__icon-item">
+								<i class="ti ti-cpu"></i>
+							</div>
+							<div class="printer-repair-banner__icon-item">
+								<i class="ti ti-tool"></i>
+							</div>
+							<div class="printer-repair-banner__icon-item">
+								<i class="ti ti-shield-check"></i>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-
+		</section>
+	#}
 	{% include '@SyliusShop/homepage/features.html.twig' ignore missing %}
 
 {% endblock %}

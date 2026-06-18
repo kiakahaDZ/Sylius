@@ -1,0 +1,25 @@
+sylius_grid:
+    grids:
+        youngstore_settings_admin_store_settings:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: YoungstoreSettingsPlugin\Entity\StoreSettings
+            fields:
+                id:
+                    type: string
+                    path: id
+                    label: sylius.ui.id
+                apkLink:
+                    type: string
+                    path: apkLink
+                    label: APK Link
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

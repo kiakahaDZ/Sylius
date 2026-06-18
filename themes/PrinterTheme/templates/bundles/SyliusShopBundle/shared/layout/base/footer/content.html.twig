@@ -1,36 +1,34 @@
 {# PrinterTheme – Premium Footer #}
-
-<footer
-	class="printer-footer" id="site-footer">
-	{# ── Newsletter CTA Strip ── #}
-	<div class="printer-footer__newsletter">
-		<div class="container">
-			<div class="printer-footer__newsletter-inner">
-				<div class="printer-footer__newsletter-content">
-					<div class="printer-footer__newsletter-icon">
-						<i class="ti ti-mail-forward"></i>
+{% set settings = get_store_settings() %}
+<footer class="printer-footer" id="site-footer">
+	{# ── Newsletter CTA Strip ── 
+		<div class="printer-footer__newsletter">
+			<div class="container">
+				<div class="printer-footer__newsletter-inner">
+					<div class="printer-footer__newsletter-content">
+						<div class="printer-footer__newsletter-icon">
+							<i class="ti ti-mail-forward"></i>
+						</div>
+						<div>
+							<h3 class="printer-footer__newsletter-title">{{ 'printer_shop.footer.newsletter'|trans }}</h3>
+							<p class="printer-footer__newsletter-desc">{{ 'printer_shop.footer.newsletter_desc'|trans }}</p>
+						</div>
 					</div>
-					<div>
-						<h3 class="printer-footer__newsletter-title">{{ 'printer_shop.footer.newsletter'|trans }}</h3>
-						<p class="printer-footer__newsletter-desc">{{ 'printer_shop.footer.newsletter_desc'|trans }}</p>
-					</div>
+					<form class="printer-footer__newsletter-form" action="#" method="post">
+						<div class="printer-footer__newsletter-input-wrap">
+							<input type="email" class="printer-footer__newsletter-input" placeholder="{{ 'printer_shop.footer.email_placeholder'|trans }}" required/>
+							<button type="submit" class="printer-footer__newsletter-btn">
+								{{ 'printer_shop.footer.subscribe'|trans }}
+								<i class="ti ti-arrow-right"></i>
+							</button>
+						</div>
+					</form>
 				</div>
-				<form class="printer-footer__newsletter-form" action="#" method="post">
-					<div class="printer-footer__newsletter-input-wrap">
-						<input type="email" class="printer-footer__newsletter-input" placeholder="{{ 'printer_shop.footer.email_placeholder'|trans }}" required/>
-						<button type="submit" class="printer-footer__newsletter-btn">
-							{{ 'printer_shop.footer.subscribe'|trans }}
-							<i class="ti ti-arrow-right"></i>
-						</button>
-					</div>
-				</form>
 			</div>
 		</div>
-	</div>
-
+	#}
 	{# ── Main Footer Content ── #}
-	<div class="printer-footer__main">
-		<div class="container">
+		<div class="printer-footer__main"> <div class="container">
 			<div
 				class="row g-4 g-lg-5">
 				{# Column 1 – Brand / About #}
@@ -38,24 +36,28 @@
 					<div class="printer-footer__brand">
 						<a href="{{ path('sylius_shop_homepage') }}" class="printer-footer__logo" aria-label="{{ 'sylius.ui.sylius_logo_aria'|trans }}">
 							<div class="printer-footer__logo-wrap">
-								{% include '@SyliusShop/shared/logo.html.twig' %}
+								{% if settings and settings.footerLogo %}
+									<img src="{{ asset(settings.footerLogo) }}" alt="Footer Logo" style="max-height: 40px;">
+								{% else %}
+									{% include '@SyliusShop/shared/logo.html.twig' %}
+								{% endif %}
 							</div>
 						</a>
-						<p class="printer-footer__about">{{ 'printer_shop.footer.about_desc'|trans }}</p>
+						<p class="printer-footer__about">{{ settings and settings.footerAboutText ? settings.footerAboutText : 'printer_shop.footer.about_desc'|trans }}</p>
 
 						{# Contact info #}
 						<div class="printer-footer__contact-list">
 							<div class="printer-footer__contact-item">
 								<i class="ti ti-map-pin"></i>
-								<span>{{ 'printer_shop.footer.address_value'|trans }}</span>
+								<span>{{ settings and settings.contactAddress ? settings.contactAddress : 'printer_shop.footer.address_value'|trans }}</span>
 							</div>
 							<div class="printer-footer__contact-item">
 								<i class="ti ti-phone"></i>
-								<a href="tel:+213555123456">{{ 'printer_shop.footer.phone_value'|trans }}</a>
+								<a href="tel:{{ settings and settings.contactPhone ? settings.contactPhone : '+213555123456' }}">{{ settings and settings.contactPhone ? settings.contactPhone : 'printer_shop.footer.phone_value'|trans }}</a>
 							</div>
 							<div class="printer-footer__contact-item">
 								<i class="ti ti-mail"></i>
-								<a href="mailto:contact@novaprintdz.com">{{ 'printer_shop.footer.email_value'|trans }}</a>
+								<a href="mailto:{{ settings and settings.contactEmail ? settings.contactEmail : 'contact@novaprintdz.com' }}">{{ settings and settings.contactEmail ? settings.contactEmail : 'printer_shop.footer.email_value'|trans }}</a>
 							</div>
 						</div>
 					</div>
@@ -103,18 +105,26 @@
 					{# Social Media #}
 					<h4 class="printer-footer__heading mt-4">{{ 'printer_shop.footer.social_networks'|trans }}</h4>
 					<div class="printer-footer__social">
-						<a href="https://www.facebook.com/" target="_blank" rel="noopener" class="printer-footer__social-link" aria-label="Facebook">
-							<i class="ti ti-brand-facebook"></i>
-						</a>
-						<a href="https://www.instagram.com/" target="_blank" rel="noopener" class="printer-footer__social-link" aria-label="Instagram">
-							<i class="ti ti-brand-instagram"></i>
-						</a>
-						<a href="https://www.tiktok.com/" target="_blank" rel="noopener" class="printer-footer__social-link" aria-label="TikTok">
-							<i class="ti ti-brand-tiktok"></i>
-						</a>
-						<a href="https://wa.me/213665908917" target="_blank" rel="noopener" class="printer-footer__social-link printer-footer__social-link--whatsapp" aria-label="WhatsApp">
-							<i class="ti ti-brand-whatsapp"></i>
-						</a>
+						{% if not settings or settings.socialFacebookEnabled %}
+							<a href="{{ settings and settings.socialFacebookUrl ? settings.socialFacebookUrl : 'https://www.facebook.com/' }}" target="_blank" rel="noopener" class="printer-footer__social-link" aria-label="Facebook">
+								<i class="ti ti-brand-facebook"></i>
+							</a>
+						{% endif %}
+						{% if not settings or settings.socialInstagramEnabled %}
+							<a href="{{ settings and settings.socialInstagramUrl ? settings.socialInstagramUrl : 'https://www.instagram.com/' }}" target="_blank" rel="noopener" class="printer-footer__social-link" aria-label="Instagram">
+								<i class="ti ti-brand-instagram"></i>
+							</a>
+						{% endif %}
+						{% if not settings or settings.socialTiktokEnabled %}
+							<a href="{{ settings and settings.socialTiktokUrl ? settings.socialTiktokUrl : 'https://www.tiktok.com/' }}" target="_blank" rel="noopener" class="printer-footer__social-link" aria-label="TikTok">
+								<i class="ti ti-brand-tiktok"></i>
+							</a>
+						{% endif %}
+						{% if not settings or settings.socialWhatsappEnabled %}
+							<a href="{{ settings and settings.socialWhatsappUrl ? settings.socialWhatsappUrl : 'https://wa.me/213665908917' }}" target="_blank" rel="noopener" class="printer-footer__social-link printer-footer__social-link--whatsapp" aria-label="WhatsApp">
+								<i class="ti ti-brand-whatsapp"></i>
+							</a>
+						{% endif %}
 					</div>
 
 					{# App Download #}

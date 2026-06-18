@@ -1,6 +1,13 @@
 {% set taxon = hookable_metadata.context.taxon %}
 
-<a class="nav-link d-flex align-items-center gap-1" href="{{ path('sylius_shop_product_index', {'slug': taxon.slug, '_locale': taxon.translation.locale}) }}" data-controller="printer-menu-dropdown" data-action="mouseenter->printer-menu-dropdown#show mouseleave->printer-menu-dropdown#hide" data-printer-menu-dropdown-delay-value="150" role="button" aria-expanded="false">
-	{{ taxon.name }}
-	{{ ux_icon('tabler:chevron-down', { 'class': 'icon icon-sm'}) }}
-</a>
+<div class="d-flex align-items-center gap-1 w-100 justify-content-between">
+	<a class="nav-link flex-grow-1" href="{{ path('sylius_shop_product_index', {'slug': taxon.slug, '_locale': taxon.translation.locale}) }}">
+		{{ taxon.name }}
+	</a>
+	<span class="nav-link px-2 d-lg-none" onclick="toggleMobileMenu(event, this, '.nav-item');" role="button" aria-expanded="false" style="cursor: pointer;">
+		{{ ux_icon('tabler:chevron-down', { 'class': 'icon icon-sm'}) }}
+	</span>
+	<span class="nav-link px-0 d-none d-lg-flex" style="pointer-events: none;">
+		{{ ux_icon('tabler:chevron-down', { 'class': 'icon icon-sm'}) }}
+	</span>
+</div>

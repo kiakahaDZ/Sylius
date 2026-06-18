@@ -7,85 +7,90 @@
 {% set channel_taxon = sylius.channel.menuTaxon|default(null) %}
 {% set taxon_children = channel_taxon ? channel_taxon.children|default([]) : [] %}
 
-{% if taxon_children|length > 0 %}
-<section class="printer-section printer-categories" id="categories" aria-label="{{ 'printer_shop.categories.title'|trans }}" data-reveal="up" data-controller="printer-categories">
-    <div class="printer-container">
+	{% if taxon_children|length > 0 %}
+		<section class="printer-section printer-categories" id="categories" aria-label="{{ 'printer_shop.categories.title'|trans }}" data-reveal="up" data-controller="printer-categories"> <div class="printer-container">
 
-        <div class="printer-categories__header">
-            <h2 class="printer-categories__title">{{ 'printer_shop.categories.title'|trans }}</h2>
-            <div class="printer-categories__nav">
-                <button type="button" class="printer-categories__nav-btn" aria-label="{{ 'sylius.ui.previous'|trans }}" data-action="click->printer-categories#prev">
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                </button>
-                <button type="button" class="printer-categories__nav-btn" aria-label="{{ 'sylius.ui.next'|trans }}" data-action="click->printer-categories#next">
-                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </button>
-            </div>
-        </div>
+			<div class="printer-categories__header">
+				<h2 class="printer-categories__title">{{ 'printer_shop.categories.title'|trans }}</h2>
+				<div class="printer-categories__nav">
+					<button type="button" class="printer-categories__nav-btn" aria-label="{{ 'sylius.ui.previous'|trans }}" data-action="click->printer-categories#prev">
+						<svg viewbox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+							<polyline points="15 18 9 12 15 6"></polyline>
+						</svg>
+					</button>
+					<button type="button" class="printer-categories__nav-btn" aria-label="{{ 'sylius.ui.next'|trans }}" data-action="click->printer-categories#next">
+						<svg viewbox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+							<polyline points="9 18 15 12 9 6"></polyline>
+						</svg>
+					</button>
+				</div>
+			</div>
 
-        <div class="printer-categories__scroll" data-printer-categories-target="scroll">
-            {% for taxon in taxon_children %}
-                {% set slug_lower = taxon.code|default('')|lower %}
+			<div class="printer-categories__scroll" data-printer-categories-target="scroll">
+				{% for taxon in taxon_children %}
+					{% set slug_lower = taxon.code|default('')|lower %}
 
-                {# Smart icon matching based on taxon code or slug keywords #}
-                {% set icon_class = 'ti-tag' %}
-                {% if 'printer' in slug_lower or 'imprimante' in slug_lower %}
-                    {% set icon_class = 'ti-printer' %}
-                {% elseif 'compatible' in slug_lower %}
-                    {% set icon_class = 'ti-droplet' %}
-                {% elseif 'ink' in slug_lower or 'encre' in slug_lower %}
-                    {% set icon_class = 'ti-color-swatch' %}
-                {% elseif 'refill' in slug_lower or 'recharge' in slug_lower %}
-                    {% set icon_class = 'ti-recycle' %}
-                {% elseif 'toner' in slug_lower %}
-                    {% set icon_class = 'ti-box' %}
-                {% elseif 'paper' in slug_lower or 'papier' in slug_lower %}
-                    {% set icon_class = 'ti-file-text' %}
-                {% elseif 'part' in slug_lower or 'piece' in slug_lower %}
-                    {% set icon_class = 'ti-settings-2' %}
-                {% elseif 'head' in slug_lower or 'tete' in slug_lower %}
-                    {% set icon_class = 'ti-cpu' %}
-                {% elseif 'accessor' in slug_lower %}
-                    {% set icon_class = 'ti-device-desktop' %}
-                {% endif %}
+					{# Smart icon matching based on taxon code or slug keywords #}
+					{% set icon_class = 'ti-tag' %}
+					{% if 'printer' in slug_lower or 'imprimante' in slug_lower %}
+						{% set icon_class = 'ti-printer' %}
+					{% elseif 'compatible' in slug_lower %}
+						{% set icon_class = 'ti-droplet' %}
+					{% elseif 'ink' in slug_lower or 'encre' in slug_lower %}
+						{% set icon_class = 'ti-color-swatch' %}
+					{% elseif 'refill' in slug_lower or 'recharge' in slug_lower %}
+						{% set icon_class = 'ti-recycle' %}
+					{% elseif 'toner' in slug_lower %}
+						{% set icon_class = 'ti-box' %}
+					{% elseif 'paper' in slug_lower or 'papier' in slug_lower %}
+						{% set icon_class = 'ti-file-text' %}
+					{% elseif 'part' in slug_lower or 'piece' in slug_lower %}
+						{% set icon_class = 'ti-settings-2' %}
+					{% elseif 'head' in slug_lower or 'tete' in slug_lower %}
+						{% set icon_class = 'ti-cpu' %}
+					{% elseif 'accessor' in slug_lower %}
+						{% set icon_class = 'ti-device-desktop' %}
+					{% endif %}
 
-                <a href="{{ path('sylius_shop_product_index', {'slug': taxon.slug}) }}"
-                   class="printer-category-card"
-                   id="category-{{ taxon.code }}">
-                    {% if taxon.images|length > 0 %}
-                        <div class="printer-category-card__image">
-                            <img src="{{ taxon.images.first.path|imagine_filter('sylius_shop_product_thumbnail') }}" alt="{{ taxon.name }}">
-                        </div>
-                    {% else %}
-                        <div class="printer-category-card__icon">
-                            <i class="ti {{ icon_class }}"></i>
-                        </div>
-                    {% endif %}
-                    <div class="printer-category-card__info">
-                        <h3 class="printer-category-card__name">{{ taxon.name }}</h3>
-                    <span class="printer-category-card__arrow">
-                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </span>
-                    </div>
-                </a>
-            {% endfor %}
+					<a href="{{ path('sylius_shop_product_index', {'slug': taxon.slug}) }}" class="printer-category-card" id="category-{{ taxon.code }}">
+						{% if taxon.images|length > 0 %}
+							<div class="printer-category-card__image">
+								<img src="{{ taxon.images.first.path|imagine_filter('sylius_shop_product_thumbnail') }}" alt="{{ taxon.name }}">
+							</div>
+						{% else %}
+							<div class="printer-category-card__icon">
+								<i class="ti {{ icon_class }}"></i>
+							</div>
+						{% endif %}
+						<div class="printer-category-card__info">
+							<h3 class="printer-category-card__name">{{ taxon.name }}</h3>
+							<span class="printer-category-card__arrow">
+								<svg viewbox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+									<polyline points="9 18 15 12 9 6"></polyline>
+								</svg>
+							</span>
+						</div>
+					</a>
+				{% endfor %}
 
-            {# Always add Repair Service as a special category card #}
-            <a href="{{ path('sylius_repair_service_shop_request') }}"
-               class="printer-category-card printer-category-card--accent"
-               id="category-repair">
-                <div class="printer-category-card__icon">
-                    <i class="ti ti-tool"></i>
-                </div>
-                <div class="printer-category-card__info">
-                    <h3 class="printer-category-card__name">{{ 'printer_shop.categories.repair'|trans }}</h3>
-                    <span class="printer-category-card__arrow">
-                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                    </span>
-                </div>
-            </a>
-        </div>
+				{# Always add Repair Service as a special category card #}
+				{# <a href="{{ path('sylius_repair_service_shop_request') }}"
+								class="printer-category-card printer-category-card--accent"
+								               id="category-repair">
+								<div class="printer-category-card__icon">
+									<i class="ti ti-tool"></i>
+								</div>
+								<div class="printer-category-card__info">
+									<h3 class="printer-category-card__name">{{ 'printer_shop.categories.repair'|trans }}</h3>
+									<span class="printer-category-card__arrow">
+										<svg viewbox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+											<polyline points="9 18 15 12 9 6"></polyline>
+										</svg>
+									</span>
+								</div>
+							</a>#}
+			</div>
 
-    </div>
-</section>
+		</div>
+	</section>
 {% endif %}

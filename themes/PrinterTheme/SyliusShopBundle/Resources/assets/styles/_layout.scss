@@ -208,8 +208,8 @@ a {
 
 // Sylius shop taxon menu (#navbarNav) — PrinterTheme polish
 .printer-header-taxon-nav {
-    background: $printer-surface;
-    border-bottom: 1px solid $printer-border-light;
+    background: transparent;
+    border-bottom: none;
 }
 
 .printer-navbar-shop.navbar {

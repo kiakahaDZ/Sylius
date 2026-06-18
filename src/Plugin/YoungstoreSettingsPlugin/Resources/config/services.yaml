@@ -1,0 +1,29 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    YoungstoreSettingsPlugin\:
+        resource: '../..'
+        exclude:
+            - '../../DependencyInjection/'
+            - '../../Entity/'
+            - '../../YoungstoreSettingsPlugin.php'
+
+    YoungstoreSettingsPlugin\Twig\StoreSettingsExtension:
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
+        tags:
+            - { name: twig.extension }
+
+    YoungstoreSettingsPlugin\Menu\AdminMenuListener:
+        tags:
+            - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addSettingsMenu }
+
+    YoungstoreSettingsPlugin\EventListener\UploadListener:
+        arguments:
+            $uploadDestination: '%kernel.project_dir%/public/media/settings'
+        tags:
+            - { name: kernel.event_listener, event: youngstore_settings.store_settings.pre_create, method: uploadFiles }
+            - { name: kernel.event_listener, event: youngstore_settings.store_settings.pre_update, method: uploadFiles }

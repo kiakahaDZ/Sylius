@@ -32,8 +32,10 @@
 // =============================================
 
 .printer-product-gallery {
-    position: sticky;
-    top: 100px;
+    @media (min-width: 992px) {
+        position: sticky;
+        top: 100px;
+    }
 }
 
 .printer-product-gallery__main {

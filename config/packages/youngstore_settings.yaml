@@ -1,0 +1,2 @@
+imports:
+    - { resource: "@YoungstoreSettingsPlugin/Resources/config/grids/admin_store_settings.yaml" }

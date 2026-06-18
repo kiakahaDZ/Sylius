@@ -6,9 +6,13 @@
 		{% if child_taxon.enabledChildren|length > 0 %}
 			{# This child has its own children - render as submenu #}
 			<div class="dropdown-submenu">
-				<a class="dropdown-item dropdown-toggle" href="{{ path('sylius_shop_product_index', {'slug': child_taxon.slug, '_locale': child_taxon.translation.locale}) }}" data-controller="printer-menu-dropdown" data-action="mouseenter->printer-menu-dropdown#show mouseleave->printer-menu-dropdown#hide" role="button" aria-expanded="false" {{ sylius_test_html_attribute('menu-item', child_taxon.name) }}>
-					{{ child_taxon.name }}
-				</a>
+				<div class="d-flex align-items-center w-100 justify-content-between">
+					<a class="dropdown-item flex-grow-1" href="{{ path('sylius_shop_product_index', {'slug': child_taxon.slug, '_locale': child_taxon.translation.locale}) }}" {{ sylius_test_html_attribute('menu-item', child_taxon.name) }}>
+						{{ child_taxon.name }}
+					</a>
+					<span class="dropdown-item dropdown-toggle px-2 d-lg-none" onclick="toggleMobileMenu(event, this, '.dropdown-submenu');" role="button" aria-expanded="false" style="cursor: pointer; width: auto; flex-grow: 0;"></span>
+					<span class="dropdown-item dropdown-toggle px-0 d-none d-lg-block" style="pointer-events: none; width: auto; flex-grow: 0;"></span>
+				</div>
 				<div class="dropdown-menu" data-printer-menu-dropdown-target="dropdown">
 					{{ macros.render_nested_items(child_taxon.enabledChildren, depth + 1) }}
 				</div>

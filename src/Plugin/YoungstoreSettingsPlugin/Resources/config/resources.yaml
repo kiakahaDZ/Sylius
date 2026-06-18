@@ -1,0 +1,5 @@
+sylius_resource:
+    resources:
+        youngstore_settings.store_settings:
+            classes:
+                model: YoungstoreSettingsPlugin\Entity\StoreSettings

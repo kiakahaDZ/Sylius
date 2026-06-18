@@ -1,50 +1,169 @@
 {% if banners|length > 0 %}
-    {# Dynamic hero from Banner entity – split layout #}
-    <section class="printer-hero" id="printer-hero" aria-label="{{ 'sylius.ui.home'|trans }}" data-controller="printer-hero">
-        <div class="printer-hero__shape printer-hero__shape--1" aria-hidden="true"></div>
-        <div class="printer-hero__shape printer-hero__shape--2" aria-hidden="true"></div>
+    <style>
+        .wow-hero-container {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 100%;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0;
+            background: transparent;
+        }
+        .wow-hero-wrapper {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+            border-radius: 0;
+            box-shadow: none;
+            transform: translateZ(0); /* Hardware acceleration */
+        }
+        .printer-hero__slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(1.05);
+        }
+        .printer-hero__slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+            z-index: 5;
+        }
+        .wow-hero-visual {
+            position: absolute;
+            inset: 0;
+            max-width: 100% !important;
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        .wow-hero-visual img {
+            position: absolute;
+            inset: 0;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 100% !important;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        /* Shiny Overlay */
+        .printer-hero__slide::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to bottom right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 40%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 60%);
+            transform: rotate(30deg) translateY(-100%);
+            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2;
+            pointer-events: none;
+        }
+        .wow-hero-wrapper:hover .printer-hero__slide.active::before {
+            transform: rotate(30deg) translateY(100%);
+        }
 
-        {% for banner in banners %}
-            <div class="printer-hero__slide{{ loop.first ? ' active' : '' }}" data-printer-hero-target="slide">
-                <div class="printer-hero__inner printer-container">
-                    <div class="printer-hero__content">
-                        {% if banner.subtitle %}
-                            <p class="printer-hero__tagline">{{ banner.subtitle }}</p>
-                        {% endif %}
-                        <h1 class="printer-hero__title">{{ banner.title }}</h1>
-                        <div class="printer-hero__actions">
-                            {% if banner.link %}
-                                <a href="{{ banner.link }}" class="printer-hero__cta printer-hero__cta--primary">
-                                    {{ 'printer_shop.hero.visit_shop'|trans }}
-                                    <i class="ti ti-chevron-right"></i>
-                                </a>
-                            {% endif %}
-                        </div>
-                    </div>
+        /* Glassmorphism Controls */
+        .printer-hero__controls {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        .printer-hero__dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0;
+        }
+        .printer-hero__dot.active {
+            width: 32px;
+            border-radius: 10px;
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(255,255,255,0.8);
+        }
+        .printer-hero__arrow {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.7;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .printer-hero__arrow:hover {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 992px) {
+            .wow-hero-wrapper { height: 400px; }
+        }
+        @media (max-width: 768px) {
+            .wow-hero-wrapper { height: 250px; }
+            .printer-hero__controls { bottom: 1rem; padding: 0.4rem 1rem; gap: 0.5rem; }
+            .printer-hero__dot { width: 8px; height: 8px; }
+            .printer-hero__dot.active { width: 24px; }
+        }
+    </style>
+
+    <section class="printer-hero wow-hero-container" id="printer-hero" aria-label="{{ 'sylius.ui.home'|trans }}" data-controller="printer-hero">
+        <div class="wow-hero-wrapper">
+            {% for banner in banners %}
+                <div class="printer-hero__slide{{ loop.first ? ' active' : '' }}" data-printer-hero-target="slide">
                     {% if banner.imagePath %}
-                        <div class="printer-hero__visual printer-hero__visual--banner-photo">
+                        <div class="printer-hero__visual wow-hero-visual">
                             <img src="{{ banner.imagePath|imagine_filter('sylius_shop_product_large_thumbnail') }}" alt="{{ banner.title }}" loading="{{ loop.first ? 'eager' : 'lazy' }}" decoding="async">
                         </div>
                     {% endif %}
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
 
-        {% if banners|length > 1 %}
-            <button class="printer-hero__arrow printer-hero__arrow--prev" aria-label="{{ 'sylius.ui.previous'|trans }}" data-action="click->printer-hero#prev">
-                <i class="ti ti-chevron-left"></i>
-            </button>
-            <button class="printer-hero__arrow printer-hero__arrow--next" aria-label="{{ 'sylius.ui.next'|trans }}" data-action="click->printer-hero#next">
-                <i class="ti ti-chevron-right"></i>
-            </button>
-            <div class="printer-hero__dots" role="tablist">
-                {% for banner in banners %}
-                    <button class="printer-hero__dot{{ loop.first ? ' active' : '' }}" role="tab" data-action="click->printer-hero#goTo" data-index="{{ loop.index0 }}"></button>
-                {% endfor %}
-            </div>
-        {% endif %}
+            {% if banners|length > 1 %}
+                <div class="printer-hero__controls">
+                    <button class="printer-hero__arrow printer-hero__arrow--prev" aria-label="{{ 'sylius.ui.previous'|trans }}" data-action="click->printer-hero#prev">
+                        <i class="ti ti-chevron-left"></i>
+                    </button>
+                    
+                    {% for banner in banners %}
+                        <button class="printer-hero__dot{{ loop.first ? ' active' : '' }}" role="tab" data-action="click->printer-hero#goTo" data-index="{{ loop.index0 }}" aria-label="Go to slide {{ loop.index }}"></button>
+                    {% endfor %}
+                    
+                    <button class="printer-hero__arrow printer-hero__arrow--next" aria-label="{{ 'sylius.ui.next'|trans }}" data-action="click->printer-hero#next">
+                        <i class="ti ti-chevron-right"></i>
+                    </button>
+                </div>
+            {% endif %}
+        </div>
     </section>
 {% else %}
-    {# Fallback: static hero (not homepage/banner.html.twig — that delegates to this controller). #}
     {% include '@SyliusShop/homepage/banner_static_fallback.html.twig' %}
 {% endif %}
+
+
+

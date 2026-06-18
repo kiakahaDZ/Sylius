@@ -1,0 +1,11 @@
+youngstore_settings_admin_store_settings:
+    resource: |
+        alias: youngstore_settings.store_settings
+        section: admin
+        templates: "@SyliusAdmin/shared/crud"
+        redirect: index
+        grid: youngstore_settings_admin_store_settings
+        form: YoungstoreSettingsPlugin\Form\Type\StoreSettingsType
+        permission: true
+    type: sylius.resource
+

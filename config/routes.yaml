@@ -1,10 +1,10 @@
-sylius_offers_click:
+﻿sylius_offers_click:
     path: /offers/{id}/click
     controller: SyliusOffersPlugin\Controller\ClickController::trackClick
 
 
-sylius_repair_service_shop:
-    resource: "@SyliusRepairServicePlugin/Resources/config/shop_routes.yaml"
+#sylius_repair_service_shop:
+#    resource: "@SyliusRepairServicePlugin/Resources/config/shop_routes.yaml"
 
 printer_shop_privacy_policy:
     path: /privacy-policy

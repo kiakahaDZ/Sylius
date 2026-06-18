@@ -1,21 +1,110 @@
-{# Always render the bar so hook-only items (e.g. repair) show even when there are zero menu taxons. #}
-<div class="w-100 border-bottom printer-header-taxon-nav">
-    <nav
-        class="navbar offcanvas-lg offcanvas-start offcanvas-wide p-0 printer-navbar-shop"
-        id="navbarNav"
-        role="navigation"
-        aria-label="{{ 'sylius.ui.taxon_navigation_desktop'|trans }}"
-    >
+<style>
+    .glass-nav-wrapper {
+        padding: 0.5rem 1rem;
+        position: sticky;
+        top: 15px;
+        z-index: 1020;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    .glass-nav {
+        background: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(24px) saturate(200%) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        border-radius: 100px !important; /* Fully rounded pill shape */
+        box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255,255,255,0.8) !important;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        padding: 0.5rem 1.5rem !important;
+    }
+    .glass-nav:hover {
+        background: rgba(255, 255, 255, 0.55) !important;
+        box-shadow: 0 15px 50px -10px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255,255,255,0.9) !important;
+        transform: translateY(-2px);
+    }
+    .printer-header-taxon-nav {
+        border-bottom: none !important;
+        background: transparent !important;
+    }
+    .printer-navbar-nav .nav-link {
+        font-weight: 600;
+        color: #1f2937;
+        padding: 0.5rem 1.25rem !important;
+        border-radius: 50px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 0.05em;
+        position: relative;
+        overflow: hidden;
+    }
+    .printer-navbar-nav .nav-link::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.05);
+        border-radius: 50px;
+        opacity: 0;
+        transform: scale(0.8);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: -1;
+    }
+    .printer-navbar-nav .nav-link:hover {
+        color: #000;
+    }
+    .printer-navbar-nav .nav-link:hover::before {
+        opacity: 1;
+        transform: scale(1);
+    }
+    
+    @media (max-width: 992px) {
+        .glass-nav {
+            border-radius: 20px !important; /* Less rounded for mobile offcanvas */
+            padding: 1rem !important;
+        }
+        .printer-navbar-nav .nav-link {
+            border-radius: 12px;
+        }
+    }
+</style>
+<div class="w-100 printer-header-taxon-nav glass-nav-wrapper">
+    <nav class="navbar offcanvas-lg offcanvas-start glass-nav printer-navbar-shop" id="navbarNav">
         <div class="offcanvas-header w-full">
-            <h1 class="offcanvas-title fs-5">
+            <h1 class="offcanvas-title fs-5" style="font-weight: 800; background: -webkit-linear-gradient(45deg, #111, #666); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                 {{ 'sylius.ui.taxons'|trans }}
             </h1>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#navbarNav" aria-label="{{ 'sylius.ui.close'|trans }}"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#navbarNav"></button>
         </div>
         <div class="offcanvas-body justify-content-lg-center align-items-lg-center w-full py-0">
-            <div class="navbar-nav my-2 flex-column flex-lg-row flex-lg-wrap gap-lg-2 gap-xl-3 align-items-lg-center printer-navbar-nav" {{ sylius_test_html_attribute('menu') }}>
+            <div class="navbar-nav flex-column flex-lg-row flex-lg-wrap gap-lg-1 align-items-lg-center printer-navbar-nav">
                 {% hook 'menu' with { taxons } %}
             </div>
         </div>
     </nav>
 </div>
+<script>
+    function toggleMobileMenu(event, element, parentSelector) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        const parent = element.closest(parentSelector);
+        const menuToToggle = parent.querySelector('.dropdown-menu');
+        const isCurrentlyOpen = menuToToggle.classList.contains('show');
+        
+        // The container holding the sibling items
+        const container = parent.parentElement;
+        
+        // Close all open dropdowns inside sibling items
+        Array.from(container.children).forEach(child => {
+            if (child !== parent) {
+                child.querySelectorAll('.dropdown-menu.show').forEach(menu => menu.classList.remove('show'));
+            }
+        });
+        
+        if (isCurrentlyOpen) {
+            menuToToggle.classList.remove('show');
+        } else {
+            menuToToggle.classList.add('show');
+        }
+    }
+</script>

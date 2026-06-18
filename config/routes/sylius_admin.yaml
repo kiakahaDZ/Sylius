@@ -1,19 +1,29 @@
-sylius_admin:
+﻿sylius_admin:
     resource: "@SyliusAdminBundle/Resources/config/routing.yml"
     prefix: '/%sylius_admin.path_name%'
 
 sylius_admin_banner:
     resource: "@SyliusBannerPlugin/Resources/config/routing/admin.yaml"
-    prefix: /%sylius_admin.path_name%
+#    prefix: /%sylius_admin.path_name%
 
 sylius_best_seller_admin:
     resource: "@SyliusBestSellerPlugin/Resources/config/admin_routes.yaml"
-    prefix: /%sylius_admin.path_name%
+#    prefix: /%sylius_admin.path_name%
 
 sylius_offers_admin:
     resource: "@SyliusOffersPlugin/Resources/config/admin_routes.yaml"
+#    prefix: /%sylius_admin.path_name%
+
+#sylius_repair_service_admin:
+#    resource: "@SyliusRepairServicePlugin/Resources/config/admin_routes.yaml"
+#    prefix: /%sylius_admin.path_name%
+
+
+youngstore_settings_admin:
+    resource: "@YoungstoreSettingsPlugin/Resources/config/admin_routes.yaml"
     prefix: /%sylius_admin.path_name%
 
-sylius_repair_service_admin:
-    resource: "@SyliusRepairServicePlugin/Resources/config/admin_routes.yaml"
-    prefix: /%sylius_admin.path_name%
+
+
+
+
