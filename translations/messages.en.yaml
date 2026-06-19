@@ -131,3 +131,10 @@ printer_shop:
         tax: 'Tax'
         total: 'Total'
         place_order: 'Place Order'
+
+youngstore_settings:
+    ui:
+        store_settings: 'Store Settings'
+        new_store_settings: 'New Store Settings'
+        edit_store_settings: 'Edit Store Settings'
+        create_store_settings: 'Create Store Settings'

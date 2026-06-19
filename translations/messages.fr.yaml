@@ -131,3 +131,10 @@ printer_shop:
         tax: 'Taxe'
         total: 'Total'
         place_order: 'Passer la commande'
+
+youngstore_settings:
+    ui:
+        store_settings: 'Paramètres de la Boutique'
+        new_store_settings: 'Nouveaux Paramètres de la Boutique'
+        edit_store_settings: 'Modifier les Paramètres de la Boutique'
+        create_store_settings: 'Créer les Paramètres de la Boutique'

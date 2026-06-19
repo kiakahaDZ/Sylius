@@ -132,3 +132,10 @@ printer_shop:
         tax: 'الضريبة'
         total: 'المجموع'
         place_order: 'تأكيد الطلب'
+
+youngstore_settings:
+    ui:
+        store_settings: 'إعدادات المتجر'
+        new_store_settings: 'إعدادات متجر جديدة'
+        edit_store_settings: 'تعديل إعدادات المتجر'
+        create_store_settings: 'إنشاء إعدادات المتجر'
